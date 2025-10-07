@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <string name="draw_with_camera">用相机绘制</string>
+  <string name="draw_with_camera_description">绘画时，请使用三脚架，玻璃或一堆书籍将手机固定在适当的位置。</string>
+  <string name="draw_with_screen">用屏幕绘制</string>
+  <string name="draw_with_screen_description">将纸放在手机的屏幕上，然后遵循线条轻松跟踪图像。</string>
+  <string name="upload_your_own_collection">上传您自己的收藏</string>
+  <string name="upload_your_own_collection_description">选择您喜欢的草图或照片，然后轻松地进行追踪。</string>
+  <string name="sketch_box">素描框</string>
+  <string name="sketch_box_tagline">草图很容易</string>
+  <string name="continue_text">继续</string>
+  <string name="next">下一个</string>
+  <string name="lets_start">令\ &amp;apos;的开始</string>
+  <string name="skip">跳过</string>
+  <string name="create_your_own">创建自己的</string>
+  <string name="camera">相机</string>
+  <string name="gallery">画廊</string>
+  <string name="sketch_gallery">素描画廊</string>
+  <string name="categories">类别</string>
+  <string name="see_all">看看全部</string>
+  <string name="hello_blank_fragment">你好，空白片段</string>
+  <string name="first_fragment_label">第一个片段</string>
+  <string name="second_fragment_label">第二片</string>
+  <string name="previous">以前的</string>
+  <string name="lorem_ipsum">Lorem Ipsum Dolor Sit Amet，Consectur adipiscing Elit。 NAM在Scelerisque Sem中。毛里斯
+        Volutpat，Dolor ID InterDum Ullamcorper，Risus Dolor Egestas lectus，Sit Amet Mattis Purus
+        DUI NEC RISUS。 Maecenas non Sodales nisi，vel distum dolor。班级taciti sociosqu ad ad
+        litora torquent per conubia nostra，每个inceptos himenaeos。吊带Blandit Eleifend
+        直径，vel rutrum tellus vulpetate quis。 Aliquam Eget Libero等分试样，Imperdiet Nisl A，
+        Ornare Ex。 Sed Rhoncus est ut Libero Porta Lobortis。 fusce in Destum Tellus .__ plh2_\n
+        悬挂式杂货。 Eliquam nec cursus lorem。 Morbi ID Magna Felis。 Vivamus
+        Egestas，Est a Condimentum egestas，turpis nisl iaculis ippum，distum tellus dolor sed
+        内克。 Morbi Tellus Erat，Dapibus ut Sem A，Iaculis Tincidunt Dui。 Interdum et Malesuada
+        Faucibus中的Fames Ac Ac ante Ipsum Primis。 Curabitur et Eros Pottitor，Ultricies Urna Vitae，
+        molestie nibh。 Commodo Eros的Phasellus，非等分试样元素。 SED MAXIMUS NISL NEC DOLOR
+        Bibendum，Vel会助理LeogeS .__ PLH2____PLH2__
+        sagittis risus mollis quis中的Sed Interdum tortor nibh。 Curabitur mi odio，调味品
+        Amet Auctor，Mollis Non Turpis。 Nullam Pretium Libero前庭，Finibus Orci Vel，
+        molestie Quam。 Fusce Blandit Tincidunt Nulla，Quis Sollicitudin Libero int.ChiLisis et。整数
+        InterDum Nunc Ligula等发酵元Hendrerit ID。前庭lectus felis，格言
+        Lacinia Sit Amet，Tristique ID Quam。 Cras EU Reacteat DUI。吊索苏丹氏菌Nunc ligula，
+        在Lobortis sem porta sed中。整数ID Ultrices Magna，Luctus Elit。 Sed a Pellentesque
+        Est .__ PLH2___PLH2__
+        aenean nunc velit，lacinia sed dolor sed，ultrices viverra nulla。 Etiam a venenatis nibh。
+        Morbi Laoreet，Tortor sed fookilisis varius，nibh orci rhoncus nulla，id Ementimum leo dui
+        非洛雷姆。 Nam Mollis ipsum quis auctor varius。 Quisque Ementimum Eu Libero Sed Commodo。在
+        Eros Nisl，Imperdiet Vel Imperdiet Et，scelerisque a Mauris。 pellentesque varius ex nunc，
+        Quis Imperdiet Eros Placerat AC。 Duis Finibus orci et est auctor tincidunt。 sed non viverra
+        ipsum。 Nunc Quis Augue Egestas，Cursus lorem at molestie sem。 morbi consecteTur ipsum，一个
+        Placerat直径。 Etiam vulputate dignissim convallis。整数Faucibus Mauris Sit Amet Finibus
+        Chackallis .__ PLH2____PLH2__
+        等分试样中的phasellus。 Pellentesque居民Morbi Tristique Senectus et netus et et netus et
+        Malesuada Fames Ac Turpis egestas。在filutpat arcu ut felis sagittis中
+        栅栏。 Pellentesque ID Tellus Orci。整数格言，Lorem Sed efficitur ullamcorper，
+        Libero Justo Consettur Ipsum，位于Mollis Nisl Ex sed Nisl。 Donec Maximus Ullamcorper
+        sodales。 Praesent Bibendum rhoncus tellus nec feugiat。在Ornare Nulla中。 Donec Rhoncus
+        Libero Vel Nunc Reactat，Quis Tincidunt Nisl Eleifend。 cras bibendum enim a justo luctus
+        前庭。 Fusce distum libero quis erat maximus，vitae volutpatim dignissim。</string>
+</resources>

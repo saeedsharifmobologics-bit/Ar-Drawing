@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/_20sdp"
+    android:padding="@dimen/_10sdp"
+    tools:context=".fragments.SettingFragment">
+
+    <!-- Back Button -->
+    <ImageView
+        android:id="@+id/back_btn"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:src="@drawable/back_btn"
+        app:layout_constraintBottom_toBottomOf="@id/setting_txt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/setting_txt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Setting"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_20sdp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/back_btn"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!-- Container for Settings -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/setting_txt">
+
+        <!-- General -->
+        <TextView
+            android:id="@+id/general"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="General"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/home"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Home -->
+        <TextView
+            android:id="@+id/home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintBottom_toTopOf="@+id/library"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/general" />
+
+        <!-- Library -->
+        <TextView
+            android:id="@+id/library"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Library"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintBottom_toTopOf="@+id/legal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home" />
+
+        <!-- Legal -->
+        <TextView
+            android:id="@+id/legal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Legal"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/privacyPolicy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/library" />
+
+        <!-- Privacy Policy -->
+        <TextView
+            android:id="@+id/privacyPolicy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Privacy Policy"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintBottom_toTopOf="@+id/termsOfService"
+            app:layout_constraintEnd_toStartOf="@+id/privacyPolicy_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/legal" />
+
+        <ImageButton
+            android:id="@+id/privacyPolicy_btn"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/next_btn_ic"
+            app:layout_constraintBottom_toBottomOf="@id/privacyPolicy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/privacyPolicy" />
+
+        <!-- Terms of Service -->
+        <TextView
+            android:id="@+id/termsOfService"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Terms of Service"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintBottom_toTopOf="@+id/helpSupport"
+            app:layout_constraintEnd_toStartOf="@+id/termsOfService_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/privacyPolicy" />
+
+        <ImageButton
+            android:id="@+id/termsOfService_btn"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/next_btn_ic"
+            app:layout_constraintBottom_toBottomOf="@id/termsOfService"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/termsOfService" />
+
+        <!-- Help & Support -->
+        <TextView
+            android:id="@+id/helpSupport"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Help &amp; Support"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/faqs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/termsOfService" />
+
+        <!-- FAQs -->
+        <TextView
+            android:id="@+id/faqs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="FAQs"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintBottom_toTopOf="@+id/shareApp"
+            app:layout_constraintEnd_toStartOf="@+id/faqs_btn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/helpSupport" />
+
+        <ImageButton
+            android:id="@+id/faqs_btn"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/next_btn_ic"
+            app:layout_constraintBottom_toBottomOf="@id/faqs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/faqs" />
+
+        <!-- Share App -->
+        <TextView
+            android:id="@+id/shareApp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Share App"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintBottom_toTopOf="@+id/moreApps"
+            app:layout_constraintEnd_toStartOf="@+id/shareApp_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/faqs" />
+
+        <ImageButton
+            android:id="@+id/shareApp_btn"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/next_btn_ic"
+            app:layout_constraintBottom_toBottomOf="@id/shareApp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/shareApp" />
+
+        <!-- More Apps -->
+
+        <TextView
+            android:id="@+id/moreApps"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="More Apps"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintBottom_toTopOf="@+id/goPremium"
+            app:layout_constraintEnd_toStartOf="@+id/moreApps_btn"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shareApp" />
+
+        <ImageButton
+            android:id="@+id/moreApps_btn"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/next_btn_ic"
+            app:layout_constraintBottom_toBottomOf="@id/moreApps"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/moreApps" />
+
+        <!-- Go Premium -->
+        <TextView
+            android:id="@+id/goPremium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Go Premium"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/go_premium_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/moreApps" />
+
+        <!-- Example: Go Premium Layout -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/go_premium_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/guidline1"
+            app:layout_constraintTop_toBottomOf="@+id/goPremium">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/premium_btn"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/prime_btn_setting"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="Subscription"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/premium_btn"
+                app:layout_constraintTop_toTopOf="@id/premium_btn" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="Manage Your Subscription"
+                android:textColor="@color/drawwithTextDecColor"
+
+                android:textSize="@dimen/_13sdp"
+
+                app:layout_constraintBottom_toBottomOf="@id/premium_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/premium_btn" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidline1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.8" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

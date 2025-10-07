@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <string name="draw_with_camera">Mit der Kamera zeichnen</string>
+  <string name="draw_with_camera_description">Verwenden Sie ein Stativ, ein Glas oder einen Stapel Bücher, um Ihr Telefon beim Zeichnen an Ort und Stelle zu halten.</string>
+  <string name="draw_with_screen">Mit dem Bildschirm zeichnen</string>
+  <string name="draw_with_screen_description">Legen Sie ein Papier über den Bildschirm Ihres Telefons und folgen Sie den Zeilen, um Ihr Bild problemlos zu verfolgen.</string>
+  <string name="upload_your_own_collection">Laden Sie Ihre eigene Sammlung hoch</string>
+  <string name="upload_your_own_collection_description">Wählen Sie Ihre bevorzugten Skizzen oder Fotos und beginnen Sie mit Leichtigkeit nachverfolgt.</string>
+  <string name="sketch_box">Skizzenbox</string>
+  <string name="sketch_box_tagline">Skizzen einfach gemacht</string>
+  <string name="continue_text">Weitermachen</string>
+  <string name="next">Nächste</string>
+  <string name="lets_start">Lassen Sie uns beginnen</string>
+  <string name="skip">Überspringen</string>
+  <string name="create_your_own">Erstellen Sie Ihre eigenen</string>
+  <string name="camera">Kamera</string>
+  <string name="gallery">Galerie</string>
+  <string name="sketch_gallery">Skizzgalerie</string>
+  <string name="categories">Kategorien</string>
+  <string name="see_all">Sehen Sie alle</string>
+  <string name="hello_blank_fragment">Hallo leeres Fragment</string>
+  <string name="first_fragment_label">Erstes Fragment</string>
+  <string name="second_fragment_label">Zweites Fragment</string>
+  <string name="previous">Vorherige</string>
+  <string name="lorem_ipsum">Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. NAM in Scelerisque Sem. Mauris
+        Volutpat, Dolor ID Interdum Ullamcorper, Risus Dolor Egestas Lektus, Sit Amet Mattis Purus
+        DUI NEC RISUS. Maecenas Non Sodales Nisi, Vel Dictum Dolor. Klasse Aptent Taciti Sociosqu Anzeige
+        Litora Drehmomente pro Conubia Nostra, gemäß Inceptos Himenaeos. Suspendisse Blandit Eleifend
+        Durchmesser, Vel Rutrum Tellus Vulputate Quis. Aliquam Eget Libero Aliquet, Imperdiet nisl a,,
+        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum Tellus .__ PLH2____PLH2__
+        Suspendisse Interdum ornare ante. Aliquam Nec Cursus Lorem. Morbi Id Magna Felis. Vivamus
+        Egestas, est a detimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
+        Neque. Morbi Tellus Erat, Dapibus UT Sem A, Iaculis Tincidunt Dui. Interdum et maleesuada
+        FAMES AC ante ipsum primis im Faucibus. Curabitur et Eos Porttitor, Ultrikies Urna Vitae,
+        Lustie Nibh. Phasellus bei Commodo Eros, Nicht -Aliquet -Metus. Sed maximus nisl nec dolor
+        Bibendum, Vel Congue Leo Egestas .__ PLH2____PLH2__
+        Sed Interdum Tortor Nibh, in Sagittis risus mollis quis. Curabitur Mi Odio, Förderung sitzen
+        Amet Auctor bei, Mollis non Turpis. Nullam Pretium libero vestibulum, Finibus orci vel,
+        Lustie Quam. Fusce Blandit Tincidunt Nulla, Quis Sollictudin libero facilisis et. Ganze Zahl
+        Interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum bei
+        Lacinia sitzen Amet, Tristique id quam. CRAS EU Konsequenz DUI. Suspendisse Sodales Nunc Ligula,
+        in lobortis sem porta sed. Integer ID Ultrices Magna, in Lucus Elit. Sed a pellentesque
+        est .__ PLH2____PLH2__
+        Aenean Nunc Velit, Lacinia sed Dolor sed, Ultrices viverra nulla. Etiam A Venenatis Nibh.
+        Morbi Laoreet, Tortor Sed Facilisis Varius, Nibh Orci Rhoncus Nulla, ID Elementum Leo Dui
+        Non Lorem. Nam Mollis Ipsum Quis Auctor Varius. Quisque Elementum Eu Libero sed comodo. In
+        Eros nisl, Imperdiet Vel Imperdiet ET, Scelerisque A Mauris. Pellentesque Varius ex nunc,
+        Quis Imperdiet Eros Placerat AC. Duis Finibus Orci et est Auctor Tincidunt. SED Non Viverra
+        Ipsum. Nunc Quis Augue Egestas, Cursus Lorem bei, Malestie Sem. Morbi ein Konzertum Ipsum, a
+        Placerat -Durchmesser. Etiam Vulputate Dignissim Convallis. Ganzzahl Faucibus Mauris Sit Amet Finibus
+        convallis .__ PLH2____PLH2__
+        Phasellus in Aliquet MI. Pellentesque Häuser Morbi Tristique Senectus ET Netus ET
+        Maleesuada Fames AC Turpis Egestas. In volutpat arcu ut felis Sagittis, in Finibus massa
+        gravida. Pellentesque ID Tellus Orci. Ganzzahl dictum, Lorem Sed Efficitur Ullamcorper,
+        Libero Justo Consectetur Ipsum, in Mollis nisl Ex sed nisl. Donec Maximus Ullamcorper
+        Sodales. Praesent Bibendum Rhoncus Tellus NEC Fegiat. In einem Ornare Nulla. Donec Rhoncus
+        Libero Vel Nunc, Quis Tincidunt Nisl Eleifend. Cras bibendum enim einen Justo Luctus
+        Vestibulum. Fusce dictum libero quis erat maximus, Vitae volutpat Diam Dignissim.</string>
+</resources>

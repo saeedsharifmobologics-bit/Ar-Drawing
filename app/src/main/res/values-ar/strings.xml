@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <string name="draw_with_camera">ارسم مع الكاميرا</string>
+  <string name="draw_with_camera_description">استخدم ترايبود أو كوبًا أو مجموعة من الكتب لعقد هاتفك في مكانه أثناء الرسم.</string>
+  <string name="draw_with_screen">ارسم مع الشاشة</string>
+  <string name="draw_with_screen_description">ضع ورقة على شاشة هاتفك واتبع الخطوط لتتبع صورتك بسهولة.</string>
+  <string name="upload_your_own_collection">تحميل مجموعتك الخاصة</string>
+  <string name="upload_your_own_collection_description">اختر رسوماتك أو صورك المفضلة وابدأ التتبع بسهولة.</string>
+  <string name="sketch_box">مربع رسم</string>
+  <string name="sketch_box_tagline">الرسومات جعلت سهلة</string>
+  <string name="continue_text">يكمل</string>
+  <string name="next">التالي</string>
+  <string name="lets_start">لنبدأ</string>
+  <string name="skip">يتخطى</string>
+  <string name="create_your_own">قم بإنشاء بنفسك</string>
+  <string name="camera">آلة تصوير</string>
+  <string name="gallery">معرض</string>
+  <string name="sketch_gallery">معرض رسم</string>
+  <string name="categories">فئات</string>
+  <string name="see_all">انظر كل شيء</string>
+  <string name="hello_blank_fragment">مرحبا شظية فارغة</string>
+  <string name="first_fragment_label">أول جزء</string>
+  <string name="second_fragment_label">الشظية الثانية</string>
+  <string name="previous">سابق</string>
+  <string name="lorem_ipsum">lorem ipsum dolor sit amet ، incectetur adipiscing leit. نام في Scelerisque Sem. موريس
+        Volutpat ، Dolor Id Interdum Ullamcorper ، Risus Dolor Egestas ، Sit Amet Mattis Purus
+        DUI NEC RISUS. Maecenas Non Sodales Nisi ، Vel Dictum Dolor. إعلان من فئة Taciti Sociosqu
+        Litora Torquent Per Conubia nostra ، لكل inceptos himenaeos. SuperNdisse Blandit eleifend
+        قطر ، Vel Rutrum tellus julputate quis. Aliquam Eget Libero Aliquet ، Imperdiet NISL A ،
+        ornare السابقين. Sed Rhoncus est ut Libero Porta Lobortis. fusce in dictum tellus .__ plh2\n
+        SuperNdisse interdum ornare ante. Aliquam NEC CURSUS LOREM. موربي معرف ماجنا فيليس. فيفاموس
+        egestas ، est a condimentum egestas ، turpis nisl iaculis ipsum ، in dictum tellus dolor sed
+        خالية. Morbi Tellus Erat ، Dapibus ut Sem A ، Iaculis Tincidunt DUI. Interdum et Malesuada
+        fames ac ante ipsum primis في faucibus. curabitur et eros porttitor ، ustricies urna vitae ،
+        Monestie nibh. Phasellus في Commodo Eros ، غير قائمتس ميتوس. سيد ماكسيموس NISL NEC Dolor
+        Bibendum ، Vel Congue Leo Egestas .__ Plh2__\n
+        SED Interdum Turtor NIBH ، في القوس Risus Mollis Quis. Curabitur Mi Odio ، Sitmentum Sit
+        أميت Auctor في ، موليس غير توربيس. Nullam Pretium Libero Sastibulum ، Finibus Orci Vel ،
+        متحمس QUAM. Fusce Blandit Tincidunt nulla ، quis sollicitudin libero facilisis et. عدد صحيح
+        Interdum nunc ligula ، et fermentum metus hendrerit id. المحاضرة فيليس ، القولون في
+        Lacinia Sit Amet ، Tristique id quam. كراس الاتحاد الأوروبي نتيجة وثيقة الهوية الوحيدة. SuperNdisse Sodales nunc ligula ،
+        في Lobortis SEM Porta sed. INTEGER ID ULTRICES MAGNA ، في Luctus ELIT. سيد بيلنتسك
+        est .__ plh2__\n
+        Aenean nunc Velit ، Lacinia sed dolor sed ، ultrices viverra nulla. Etiam A Venenatis nibh.
+        Morbi Laoreet ، Turtor Sed Ducilisis varius ، Nibh Orci Rhoncus nulla ، Id Elementum Leo DUI
+        غير لوريم. Nam Mollis ipsum quis auctor varius. Quisque Elementum EU Libero Sed Commodo. في
+        Eros NISL ، Imperdiet vel Imperdiet et ، Scelerisque a Mauris. Pellentesque varius ex nunc ،
+        quis imperdiet eros placerat ac. DUIS Finibus orci et est auctor tincidunt. SED NON VIVERRA
+        ipsum. nunc quis ugue egestas ، cursus lorem at ، molestie sem. Morbi A incectetur ipsum ، أ
+        قطر placerat. ETIAM الجذابة Dignissim convallis. عدد صحيح faucibus mauris يجلس amet finibus
+        convallis .__ plh2__\n
+        Phasellus في ALIQUET MI. Pellentesque Malitant Morbi Tristique Senectus et Netus et
+        malesuada fames ac turpis egestas. في Volutpat arcu ut felis sagittis ، في Finibus Massa
+        جرافيدا. Pellentesque ID Tellus orci. integer dictum ، lorem sed efficitur ullamcorper ،
+        Libero Justo Concectetur ipsum ، في Mollis NISL EX SED NISL. Donec Maximus Ullamcorper
+        SODALES. praesent bibendum rhoncus tellus nec feugiat. في ornare nulla. Donec Rhoncus
+        Libero vel nunc نتيجة ، quis tincidunt nisl eleifend. كراس بيبيندوم enim a Justo Luctus
+        الدهليز. fusce dictum libero quis erat maximus ، vitae volutpat diam dignissim.</string>
+</resources>

@@ -1,0 +1,28 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_10sdp">
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_gravity="center">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/custom_image_view_shape" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ArDrawingDataImage"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp"
+        android:adjustViewBounds="true"
+        android:clipToOutline="true"
+        android:outlineProvider="background"
+        android:scaleType="fitXY"
+        android:visibility="visible" />
+
+</FrameLayout>

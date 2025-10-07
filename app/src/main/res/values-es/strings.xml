@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <string name="draw_with_camera">Dibujar con cámara</string>
+  <string name="draw_with_camera_description">Use un trípode, un vaso o una pila de libros para mantener su teléfono en su lugar mientras dibuja.</string>
+  <string name="draw_with_screen">Dibujar con pantalla</string>
+  <string name="draw_with_screen_description">Coloque un papel sobre la pantalla de su teléfono y siga las líneas para rastrear su imagen con facilidad.</string>
+  <string name="upload_your_own_collection">Sube tu propia colección</string>
+  <string name="upload_your_own_collection_description">Elija sus bocetos o fotos favoritos y comience a rastrear con facilidad.</string>
+  <string name="sketch_box">Caja</string>
+  <string name="sketch_box_tagline">Bocetos hechos fáciles</string>
+  <string name="continue_text">Continuar</string>
+  <string name="next">Próximo</string>
+  <string name="lets_start">Comience</string>
+  <string name="skip">Saltar</string>
+  <string name="create_your_own">Crea tu propio</string>
+  <string name="camera">Cámara</string>
+  <string name="gallery">Galería</string>
+  <string name="sketch_gallery">Galería de bocetos</string>
+  <string name="categories">Categorías</string>
+  <string name="see_all">Ver todo</string>
+  <string name="hello_blank_fragment">Hola fragmento en blanco</string>
+  <string name="first_fragment_label">Primer fragmento</string>
+  <string name="second_fragment_label">Segundo fragmento</string>
+  <string name="previous">Anterior</string>
+  <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam en Scelerisque Sem. Mauris
+        Volutpat, Dolor ID Interdum Ullamcorper, Risus dolor eggesgas Lectus, Sit Amet Mattis Purus
+        DUI NEC RISUS. Maecenas Non Sodales nisi, vel dictum dolor. Clase Aptent Taciti Sociosqu AD
+        LITORA TORQUENT POR CONUBIA Nostra, por Inceptos Himenaeos. Suspender blandit eleifend
+        diam, vel rutrum nellus vulputate quis. Aliquam Eget Libero Aliquet, Imperdiet nisl A,
+        Ornare Ex. Sed Rhoncus est Ut Libero Porta Lobortis. Fusce en dictum tellus .__ plh2__\n
+        Suspendisse Interdum Ornare Ante. Aliquam nec cursus lorem. Morbi id magna Felis. Vivamus
+        eggestas, est a condimentum eggiors, Turpis nisl iaculis ipsum, en dictum tellus dolor sed
+        Neque. Morbi Tellus Erat, Dapibus Ut Sem A, Iaculis Tincidunt Dui. Interdum et Malesuada
+        Fames acan ipsum primis en faucibus. Curabitur et Eros Porttitor, Ultricies Urna Vitae,
+        Molestia Nibh. Phasellus en Comdodo Eros, no Aliquet Metus. Sed Maximus nisl nec dolor
+        Bibendum, Vel Congue Leo Egestas .__ PLH2__VPLH2__
+        Sed interdum tortor nibh, en Sagittis risus mollis quis. Curabitur mi odio, condimentum
+        AUCTOR AMET AT, Mollis no turpis. Nullam Pretium Libero Vestibulum, Finibus Orci Vel,
+        Molestia Quam. Fusce Blandit Tincidunt Nulla, Quis Sollicitudin Libero Facilisis et. Entero
+        Interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum en
+        Lacinia Sit Amet, Tristique Id Quam. Cras EU consecuente DUI. Suspendisse Sodales Nunc Ligula,
+        En Lobortis Sem Porta Sed. Integer ID Ultrices Magna, en Luctus Elit. Sed
+        Est .__ PLH2____PLH2__
+        Aenean Nunc Velit, Lacinia Sed Dolor Sed, Ultrices Viverra Nulla. Etiam a Venenatis nibh.
+        Morbi Laoreet, Tortor Sed Facilisis Varius, Nibh Orci Rhoncus Nulla, Id Elementum Leo Dui
+        no lorem. Nam Mollis Ipsum Quis Auctor Varius. Quisque Elementum EU Libero Sed Commodo. En
+        eros nisl, imperdiet vel imperdiet et, schelerisque a mauris. Pellentesque Varius ex Nunc,
+        Quis Imperdiet Eros Placerat ac. DUIS FINIBUS Orci et est Auctor Tincidunt. Sed nonviverra
+        iPsum. Nunc Quis Augue Eggestas, Cursus lorem at, Molestie Sem. Morbi a consecttur ipsum, un
+        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris Sit Amet Finibus
+        convallis .__ plh2__\n
+        Phasellus en Aliquet Mi. Habitant Pellentesque Morbi Tristique Senectus et Netus et
+        Malesuada Fames AC Turpis Egestas. En Volutpat Arcu ut Felis sagittis, en Finibus Massa
+        gravida. Pellentesque ID Tellus Orci. Entero dictum, lorem sed eficitur ullamcorper,
+        Libero JUSTO Consectetur Ipsum, en Mollis nisl ex sed. Donec Maximus Ullamcorper
+        Sodales. Praesent Bibendum Rhoncus Tellus Nec Feugiat. En un ornare nulla. Donec Rhoncus
+        Libero Vel Nunc consecuente, Quis Tincidunt nisl Eleifend. Cras bibendum enim un justo lucto
+        vestibulo. Fusce Dictum Libero Quis Erat Maximus, Vitae Volutpat Diam Dignissim.</string>
+</resources>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <string name="draw_with_camera">Desenhe com a câmera</string>
+  <string name="draw_with_camera_description">Use um tripé, um copo ou uma pilha de livros para segurar seu telefone no lugar enquanto desenha.</string>
+  <string name="draw_with_screen">Desenhe com tela</string>
+  <string name="draw_with_screen_description">Coloque um papel na tela do seu telefone e siga as linhas para rastrear sua imagem com facilidade.</string>
+  <string name="upload_your_own_collection">Carregue sua própria coleção</string>
+  <string name="upload_your_own_collection_description">Escolha seus esboços ou fotos favoritos e comece a rastrear com facilidade.</string>
+  <string name="sketch_box">Caixa de esboço</string>
+  <string name="sketch_box_tagline">Esboços facilitados</string>
+  <string name="continue_text">Continuar</string>
+  <string name="next">Próximo</string>
+  <string name="lets_start">Vamos começar</string>
+  <string name="skip">Pular</string>
+  <string name="create_your_own">Crie o seu próprio</string>
+  <string name="camera">Câmera</string>
+  <string name="gallery">Galeria</string>
+  <string name="sketch_gallery">Galeria de Esboço</string>
+  <string name="categories">Categorias</string>
+  <string name="see_all">Veja tudo</string>
+  <string name="hello_blank_fragment">Olá fragmento em branco</string>
+  <string name="first_fragment_label">Primeiro fragmento</string>
+  <string name="second_fragment_label">Segundo fragmento</string>
+  <string name="previous">Anterior</string>
+  <string name="lorem_ipsum">Lorem ipsum dolor Sit AMET, consectur adipiscing elit. Nam em SceleRisque Sem. Mauris
+        Volutpat, Dolor ID Interdum Ullamcorper, Risus dolor egestas lectus, Sit AMet Mattis Purus
+        DUI NEC RISUS. Maecenas non Sodales nisi, vel dictum dolor. Classe APTNT TACITI SOCIOSQ AD
+        Litora Torquent por Conubia Nostra, por Ineptos Himenaeos. Sussendisse Blandit Eleifend
+        diam, vel rutrum Tellus vulputate quis. Aliquam eget libero aliquete, imperdiet nisl a,
+        ornare ex. Sed rhoncus est ut libero porta lobortis. FUSCE em ditado Tellus .__ PLH2____PH2__
+        Sussendisse interdum ornare ante. Aliquam NEC Cursus Lorem. Morbi ID Magna Felis. Vivamus
+        Egestas, EST A Condimentum Egestas, Turpis nisl iaculis ipsum, em dictum Tellus dolor sed
+        Neque. Morbi Tellus erat, dapibus ut sem a, iaculis tincidunt DUI. Interdum et Malesuada
+        FAMES ACE ATE IPSUM Primis em Faucibus. Curabitur et eros porttitor, Ultricies Urna vitae,
+        Molestie Nibh. Phasellus em Commodo Eros, não aliquete Metus. Sed maximus nisl nec Dolor
+        Bibendum, Vel Congue Leo egestas .__ PLH2____PLH2__
+        Sed interdum tortor nibh, em sagittis risus mollis quis. Curabitur Mi Odio, Condimentum Sit
+        Amet Auctor em, Mollis non Turpis. Nullam pretium libero vestibulum, finibus orci vel,
+        Molestie Quam. Fusce Blandit Tincidunt Nulla, Quis Sollicitudin Libero facilisis et. Inteiro
+        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, ditado em
+        Lacinia Sit AMET, Tristique ID Quam. Cras eu.fl. consequeat dui. Sussendisse Sodales Nunc Ligula,
+        em lobortis sem porta sed. Ultrices inteiros Id Magna, em Luctus elit. Sed um pentelezido
+        EST .__ PLH2____PLH2__
+        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis Nibh.
+        Morbi Laoreet, Tortor Sed Facilisis Varius, Nibh Orci Rhoncus Nulla, ID Elementum Leo Dui
+        não Lorem. Nam Mollis ipsum quis Auctor Varius. Quisque elementum eu libo sed commodo. Em
+        Eros Nisl, Imperdiet Vel Imperdiet ET, SceleRisque A Mauris. Pentelelesque varius ex nunc,
+        Quis Imperdiet Eros Placerat ac. Duis Finibus Orci et estuCor Tincidunt. Sed non viverra
+        ipsum. Nunc quis augue egestas, cursus lorem em, molestie sem. Morbi um consectetor ipsum, um
+        Placerat diam. Etiam Vulputate Dignissim Connallis. Inteiro Faucibus Mauris Sit Amet Finibus
+        Convallis .__ PLH2____PLH2__
+        Phasellus em Aliqueta MI. Plelentresque Habitant Morbi Tristique senectus et netus et
+        Malesuada Fames AC Turpis Egestas. Em Volutpat Arcu Ut Felis Sagittis, em Finibus Massa
+        Gravida. Pellentresque ID Tellus Orci. Ditum inteiro, Lorem sed efficitur ullamcorper,
+        Libero justo consecteter ipsum, em Mollis Nisl ex sed nisl. Donec Maximus Ullamcorper
+        Sodales. Praesent Bibendum Rhoncus Tellus nec Feugiat. Em uma nulla de ornare. Donec Rhoncus
+        Libero Vel nunc consequente, Quis Tincidunt Nisl Eleifend. Cras bibendum enim um justo luctus
+        vestíbulo. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.</string>
+</resources>

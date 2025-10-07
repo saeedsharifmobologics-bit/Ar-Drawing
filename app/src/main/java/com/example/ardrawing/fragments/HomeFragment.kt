@@ -1,0 +1,231 @@
+package com.example.ardrawing.fragments
+
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.graphics.drawable.toBitmap
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import coil.imageLoader
+import coil.request.ImageRequest
+import com.example.ardrawing.MainActivity
+import com.example.ardrawing.R
+import com.example.ardrawing.buinesslogiclayer.ArDrawingViewmodel
+import com.example.ardrawing.data.ArDrawingData
+import com.example.ardrawing.databinding.FragmentHomeBinding
+import com.example.ardrawing.utils.ArDrawingSharePreference
+import com.example.ardrawing.utils.CommonUtils
+import com.example.ardrawing.utils.ImageHolder
+import com.example.ardrawing.utils.PermissionHandler
+import kotlinx.coroutines.launch
+import org.opencv.android.OpenCVLoader
+import org.opencv.android.Utils
+import org.opencv.core.Mat
+import kotlin.collections.List
+import kotlin.getValue
+import kotlin.random.Random
+import kotlin.random.nextInt
+
+
+class HomeFragment : Fragment() {
+    lateinit var binding: FragmentHomeBinding
+    private lateinit var galleryLauncher: ActivityResultLauncher<String>
+    private lateinit var cameraLauncher: ActivityResultLauncher<Uri>
+    private var imageUri: Uri? = null
+    private lateinit var permissionHandler: PermissionHandler
+    private lateinit var sharePreference: ArDrawingSharePreference
+
+    private val multiplePermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            val allGranted = permissions.all { it.value }
+
+            if (allGranted) {
+                Toast.makeText(requireContext(), "Permissions granted ", Toast.LENGTH_SHORT).show()
+            } else {
+                val requestCount = sharePreference.getInt()
+
+                when (requestCount) {
+                    0 -> {
+                        sharePreference.saveInt(1)
+                        permissionHandler.showRetryDialog()
+                    }
+
+                    else -> {
+                        permissionHandler.showSettingsDialog()
+                    }
+                }
+            }
+        }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        // Inflate the layout for this fragment
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        sharePreference = ArDrawingSharePreference(requireContext())
+        permissionHandler = PermissionHandler(requireContext(), multiplePermissionLauncher)
+
+        // Request permissions
+        permissionHandler.requestPermission()
+        CommonUtils.loadNativeAd(requireView(), requireContext())
+
+        galleryLauncher = CommonUtils.registerGalleryPicker(this) { uri ->
+            uri?.let {
+                val inputStream = requireContext().contentResolver.openInputStream(uri)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                inputStream?.close()
+                ImageHolder.pickLocation = "gallery"
+
+                ImageHolder.bitmap = bitmap // ✅ VALID
+
+
+                val action = HomeFragmentDirections.actionHomeFragmentToSelectionModeFragment()
+                findNavController().navigate(action)
+
+            } ?: run {
+                Toast.makeText(requireContext(), "No Image Selected", Toast.LENGTH_SHORT).show()
+
+            }
+
+
+        }
+
+        cameraLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
+                if (success && imageUri != null) {
+                    val inputStream = requireContext().contentResolver.openInputStream(imageUri!!)
+                    val bitmap = BitmapFactory.decodeStream(inputStream)
+                    inputStream?.close()
+
+                    ImageHolder.bitmap = bitmap // ✅ VALID
+                    ImageHolder.pickLocation = "camera"
+                    val action = HomeFragmentDirections.actionHomeFragmentToSelectionModeFragment()
+                    findNavController().navigate(action)
+                } else {
+                    Toast.makeText(requireContext(), "Capture failed", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        val urlList: List<ArDrawingData> = listOf(
+            // Anime
+            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/anime_sketch.jpg"),
+            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/anime_sketch_1.jpg"),
+
+            // Fruits
+            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/apple_1.jpg"),
+            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/apple_2.jpg"),
+
+            // Anatomy
+            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/anatomy.png"),
+            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/anatomy_2.jpg"),
+
+            // Object
+            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/jug_object.jpg"),
+            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/building%20sketch.jpg"),
+
+            // Animal
+            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds%20image.jpg"),
+            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/lion%20image.jpg"),
+
+            // Car
+            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/car_sketch.jpg"),
+
+            // Person
+            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/person_sketch.jpg")
+        )
+
+
+        binding.moreDrawer.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_settingFragment)
+        }
+
+
+        binding.moreDrawer.setOnClickListener {
+            (activity as? MainActivity)?.openDrawer()
+        }
+
+        binding.billingBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_subscriptionFragment)
+        }
+
+        binding.quickStartBtn.setOnClickListener {
+            val randomImage = Random.nextInt(urlList.size)
+            val randomElement = urlList[randomImage].favouritefavouriteUrl
+            lifecycleScope.launch {
+                val bitmp = urlToBitmap(randomElement, requireContext())
+                ImageHolder.bitmap = bitmp
+            }
+            val action = HomeFragmentDirections.actionHomeFragmentToSelectionModeFragment()
+            findNavController().navigate(action)
+        }
+        binding.viewNowBtn.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToCategoriesFragment()
+            findNavController().navigate(action)
+        }
+
+        binding.gallerylinearLayout.setOnClickListener {
+            CommonUtils.pickImageFromGallery(galleryLauncher)
+        }
+
+        binding.cameraBtnLayout.setOnClickListener {
+            imageUri = CommonUtils.createImageUri(requireContext())
+            imageUri?.let {
+                cameraLauncher.launch(it)
+            }
+        }
+        val includedLayout = binding.catogoriesSection
+
+        includedLayout.seeAll1.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToViewCategoryFragment("Anime")
+            findNavController().navigate(action)
+        }
+
+        includedLayout.seeAll2.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToViewCategoryFragment("Anatomy")
+            findNavController().navigate(action)
+        }
+
+
+
+        includedLayout.seeAll3.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToViewCategoryFragment("Object")
+            findNavController().navigate(action)
+        }
+
+
+    }
+
+    suspend fun urlToBitmap(url: String, context: Context): Bitmap? {
+        return context.imageLoader.execute(
+            ImageRequest.Builder(context)
+                .data(url)
+                .allowHardware(false) // if you need to manipulate the bitmap
+                .build()
+        ).drawable?.toBitmap()
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+    }
+
+}

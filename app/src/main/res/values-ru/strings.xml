@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <string name="draw_with_camera">Нарисуйте с помощью камеры</string>
+  <string name="draw_with_camera_description">Используйте штатив, стакан или стопку книг, чтобы удерживать свой телефон на месте, пока вы рисуете.</string>
+  <string name="draw_with_screen">Нарисуйте с помощью экрана</string>
+  <string name="draw_with_screen_description">Поместите бумагу на экран вашего телефона и следите за линиями, чтобы легко отследить ваше изображение.</string>
+  <string name="upload_your_own_collection">Загрузите свою собственную коллекцию</string>
+  <string name="upload_your_own_collection_description">Выберите свои любимые наброски или фотографии и начните с легкостью трассировки.</string>
+  <string name="sketch_box">Эскиз коробка</string>
+  <string name="sketch_box_tagline">Эскизы сделали легкие</string>
+  <string name="continue_text">Продолжать</string>
+  <string name="next">Следующий</string>
+  <string name="lets_start">Пусть начнется</string>
+  <string name="skip">Пропускать</string>
+  <string name="create_your_own">Создайте свой собственный</string>
+  <string name="camera">Камера</string>
+  <string name="gallery">Галерея</string>
+  <string name="sketch_gallery">Галерея эскизов</string>
+  <string name="categories">Категории</string>
+  <string name="see_all">Увидеть все</string>
+  <string name="hello_blank_fragment">Привет, пустой фрагмент</string>
+  <string name="first_fragment_label">Первый фрагмент</string>
+  <string name="second_fragment_label">Второй фрагмент</string>
+  <string name="previous">Предыдущий</string>
+  <string name="lorem_ipsum">Lorem Ipsum Dolor Sit Amet, Adipiscing Elit. Нам в Scelerisque Sem. Маврис
+        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
+        DUI NEC RISUS. Maecenas non Sodales nisi, Vel dictum dolor. Класс Полносит -Тацити Социально объявление
+        Litora Dorquent Per Conubia nostra, за ineptos himenaeos. SUSPENDISSE Blandit Eleifend
+        Diam, Vel Rutrum Tellus Vulputate Quis. Aliquam eget libero aliquet, uerpdiet nisl a,
+        Ornare Ex. SED RHONCUS EST UT LIBERO PORTA LOBORTIS. Fusce в Dictum Tellus .__ Plh2__\n
+        Suprendisse Interdum Ornare Ante. Aliquam nec cursus lorem. МОРБИ ID MAGNA FELIS. Вивамус
+        ESTESAS, EST Adgentumum egestas, Turpis nisl iaculis ipsum, в Dictum tellus dolor Sed
+        неволевая Морби Теллус Эрат, Dapibus ut Sem A, Iaculis Tincidunt Dui. Interdum et Malesuada
+        FAMES AC ANTE IPSUM PRIMIS в красе. Curabitur et eros porttitor, Ultricies urna vitae,
+        Пристава NIBH. Phasellus в Commodo Eros, не аликвит Metus. Sed Maximus nisl Nec Dolor
+        Bibendum, Vel Congue Leo Egestas .__ Plh2__\n
+        SED Interdum Tortor Nibh, в Sagittis Risus Mollis Quis. Curabitur Mi Odio, Sidmentum Sit
+        Amet Auctor AT, Mollis Non Turpis. Nullam Pretium libero vestibulum, finibus orci vel,
+        Пристава квам. Fusce Blandit Tincidunt Nulla, Quis Sollicitidin Libero Farcilisis et. Целое число
+        Interdum Nunc Ligula, et Fermentum metus hendrerit id. Вестибул -лект Фелис, Dictum at
+        Lacinia sit amet, tristique id quam. CRAS EU SEMPECTAT DUI. SUSPERNDISSE SODALES NUNC LIGULA,
+        В Lobortis sem porta sed. Integer ID Ultrices Magna, в Luctus Elit. Сед Пелентеск
+        est .__ plh2__\n
+        Aenean Nunc Velit, Lacinia Sed Dolor Sed, Ultrices viverra Nulla. Etiam a venenatis nibh.
+        Morbi Laoreet, Tortor Sed Farsilisis varius, Nibh orci rhoncus nulla, id elementum leo dui
+        не Лорем. NAM MOLLIS IPSUM QUIS AUCTOR VARIUS. Quisque Elementum Eu Libero Sed Commodo. В
+        Эрос Нисл, Уператорская Вель -Уисдиетта, Секлерисква Маурис. Pallentesque varius ex nunc,
+        QUIS USERPDIET EROS PLACERAT AC. DUIS FINIBUS ORCI ET EST AUCTOR TINCIDUNT. Sed non viverra
+        ipsum. Nunc Quis augue eestas, cursus lorem at, olestie sem. Morbi a -sectetur ipsum, a
+        Placerat Diam. Etiam Vulputate Dignissim convallis. Целочисленный смеситель маурис сидит амит финибус
+        convallis .__ Plh2__\n
+        Phasellus in aliquet mi. Pallentesque Dibanant Morbi Tristique Senectus et netus et
+        Малесуада славится турпис -эгесте. В Volutpat arcu ut felis sagittis, в Finibus massa
+        Gravida. Pallentesque Id Tellus orci. Integer Dictum, Lorem Sed Efficeur Ullamcorper,
+        Libero Justo Consectetur Ipsum, в Mollis nisl ex sed nisl. Donec Maximus Ullamcorper
+        содалы. Прессент Бибендум Ронкус Теллус Нек Фейугиат. В орнаре нулла. Donec Rhoncus
+        Libero el nunc emessat, Quis tincidunt nisl eleifend. Cras bibendum enim justo luctus
+        вестибул. Fusce Dictum Libero Quis erat Maximus, Vitae volutpat diam dignissim.</string>
+</resources>

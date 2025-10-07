@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.ardrawing.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_categoriesFragment"
+            app:destination="@id/categoriesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_viewCategoryFragment"
+            app:destination="@id/viewCategoryFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_selectionModeFragment"
+            app:destination="@id/selectionModeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_subscriptionFragment"
+            app:destination="@id/subscriptionFragment" />
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.example.ardrawing.fragments.CategoriesFragment"
+        android:label="fragment_categories"
+        tools:layout="@layout/fragment_categories">
+        <action
+            android:id="@+id/action_categoriesFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_categoriesFragment_to_viewCategoryFragment"
+            app:destination="@id/viewCategoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewCategoryFragment"
+        android:name="com.example.ardrawing.fragments.ViewCategoryFragment"
+        android:label="fragment_view_category"
+        tools:layout="@layout/fragment_view_category">
+        <action
+            android:id="@+id/action_viewCategoryFragment_to_categoriesFragment"
+            app:destination="@id/categoriesFragment" />
+        <argument
+            android:name="categories"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_viewCategoryFragment_to_selectionModeFragment"
+            app:destination="@id/selectionModeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectionModeFragment"
+        android:name="com.example.ardrawing.fragments.SelectionModeFragment"
+        android:label="fragment_selection_mode"
+        tools:layout="@layout/fragment_selection_mode">
+
+
+        <action
+            android:id="@+id/action_selectionModeFragment_to_cameraPreviewFragment"
+            app:destination="@id/cameraPreviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cameraPreviewFragment"
+        android:name="com.example.ardrawing.fragments.CameraPreviewFragment"
+        android:label="fragment_camera_preview"
+        tools:layout="@layout/fragment_camera_preview">
+        <argument
+            android:name="transperencyValue"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.example.ardrawing.fragments.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/action_settingFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/subscriptionFragment"
+        android:name="com.example.ardrawing.fragments.SubscriptionFragment"
+        android:label="fragment_subscription"
+        tools:layout="@layout/fragment_subscription" >
+        <action
+            android:id="@+id/action_subscriptionFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/appLibraryFragment"
+        android:name="com.example.ardrawing.fragments.AppLibraryFragment"
+        android:label="fragment_app_library"
+        tools:layout="@layout/fragment_app_library" >
+        <action
+            android:id="@+id/action_appLibraryFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+</navigation>

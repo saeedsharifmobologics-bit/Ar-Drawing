@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <string name="draw_with_camera">카메라로 그리십시오</string>
+  <string name="draw_with_camera_description">삼각대, 유리 또는 책 더미를 사용하여 그릴 때 휴대 전화를 제자리에 고정하십시오.</string>
+  <string name="draw_with_screen">화면으로 그리십시오</string>
+  <string name="draw_with_screen_description">전화 화면에 종이를 넣고 줄을 따라 이미지를 쉽게 추적하십시오.</string>
+  <string name="upload_your_own_collection">자신의 컬렉션을 업로드하십시오</string>
+  <string name="upload_your_own_collection_description">좋아하는 스케치 나 사진을 선택하고 쉽게 추적을 시작하십시오.</string>
+  <string name="sketch_box">스케치 박스</string>
+  <string name="sketch_box_tagline">스케치가 쉽게 만들어졌습니다</string>
+  <string name="continue_text">계속하다</string>
+  <string name="next">다음</string>
+  <string name="lets_start">시작하자</string>
+  <string name="skip">건너뛰다</string>
+  <string name="create_your_own">나만의 것을 만드십시오</string>
+  <string name="camera">카메라</string>
+  <string name="gallery">갱도</string>
+  <string name="sketch_gallery">스케치 갤러리</string>
+  <string name="categories">카테고리</string>
+  <string name="see_all">모두보기</string>
+  <string name="hello_blank_fragment">안녕하세요 빈 조각</string>
+  <string name="first_fragment_label">첫 번째 조각</string>
+  <string name="second_fragment_label">두 번째 조각</string>
+  <string name="previous">이전의</string>
+  <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur hoodiscing elit. Scelerisque Sem의 Nam. 모리스
+        Volutpat, Dolor ID Interdum Ullamcorper, Risus dolor egestas lectus, 앉아 Amet Mattis Purus
+        Dui Nec Risus. MAECENAS NON SODALES NISI, VEL DICTUM DOLOR. 클래스 적성 타키티 소사이오 스퀘어 광고
+        Conubia Nostra 당 Litora Torquent, inceptos himenaeos 당. Speldisse Blandit Eleifend
+        Diam, Vel Rutrum Tellus vulputate quis. Aliquam Eget Libero Aliquet, Imperdiet Nisl A,
+        오르 나르 엑스. sed rhoncus est ut ut libero porta lobortis. Dictum Tellus의 Fusce .__ plh2__\n
+        Speldisse Interdum ornare ante. ALIQUAM NEC CURSUS LOREM. Morbi id magna felis. Vivamus
+        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, dictum tellus dolor sed
+        네크. Morbi Tellus erat, Dapibus ut Sem A, Iaculis Tincidunt Dui. Interdum et malesuada
+        파이브스의 ac ante ipsum primis. Curabitur et eros porttitor, Ultricies Urna vitae,
+        성모님 니브. 코모도 에로스의 Phasellus, 비 분리계 메터스. SED Maximus nisl nec dolor
+        Bibendum, Vel Congue Leo egestas .__ plh2__\n
+        SAGITIS RISUS MOLLIS QUIS의 SED Interdum Tortor Nibh. curabitur mi odio, 조미료 앉아
+        Amet auctor at, Mollis non turpis. Nullam Pretium Libero Vestibulum, Finibus orci vel,
+        성모님 Quam. FUSCE BLANDIT TINCIDUNT NULLA, QUIS SOLLISCUDIN LIBERO FECILISIS et. 정수
+        Interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
+        Lacinia Sit Amet, Tristique Id Quam. Cras EU 결과 ​​DUI. 서스펜 디스 소다스 수녀 리울라,
+        Lobortis에서 Sem Porta Sed. Letuus elit의 정수 ID 초 Ultrices Magna. pellentesque sed
+        est .__ plh2__\n
+        Aenean Nunc Velit, Lacinia sed dolor sed, Ultrices viverra nulla. etiam a venenatis nibh.
+        Morbi Laoreet, Tortor Sed pacilisis varius, nibh orci rhoncus nulla, id elementum leo dui
+        비 로렘. Nam Mollis ipsum quis auctor varius. Quisque Elementum EU Libero Sed Commodo. ~ 안에
+        Eros nisl, inmerdiet vel inmerdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
+        quis inmerdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. 비 Viverra sed
+        ipsum. Nunc Quis augue egestas, cursus lorem at, mulestie sem. Morbi a consectetur ipsum, a
+        placerat diam. Etiam vulputate dignissim convallis. 정수 faucibus mauris sit amet finibus
+        convallis .__ plh2__\n
+        분취제 MI의 Phasellus. Pellentesque 거주자 Morbi Tristique Senectus et Netus et
+        Malesuada fames ac turpis egestas. Volutpat에서 Finibus Massa의 Arcu Ut Felis Sagittis
+        Gravida. Pellentesque id tellus orci. 정수 dictum, lorem sed efficitip ullamcorper,
+        Libero Justo Consectetur ipsum, Mollis nisl ex sed nisl. Donec Maximus Ullamcorper
+        소탈. PRAESENT BIBENDUM RHONCUS TELLUS NEC FEUGIAT. Ornare Nulla에서. Donec rhoncus
+        Libero vel nunc 결과, quis tincidunt nisl eleifend. Cras Bibendum Enim Justo luctus
+        vestibulum. Fusce Dictum Libero quis erat maximus, vitae volutpat diam dignissim.</string>
+</resources>

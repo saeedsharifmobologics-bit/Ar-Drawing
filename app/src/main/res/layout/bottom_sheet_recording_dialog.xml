@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="390dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selection_card_border"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <!-- Small top bar (handle) -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="6dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/selected_guiddialog_bg" />
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/recordingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Recording"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- Pause Recording -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnPauseRecording"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/selected_guiddialog_bg"
+        android:text="Pause Recording"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textStyle="bold" />
+
+    <!-- Stop Recording -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnStopRecording"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/selection_card_border"
+        android:text="Stop Recording"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+</LinearLayout>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/_10sdp"
+    tools:context=".fragments.HomeFragment">
+
+    <!-- Top UI: Header & Buttons -->
+    <ImageView
+        android:id="@+id/more_drawer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/more_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="@dimen/_20sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/more_drawer"
+        app:layout_constraintEnd_toStartOf="@+id/billing_btn"
+        app:layout_constraintStart_toEndOf="@+id/more_drawer"
+        app:layout_constraintTop_toTopOf="@id/more_drawer" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/billing_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawableStart="@drawable/prime_subscription"
+        android:padding="@dimen/_10sdp"
+        android:text="Pro"
+        android:textAllCaps="false"
+        android:textColor="@color/lines_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Quick Start Layout -->
+    <FrameLayout
+        android:id="@+id/quick_start_layout"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_140sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/quick_start_image"
+        app:layout_constraintEnd_toEndOf="@+id/billing_btn"
+        app:layout_constraintStart_toStartOf="@+id/more_drawer"
+        app:layout_constraintTop_toBottomOf="@id/appName">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/quick_start_btn"
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/_14sdp"
+            android:background="@drawable/quick_start_btn"
+            android:text="Quick Start"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+    </FrameLayout>
+
+
+
+
+    <!-- Create Own Text -->
+    <TextView
+        android:id="@+id/createowntxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="@string/create_your_own"
+        android:textSize="@dimen/_18ssp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/quick_start_layout"
+        app:layout_constraintTop_toBottomOf="@id/quick_start_layout" />
+
+
+    <FrameLayout
+        android:id="@+id/ads_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/createowntxt"
+        app:layout_constraintBottom_toTopOf="@id/firstline">
+
+
+    </FrameLayout>
+    <!-- First Line -->
+    <View
+        android:id="@+id/firstline"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_1ssp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:background="@color/lines_color"
+        app:layout_constraintEnd_toEndOf="@id/quick_start_layout"
+        app:layout_constraintStart_toStartOf="@id/quick_start_layout"
+        app:layout_constraintTop_toBottomOf="@id/ads_container" />
+
+    <!-- Camera Button -->
+    <LinearLayout
+        android:id="@+id/camera_btn_layout"
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/home_btn_bg"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/gallerylinearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/firstline">
+
+        <ImageView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/camera_svg" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/camera"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Gallery Button -->
+    <LinearLayout
+        android:id="@+id/gallerylinearLayout"
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/home_btn_bg"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/camera_btn_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/camera_btn_layout"
+        app:layout_constraintTop_toTopOf="@id/camera_btn_layout">
+
+        <ImageView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/gallery_svg" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gallery"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Second Line -->
+    <View
+        android:id="@+id/second_line"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_1ssp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/lines_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/camera_btn_layout" />
+
+    <!-- Scrollable Area Starts Here -->
+    <ScrollView
+        android:id="@+id/scroll_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/second_line"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/sketch_gallery_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sketch_gallery"
+                android:textSize="@dimen/_18ssp"
+                android:textStyle="bold" />
+
+            <FrameLayout
+                android:id="@+id/view_now_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/sketch_gallery_png">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/view_now_btn"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/quick_start_btn"
+                    android:text="View Now"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/categorie_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/categories"
+                android:textSize="@dimen/_18ssp"
+                android:textStyle="bold" />
+
+            <include
+                android:id="@+id/catogoriesSection"
+                layout="@layout/catogories_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <string name="draw_with_camera">کیمرہ کے ساتھ ڈرا</string>
+  <string name="draw_with_camera_description">جب آپ ڈرا کرتے ہو تو اپنے فون کو اپنی جگہ پر رکھنے کے لئے تپائی ، ایک گلاس ، یا کتابوں کا ڈھیر استعمال کریں۔</string>
+  <string name="draw_with_screen">اسکرین کے ساتھ ڈرا</string>
+  <string name="draw_with_screen_description">اپنے فون کی اسکرین پر ایک کاغذ رکھیں اور آسانی سے اپنی شبیہہ کا سراغ لگانے کے لئے لائنوں کی پیروی کریں۔</string>
+  <string name="upload_your_own_collection">اپنا اپنا مجموعہ اپ لوڈ کریں</string>
+  <string name="upload_your_own_collection_description">اپنے پسندیدہ خاکے یا تصاویر کا انتخاب کریں اور آسانی کے ساتھ سراغ لگانا شروع کریں۔</string>
+  <string name="sketch_box">خاکہ خانہ</string>
+  <string name="sketch_box_tagline">خاکے آسان بنائے گئے</string>
+  <string name="continue_text">جاری رکھیں</string>
+  <string name="next">اگلا</string>
+  <string name="lets_start">آئیے شروع کریں</string>
+  <string name="skip">چھوڑ دیں</string>
+  <string name="create_your_own">اپنا بنائیں</string>
+  <string name="camera">کیمرا</string>
+  <string name="gallery">گیلری</string>
+  <string name="sketch_gallery">خاکہ گیلری</string>
+  <string name="categories">زمرے</string>
+  <string name="see_all">سب دیکھیں</string>
+  <string name="hello_blank_fragment">ہیلو خالی ٹکڑا</string>
+  <string name="first_fragment_label">پہلا ٹکڑا</string>
+  <string name="second_fragment_label">دوسرا ٹکڑا</string>
+  <string name="previous">پچھلا</string>
+  <string name="lorem_ipsum">لوریم آئپسم ڈولور بیٹھے ایمٹ ، کونسیکٹیٹر ایڈیپیسکنگ ایلٹ۔ Selerisque SEM میں نام. موریس
+        وولٹ پیٹ ، ڈولر آئی ڈی انٹرڈم اللامکورپر ، رسس ڈولر ایگسٹاس لیکٹوس ، بیٹھ کر ایمٹ میٹیس پورس
+        DUI NEC رسس۔ میسیناس نان سوڈالس نیسی ، ویل ڈکٹوم ڈولور۔ کلاس اپٹینٹ ٹیکیٹی سوسائوسک اشتہار
+        لیٹورا ٹورکنٹ فی کونوبیا نوسٹرا ، فی انسیپٹوس ہیمینیسو۔ معطل بلینڈٹ الیفینڈ
+        ڈائم ، ویل روٹرم ٹیلس وولپٹیٹ کوئس۔ علیکام ایجٹ لائبرو ایلیکیٹ ، امپریڈیٹ نیسل اے ،
+        ornare ex. Sed rhoncus est ut libero porta lobortis. ڈکٹم ٹیلس میں fusce .__ plh2__\n
+        معطل انٹرڈم اورنیر اینٹ۔ الکام نیک کرسوس لوریم۔ موربی آئی ڈی میگنا فیلس۔ Vivamus
+        ایگسٹاس ، ایسٹ ایک کنڈیمنٹم ایگسٹاس ، ٹورپس نیسل آئیکولس آئپسم ، ڈکٹم ٹیلس ڈولر سیڈ میں
+        neque. موربی ٹیلس ایرٹ ، ڈپیبس UT SEM A ، Iaculis tincidunt DUI۔ انٹرڈم اور ملیسواڈا
+        faucibus میں fames ac ipsum پرائمیس۔ کرابیتور ایٹ ایروز پورٹیٹر ، الٹرکیز urna vitae ،
+        مولسٹی نبھ۔ کموڈو ایروز ، غیر الکیٹ میٹس میں فاسیلس۔ سیڈ میکسمس نیسل نیک ڈولور
+        بیبینڈم ، ویل کونگ لیو ایگسٹاس۔
+        سیڈ انٹرڈم ٹورٹر نبھ ، سگٹیس رسس مولیس کوئس میں۔ کرابیتور ایم آئی اوڈیو ، کنڈیمنٹم بیٹھیں
+        ایمٹ آکٹر میں ، مولیس نان ٹورپس۔ نولم پریٹیم لائبرو ویسٹیبولم ، فائنبس اورکی ویل ،
+        مولسٹی کوم۔ Fusce Blandit tincidunt nulla ، Quis sollicistudin Libero facilisis et. انٹیجر
+        انٹرڈم نونک لیگولا ، اور فریمنٹم میٹس ہینڈریریٹ ID۔ واسٹیبولم لیکٹس فیلس ، ڈکٹم پر
+        لاکینیا بیٹھے امیٹ ، ٹریسٹک آئی ڈی کوم۔ کراس EU نتیجہ ATUI۔ معطل سوڈالس نونک لیگولا ،
+        لوبرٹیس سیم پورٹا سیڈ میں۔ انٹیجر ID الٹرس میگنا ، لیکٹس ایلٹ میں۔ ایک pellentesque
+        est__ plh2__\n
+        اینیان نونک ویلٹ ، لاکینیا سیڈ ڈولر سیڈ ، الٹرس ویویرا نولا۔ ایٹیم اے وینیٹیس نبھ۔
+        موربی لوریٹ ، ٹورٹر سیڈ فیلیسس ویریئس ، نیبھ اورسی رونکس نولا ، آئی ڈی ایلیمینٹم لیو ڈوئی
+        غیر لوریم۔ نام مولیس آئپسم کوئس ایکٹر ویریوس۔ کوئسکی ایلیمینٹم EU Libero Sed Commodo. میں
+        ایروز نیسل ، امپیریڈیٹ ویل امپیرڈیٹ ای ٹی ، سیلریسک ایک مورس۔ پیلینٹیسک ویریئس سابق نونک ،
+        کوئس امپیریڈیٹ ایروز پلیسریٹ اے سی۔ DUIS FINIBUS ORCI ET EST ACTOR TINCIDUNT. sed non viverra
+        ipsum. NUNC Quis Augue estasas ، CUSUS LOREM AT ، MOLESTIE SEM. موربی ایک کنسیکٹور Ipsum ، a
+        پلیسٹریٹ ڈائم۔ ایٹیم وولپٹیٹ ڈینیسم کنولیس۔ انٹیجر faucibus Mauris بیٹھے AMET Finibus
+        convallis .__ plh2__\n
+        Aliquet Mi میں phasellus. پیلینٹیسک عادت موربی ٹرسٹک سینیکٹس اور نیٹس ایٹ
+        ملیسواڈا فیمس اے سی ٹورپس ایگسٹاس۔ فینیبس ماسا میں ، وولٹپٹ آرکو یوٹ فیلس سگٹیس میں
+        گریویڈا۔ پیلینٹیسک آئی ڈی ٹیلس اورکی۔ انٹیجر ڈکٹم ، لوریم سیڈ ایففائیکور الیلامکورپر ،
+        لائبرو جسٹو کنسیکیٹور آئیپسم ، مولیس نیسل ایکسٹ سیڈ نیسل میں۔ ڈانیک میکسمس الیلامکورپر
+        سوڈالس پریسینٹ بیبینڈم رونکس ٹیلس این ای سی فیوجیٹ۔ ایک ornare nulla میں. ڈانیک رونکس
+        لائبرو ویل نونک نتیجہ ، کوئس ٹنسیڈونٹ نیسل الیفینڈ۔ کراس بیبینڈم ایک جسٹ لوکٹس کو اینیم کریں
+        واسٹیبلم۔ Fusce Dircum Libero Quis erat میکسمس ، Vitae volutpat Paim dignissim.</string>
+</resources>

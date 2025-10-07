@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <string name="draw_with_camera">カメラで描きます</string>
+  <string name="draw_with_camera_description">描く間、三脚、グラス、または本の積み紙を使用して、携帯電話を所定の位置に保持します。</string>
+  <string name="draw_with_screen">画面で描画します</string>
+  <string name="draw_with_screen_description">電話の画面の上に紙を入れて、行に従って画像を簡単に追跡します。</string>
+  <string name="upload_your_own_collection">独自のコレクションをアップロードしてください</string>
+  <string name="upload_your_own_collection_description">お気に入りのスケッチや写真を選択して、簡単にトレースを開始します。</string>
+  <string name="sketch_box">スケッチボックス</string>
+  <string name="sketch_box_tagline">スケッチは簡単になりました</string>
+  <string name="continue_text">続く</string>
+  <string name="next">次</string>
+  <string name="lets_start">\  &amp;apos;sを開始します</string>
+  <string name="skip">スキップ</string>
+  <string name="create_your_own">独自のものを作成します</string>
+  <string name="camera">カメラ</string>
+  <string name="gallery">ギャラリー</string>
+  <string name="sketch_gallery">スケッチギャラリー</string>
+  <string name="categories">カテゴリ</string>
+  <string name="see_all">すべてを参照してください</string>
+  <string name="hello_blank_fragment">こんにちは空白フラグメント</string>
+  <string name="first_fragment_label">最初のフラグメント</string>
+  <string name="second_fragment_label">2番目のフラグメント</string>
+  <string name="previous">前の</string>
+  <string name="lorem_ipsum">Lorem Ipsum dolor sit amet、conectetur adipiscing elit。 Scelerisque semのnam。モーリス
+        Volutpat、Dolor ID Interdum ullamcorper、risus dolor egestas lectus、sit amet mattis purus
+        dui nec risus。 Maecenas non sodales nisi、vel dictum dolor。クラスAptent Taciti Sociosqu AD
+        Conubia nostraごとにlitora torquent、inceptos himenaeosごと。 Suspendisse Blandit Eleifend
+        Diam、Vel Rutrum Tellus Vulputate Quis。 Aliquam eget libero aliquet、Imperdiet nisl a、
+        Ornare Ex。 Sed Rhoncus ett ut libero porta lobortis。 dictum tellusのfusce .__ plh2__\n
+        Suspendisse Interdum Ornare ante。 Aliquam Nec Cursus Lorem。 Morbi Id Magna Felis。 vivamus
+        egestas、est a condimentum egestas、turpis nisl iaculis ipsum、in dictum ellus dolor sed
+        ネケ。 Morbi Tellus erat、dapibus ut sem a、iaculis tincidunt dui。 Interdum et Malesuada
+        FaucibusのAc ante ipsum Primis。 Curabitur et Eros Porttitor、Ultricies Urna Vitae、
+        Molestie Nibh。 Commodo ErosのPhasellus、非アリケットメタス。 sed maximus nisl nec dolor
+        Bibendum、Vel Congue leo egestas .__ plh2__\n
+        Sed Interdum Tortor Nibh、Sagittis Risus Mollis Quis。 Curabitur Mi Odio、Condimentum Sit
+        AMET Auctor at、Mollis non Turpis。 Nullam Pretium Libero Vestibulum、Finibus orci Vel、
+        Molestie Quam。 Fusce Blandit Tincidunt Nulla、Quis Sollictudin liberolo facilisis et。整数
+        Interdum Nunc Ligula、et fermentum metus hendrerit id。前庭講師フェリス、dictum at
+        Lacinia Sit Amet、Tristique ID Quam。 CRAS EU結果DUI。 suspendisse sodales nunc ligula、
+        Lobortis Sem Porta Sed。整数ID Ultrices Magna、Luctus Elit。ペレンテスクをセッド
+        est .__ plh2__\n
+        Aenean Nunc Velit、Lacinia Sed Dolor Sed、Ultrices Viverra Nulla。エティアム・ベネナティス・ニブ。
+        Morbi Laoreet、Tortor Sed Facilisis Varius、Nibh Orci Rhoncus nulla、id Elementum leo dui
+        非ロレム。 Nam Mollis Ipsum Quis Auctor Varius。 Quisque Elementum Eu Libero Sed Commodo。で
+        Eros Nisl、Imperdiet Vel Imperdiet et、Scelerisque a Mauris。 Pellentesque varius ex nunc、
+        Quis Imperdiet Eros Placerat AC。 Duis Finibus orci et est Auctor Tincidunt。 sed nonviverra
+        ipsum。 nunc quis augue egestas、cursus lorem at、molestie sem。 Morbi conectetur ipsum、a
+        プラセラットの直径。 Etiam Vulputate Dignissim Convallis。 Integer Faucibus Mauris Sit Amet Finibus
+        convallis .__ plh2__\n
+        アリケットMIのフェセラス。ペレンテスクの居住者モルビトリスティックセナクタスエトゥスなど
+        Malesuada Fames ac turpis egestas。 Volutpat Arcu Ut Felis Sagittis、Finibus Massa
+        グラビダ。 Pellentesque ID Telus orci。整数dictum、lorem sed efficiciturullamcorper、
+        Libero Justo Conectetur Ipsum、Mollis nisl ex sed nisl。 donec maximus ullamcorper
+        ソダレス。 Praesent Bibendum Rhoncus Tellus Nec Feugiat。 ornare nullaで。 Donec Rhoncus
+        Libero Vel Nunc結果、Quis Tincidunt Nisl Eleifend。 Cras bibendum enim as justo luctus
+        前庭。 fusce dictum libero quis erat maximus、vitae volutpat Diam Dignissim。</string>
+</resources>
