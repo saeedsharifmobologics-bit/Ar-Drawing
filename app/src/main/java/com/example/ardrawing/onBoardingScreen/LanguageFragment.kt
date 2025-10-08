@@ -1,3 +1,4 @@
+/*
 // com.example.ardrawing.howtouse.LanguageFragment.kt
 package com.example.ardrawing.onBoardingScreen
 
@@ -10,7 +11,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ardrawing.adapters.LanguageAdapter
-import com.example.ardrawing.buinesslogiclayer.OnboardingNavigationListener
 import com.example.ardrawing.databinding.FragmentLanguageBinding
 import com.example.ardrawing.utils.LanguageManager
 
@@ -96,3 +96,4 @@ class LanguageFragment : Fragment() {
         navigationListener = null
     }
 }
+*/

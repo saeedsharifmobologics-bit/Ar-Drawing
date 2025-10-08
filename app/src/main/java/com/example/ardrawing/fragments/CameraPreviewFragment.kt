@@ -4,6 +4,8 @@ import CameraPreviewUtils.showSaveDialog
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Handler
@@ -16,6 +18,7 @@ import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresPermission
 import androidx.appcompat.widget.AppCompatButton
 import androidx.camera.core.*
@@ -35,8 +38,10 @@ import com.example.ardrawing.utils.ImageHolder
 import com.example.ardrawing.R
 import com.example.ardrawing.buinesslogiclayer.ArDrawingViewmodel
 import com.example.ardrawing.fragments.SelectionModeFragment.Companion.selectedMode
+import com.example.ardrawing.utils.ArDrawingSharePreference
 import com.example.ardrawing.utils.CommonUtils
 import com.example.ardrawing.utils.CommonUtils.updateButtonState
+import com.example.ardrawing.utils.PermissionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -71,9 +76,30 @@ class CameraPreviewFragment : Fragment() {
     private var opacitySeekbarValue: Int? = 20
     private var sketchIntensity: Float? = 0.2f
 
+    private lateinit var permissionHandler: PermissionHandler
+    private lateinit var sharePreference: ArDrawingSharePreference
+
     private val viewModel: ArDrawingViewmodel by viewModel()
 
-    // 3. Lifecycle Methods
+    private val requestAudioPermission =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+            if (isGranted) {
+                Toast.makeText(requireContext(), "Permission granted", Toast.LENGTH_SHORT).show()
+            } else {
+                val requestCount = sharePreference.getAudioPermissionCount()
+                when (requestCount) {
+                    0 -> {
+                        sharePreference.saveAudioPermissionCount(1)
+                        permissionHandler.showRetryDialog("AudioPermission")
+                    }
+
+                    else -> {
+                        permissionHandler.showSettingsDialog()
+                    }
+                }
+            }
+        }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -84,22 +110,28 @@ class CameraPreviewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sharePreference=ArDrawingSharePreference(requireContext())
         if (selectedMode == DrawMode.CAMERA) {
-            opacitySeekbarValue=150
-            sketchIntensity=0.4f
+            opacitySeekbarValue = 150
+            sketchIntensity = 0.4f
 
         } else {
-            binding.cameraPreveiw.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.white))
+            binding.cameraPreveiw.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.white
+                )
+            )
             binding.videoStartBtn.visibility = View.GONE
             binding.videoTimeStamp.visibility = View.GONE
             binding.saveBtn.visibility = View.GONE
-            opacitySeekbarValue=255
+            opacitySeekbarValue = 255
         }
         setupNavigation()
         setupCustomView()
 
         setupSeekbars()
-        if (selectedMode== DrawMode.CAMERA){
+        if (selectedMode == DrawMode.CAMERA) {
             setupCamera()
 
         }
@@ -209,8 +241,19 @@ class CameraPreviewFragment : Fragment() {
 
         // Video Start / Stop button
         binding.videoStartBtn.setOnClickListener {
+            permissionHandler = PermissionHandler(requireContext(), requestAudioPermission)
             when (recordingState) {
-                RecordingState.IDLE -> startRecording()
+                RecordingState.IDLE -> {
+                    if (permissionHandler.isRequestAudioPermission()) {
+
+                        startRecording()
+
+                    } else {
+                        permissionHandler.requestAudioPermission()
+                    }
+
+                }
+
                 RecordingState.RECORDING, RecordingState.PAUSED -> showPauseResumeDialog()
             }
         }
@@ -241,7 +284,6 @@ class CameraPreviewFragment : Fragment() {
 
     // --- Recording Control Functions ---
 
-    @RequiresPermission(Manifest.permission.RECORD_AUDIO)
     private fun startRecording() {
         recording = CameraPreviewUtils.startVideoRecording(
             requireContext(),
@@ -263,7 +305,7 @@ class CameraPreviewFragment : Fragment() {
                         recordingState = RecordingState.IDLE
                         updateRecordingBtn()
                         stopRecordingTimer()
-
+                        savedVideoDialog()
                         Toast.makeText(context, "Recording Saved", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -419,9 +461,36 @@ class CameraPreviewFragment : Fragment() {
     }
 
 
+    fun savedVideoDialog() {
+        val alertDialog = androidx.appcompat.app.AlertDialog.Builder(requireContext())
+        alertDialog.setTitle("Did you want to see the Video")
+        alertDialog.setPositiveButton("View Gallery") { _, _ ->
+            openGalleryApp()
+
+        }
+        alertDialog.setNegativeButton("Cancel") { dialog, _ ->
+            dialog.dismiss()
+        }
+        Handler(Looper.getMainLooper()).postDelayed({ alertDialog.show() }, 200)
+
+
+    }
+
+    fun openGalleryApp() {
+        val intent = Intent(Intent.ACTION_MAIN)
+        intent.addCategory(Intent.CATEGORY_APP_GALLERY)
+
+        // If no default Gallery app is found, fallback to file picker
+        try {
+            startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+            Toast.makeText(requireContext(), "Gallery app not found", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
     override fun onDestroyView() {
         super.onDestroyView()
-
         ImageHolder.pickLocation = null
     }
 }

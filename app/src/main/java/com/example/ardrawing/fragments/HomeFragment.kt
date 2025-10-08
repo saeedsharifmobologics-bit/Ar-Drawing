@@ -13,16 +13,12 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.graphics.drawable.toBitmap
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import coil.imageLoader
 import coil.request.ImageRequest
 import com.example.ardrawing.MainActivity
 import com.example.ardrawing.R
-import com.example.ardrawing.buinesslogiclayer.ArDrawingViewmodel
 import com.example.ardrawing.data.ArDrawingData
 import com.example.ardrawing.databinding.FragmentHomeBinding
 import com.example.ardrawing.utils.ArDrawingSharePreference
@@ -30,13 +26,8 @@ import com.example.ardrawing.utils.CommonUtils
 import com.example.ardrawing.utils.ImageHolder
 import com.example.ardrawing.utils.PermissionHandler
 import kotlinx.coroutines.launch
-import org.opencv.android.OpenCVLoader
-import org.opencv.android.Utils
-import org.opencv.core.Mat
 import kotlin.collections.List
-import kotlin.getValue
 import kotlin.random.Random
-import kotlin.random.nextInt
 
 
 class HomeFragment : Fragment() {
@@ -47,19 +38,15 @@ class HomeFragment : Fragment() {
     private lateinit var permissionHandler: PermissionHandler
     private lateinit var sharePreference: ArDrawingSharePreference
 
-    private val multiplePermissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-            val allGranted = permissions.all { it.value }
-
-            if (allGranted) {
-                Toast.makeText(requireContext(), "Permissions granted ", Toast.LENGTH_SHORT).show()
+    private val readStoragePermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+            if (isGranted) {
+                Toast.makeText(requireContext(), "Permission granted", Toast.LENGTH_SHORT).show()
             } else {
-                val requestCount = sharePreference.getInt()
-
-                when (requestCount) {
-                    0 -> {
-                        sharePreference.saveInt(1)
-                        permissionHandler.showRetryDialog()
+                val requestCount = sharePreference.getReadStoragePermissionCount()
+                when (requestCount){
+                    0 ->{
+                        sharePreference.saveReadStoragePermissionCount(1)
+                        permissionHandler.showRetryDialog("GalleryPermission")
                     }
 
                     else -> {
@@ -68,6 +55,53 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+
+
+    private val cameraPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+        if (isGranted) {
+            Toast.makeText(requireContext(), "Permission granted", Toast.LENGTH_SHORT).show()
+        } else {
+            val requestCount = sharePreference.getCameraPermissionCount()
+            when (requestCount){
+                0 ->{
+                    sharePreference.saveCameraPermissionCount(1)
+                    permissionHandler.showRetryDialog("CameraPermission")
+                }
+
+                else -> {
+                    permissionHandler.showSettingsDialog()
+                }
+            }
+        }
+    }
+
+
+
+
+    /*
+
+        private val multiplePermissionLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+                val allGranted = permissions.all { it.value }
+
+                if (allGranted) {
+                    Toast.makeText(requireContext(), "Permissions granted ", Toast.LENGTH_SHORT).show()
+                } else {
+                    val requestCount = sharePreference.getInt()
+
+                    when (requestCount) {
+                        0 -> {
+                            sharePreference.saveInt(1)
+                            permissionHandler.showRetryDialog()
+                        }
+
+                        else -> {
+                            permissionHandler.showSettingsDialog()
+                        }
+                    }
+                }
+            }
+    */
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -82,10 +116,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         sharePreference = ArDrawingSharePreference(requireContext())
-        permissionHandler = PermissionHandler(requireContext(), multiplePermissionLauncher)
 
         // Request permissions
-        permissionHandler.requestPermission()
+        /*  permissionHandler.requestPermission()*/
         CommonUtils.loadNativeAd(requireView(), requireContext())
 
         galleryLauncher = CommonUtils.registerGalleryPicker(this) { uri ->
@@ -95,7 +128,7 @@ class HomeFragment : Fragment() {
                 inputStream?.close()
                 ImageHolder.pickLocation = "gallery"
 
-                ImageHolder.bitmap = bitmap // ✅ VALID
+                ImageHolder.bitmap = bitmap
 
 
                 val action = HomeFragmentDirections.actionHomeFragmentToSelectionModeFragment()
@@ -109,7 +142,8 @@ class HomeFragment : Fragment() {
 
         }
 
-        cameraLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
+        cameraLauncher =
+            registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
                 if (success && imageUri != null) {
                     val inputStream = requireContext().contentResolver.openInputStream(imageUri!!)
                     val bitmap = BitmapFactory.decodeStream(inputStream)
@@ -154,11 +188,7 @@ class HomeFragment : Fragment() {
 
 
         binding.moreDrawer.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_settingFragment)
-        }
 
-
-        binding.moreDrawer.setOnClickListener {
             (activity as? MainActivity)?.openDrawer()
         }
 
@@ -182,15 +212,32 @@ class HomeFragment : Fragment() {
         }
 
         binding.gallerylinearLayout.setOnClickListener {
-            CommonUtils.pickImageFromGallery(galleryLauncher)
+            permissionHandler = PermissionHandler(requireContext(), readStoragePermissionLauncher)
+
+            if (permissionHandler.isReadMediaImagesGranted()) {
+                CommonUtils.pickImageFromGallery(galleryLauncher)
+            }
+            else {
+                permissionHandler.requestReadMediaImagesPermission()
+            }
         }
 
         binding.cameraBtnLayout.setOnClickListener {
+            permissionHandler = PermissionHandler(requireContext(), cameraPermissionLauncher)
             imageUri = CommonUtils.createImageUri(requireContext())
-            imageUri?.let {
-                cameraLauncher.launch(it)
+            if (imageUri == null) {
+                Toast.makeText(requireContext(), "Failed to create image file", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
+
+            if (permissionHandler.isCameraPermissionGranted()) {
+                cameraLauncher.launch(imageUri!!)
+            } else {
+                permissionHandler.requestCameraPermission()
+            }
+
         }
+
 
         val includedLayout = binding.catogoriesSection
 

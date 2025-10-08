@@ -6,14 +6,40 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.example.ardrawing.R
 import com.example.ardrawing.databinding.FragmentSelectionModeBinding
+import com.example.ardrawing.utils.ArDrawingSharePreference
+import com.example.ardrawing.utils.PermissionHandler
 
 enum class DrawMode { SCREEN, CAMERA, NONE }
 
 class SelectionModeFragment : Fragment() {
+    private lateinit var permissionHandler: PermissionHandler
+    private lateinit var sharePreference: ArDrawingSharePreference
+    private var pendingAction: (() -> Unit)? = null
+
+    private val cameraPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+            if (isGranted) {
+                Toast.makeText(requireContext(), "Permission granted", Toast.LENGTH_SHORT).show()
+            } else {
+                val requestCount = sharePreference.getCameraPermissionCount()
+                when (requestCount) {
+                    0 -> {
+                        sharePreference.saveCameraPermissionCount(1)
+                        permissionHandler.showRetryDialog("CameraPermission")
+                    }
+
+                    else -> {
+                        permissionHandler.showSettingsDialog()
+                    }
+                }
+            }
+        }
+
     lateinit var binding: FragmentSelectionModeBinding
 
     companion object {
@@ -35,6 +61,8 @@ class SelectionModeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         updateSelection()
+        permissionHandler= PermissionHandler(requireContext(),cameraPermissionLauncher)
+        sharePreference= ArDrawingSharePreference(requireContext())
         binding.drawWithScreenSelectionBtn.setOnClickListener {
 
             selectedMode = DrawMode.SCREEN
@@ -48,39 +76,47 @@ class SelectionModeFragment : Fragment() {
         }
 
 
-        binding.backBtn.setOnClickListener{
+        binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
         }
 
 
         binding.continueBtn.setOnClickListener {
-            val action = when (selectedMode) {
+            when (selectedMode) {
                 DrawMode.SCREEN -> {
-                    SelectionModeFragmentDirections.actionSelectionModeFragmentToCameraPreviewFragment(
-                        255
-                    )
+                    val action =
+                        SelectionModeFragmentDirections.actionSelectionModeFragmentToCameraPreviewFragment(
+                            255
+                        )
+                    findNavController().navigate(action)
                 }
 
                 DrawMode.CAMERA -> {
-                    SelectionModeFragmentDirections.actionSelectionModeFragmentToCameraPreviewFragment(
-                        100
-                    )
+                    if (permissionHandler.isCameraPermissionGranted()) {
+
+                        val action =
+                            SelectionModeFragmentDirections.actionSelectionModeFragmentToCameraPreviewFragment(
+                                100
+                            )
+                        findNavController().navigate(action)
+                    } else {
+                        // Permission not granted, request it and set pending navigation action
+                        pendingAction = {
+                            val action =
+                                SelectionModeFragmentDirections.actionSelectionModeFragmentToCameraPreviewFragment(
+                                    100
+                                )
+                            findNavController().navigate(action)
+                        }
+                        permissionHandler.requestCameraPermission()
+                    }
                 }
 
                 DrawMode.NONE -> {
                     Toast.makeText(requireContext(), "Please Select Mode", Toast.LENGTH_SHORT)
                         .show()
-                    null
                 }
             }
-
-            // Only navigate if action is not null and Dr is true
-            if (action != null) {
-
-                findNavController().navigate(action)
-            }
-
-
         }
 
     }
@@ -117,7 +153,6 @@ class SelectionModeFragment : Fragment() {
             }
         }
     }
-
 
 
 }

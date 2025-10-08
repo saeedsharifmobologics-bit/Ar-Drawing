@@ -129,6 +129,7 @@ object CameraPreviewUtils {
         )
     }
 
+
     @RequiresPermission(Manifest.permission.RECORD_AUDIO)
     fun startVideoRecording(
         context: Context,

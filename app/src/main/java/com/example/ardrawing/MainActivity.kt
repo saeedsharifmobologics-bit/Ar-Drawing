@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
 
         drawerLayout = findViewById(R.id.drawer_layout)
-// Load SettingsFragment inside drawer_container
+        // Load SettingsFragment inside drawer_container
         supportFragmentManager.beginTransaction().replace(R.id.drawer_container, SettingFragment())
             .commit()
         OpenCVLoader.initDebug()
