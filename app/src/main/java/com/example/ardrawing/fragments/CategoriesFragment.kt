@@ -37,15 +37,11 @@ class CategoriesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val categoryList = listOf(
-            CategoriesItem("Anime", R.drawable.sample_img),
-            CategoriesItem("Anatomy", R.drawable.sample_img),
-            CategoriesItem("Object", R.drawable.`sample_img`),
-            CategoriesItem("fruits", R.drawable.sample_img),
-            CategoriesItem("Animal", R.drawable.sample_img),
-            CategoriesItem("Car", R.drawable.sample_img),
-            CategoriesItem("Person", R.drawable.sample_img),
-
-
+            CategoriesItem("Birds", R.drawable.sample_img),
+            CategoriesItem("Boats", R.drawable.sample_img),
+            CategoriesItem("Characters", R.drawable.`sample_img`),
+            CategoriesItem("Trees", R.drawable.`sample_img`),
+            CategoriesItem("Vegetables", R.drawable.`sample_img`),
         )
         // Set up adapter
         categoriesAdapter = CategoriesAdapter(categoryList)
