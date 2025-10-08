@@ -47,6 +47,7 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.ArDrawing"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity

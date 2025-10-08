@@ -115,7 +115,7 @@ class HomeFragment : Fragment() {
                     val bitmap = BitmapFactory.decodeStream(inputStream)
                     inputStream?.close()
 
-                    ImageHolder.bitmap = bitmap // ✅ VALID
+                    ImageHolder.bitmap = bitmap
                     ImageHolder.pickLocation = "camera"
                     val action = HomeFragmentDirections.actionHomeFragmentToSelectionModeFragment()
                     findNavController().navigate(action)
@@ -191,6 +191,7 @@ class HomeFragment : Fragment() {
                 cameraLauncher.launch(it)
             }
         }
+
         val includedLayout = binding.catogoriesSection
 
         includedLayout.seeAll1.setOnClickListener {
