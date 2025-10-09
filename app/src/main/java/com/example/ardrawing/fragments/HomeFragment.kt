@@ -15,15 +15,19 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import coil.imageLoader
 import coil.request.ImageRequest
 import com.example.ardrawing.MainActivity
 import com.example.ardrawing.R
+import com.example.ardrawing.adapters.ParentAdapter
 import com.example.ardrawing.data.ArDrawingData
+import com.example.ardrawing.data.CategoryModel
 import com.example.ardrawing.databinding.FragmentHomeBinding
 import com.example.ardrawing.utils.ArDrawingSharePreference
 import com.example.ardrawing.utils.CommonUtils
 import com.example.ardrawing.utils.ImageHolder
+import com.example.ardrawing.utils.ImageUrlList.allUrlList
 import com.example.ardrawing.utils.PermissionHandler
 import kotlinx.coroutines.launch
 import kotlin.collections.List
@@ -158,33 +162,7 @@ class HomeFragment : Fragment() {
                 }
             }
 
-        val urlList: List<ArDrawingData> = listOf(
-            // Anime
-            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/anime_sketch.jpg"),
-            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/anime_sketch_1.jpg"),
-
-            // Fruits
-            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/apple_1.jpg"),
-            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/apple_2.jpg"),
-
-            // Anatomy
-            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/anatomy.png"),
-            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/anatomy_2.jpg"),
-
-            // Object
-            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/jug_object.jpg"),
-            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/building%20sketch.jpg"),
-
-            // Animal
-            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds%20image.jpg"),
-            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/lion%20image.jpg"),
-
-            // Car
-            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/car_sketch.jpg"),
-
-            // Person
-            ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/person_sketch.jpg")
-        )
+        val urlList= allUrlList()
 
 
         binding.moreDrawer.setOnClickListener {
@@ -239,7 +217,7 @@ class HomeFragment : Fragment() {
         }
 
 
-        val includedLayout = binding.catogoriesSection
+    /*    val includedLayout = binding.catogoriesSection
 
         includedLayout.seeAll1.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToViewCategoryFragment("Anime")
@@ -256,8 +234,36 @@ class HomeFragment : Fragment() {
         includedLayout.seeAll3.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToViewCategoryFragment("Object")
             findNavController().navigate(action)
-        }
+        }*/
+        val categoryList = listOf(
+            CategoryModel(
+                "Birds",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds/birds01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds/birds02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds/birds01.png"),
 
+                )
+            ),
+            CategoryModel(
+                "Fruits",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits06.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits07.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits06.png"),)
+            ))
+
+binding.parentRecyclerView.apply{
+        layoutManager = LinearLayoutManager(requireContext())
+        adapter = ParentAdapter(categoryList) { categoryName ->
+            // 🔥 Handle "See All" clicks
+            Toast.makeText(
+                requireContext(),
+                "See all clicked for $categoryName",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
 
     }
 
