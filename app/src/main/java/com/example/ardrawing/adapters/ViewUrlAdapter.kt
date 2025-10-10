@@ -20,6 +20,7 @@ import com.example.ardrawing.utils.ImageHolder
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
 import androidx.core.graphics.toColorInt
+import coil.size.ViewSizeResolver
 
 class ArDrawingDataAdapter(
     private var favouriteUrllist: List<ArDrawingData>,
@@ -37,6 +38,7 @@ class ArDrawingDataAdapter(
     override fun onBindViewHolder(holder: ArDrawingDataHolder, position: Int) {
         val data = favouriteUrllist[position]
         val imageUrl = data.favouritefavouriteUrl
+        holder.image
 
         val shimmerLayout =
             holder.itemView.findViewById<ShimmerFrameLayout>(R.id.shimmer_view_container)
@@ -56,10 +58,11 @@ class ArDrawingDataAdapter(
         // Hide image initially till loaded
         holder.image.visibility = View.INVISIBLE
 
-        if (!imageUrl.isNullOrBlank()) {
+        if (imageUrl.isNotBlank()) {
             holder.image.load(imageUrl) {
-                crossfade(true)
                 allowHardware(false)
+                size(ViewSizeResolver(holder.image)) // yeh important hai
+                scale(coil.size.Scale.FILL)
 
                 listener(
                     onSuccess = { _, _ ->
@@ -96,7 +99,7 @@ class ArDrawingDataAdapter(
     override fun getItemCount(): Int = favouriteUrllist.size
 
     class ArDrawingDataHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val image: AppCompatImageView = view.findViewById(R.id.ArDrawingDataImage)
+        val image: ImageView = view.findViewById(R.id.ArDrawingDataImage)
     }
 
 

@@ -154,8 +154,6 @@ object ImageUrlList {
 
 
     fun getDataByCategory(category: String): List<ArDrawingData> {
-
-
         return when (category) {
             "Birds" -> listOf(
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds/birds01.png"),

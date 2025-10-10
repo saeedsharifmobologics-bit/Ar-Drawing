@@ -10,6 +10,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.size.Size
+import coil.size.ViewSizeResolver
 import coil.transform.RoundedCornersTransformation
 import com.example.ardrawing.R
 import com.example.ardrawing.adapters.ArDrawingDataAdapter.ArDrawingDataHolder
@@ -54,11 +55,12 @@ class CategoryChildAdapter(
         // Hide image initially till loaded
         holder.image.visibility = View.INVISIBLE
 
-        if (!imageUrl.isNullOrBlank()) {
+        if (imageUrl.isNotBlank()) {
             holder.image.load(imageUrl) {
                 crossfade(true)
                 allowHardware(false)
-
+                size(ViewSizeResolver(holder.image)) // yeh important hai
+                scale(coil.size.Scale.FILL)
                 listener(
                     onSuccess = { _, _ ->
                         shimmerLayout.stopShimmer()
@@ -70,6 +72,7 @@ class CategoryChildAdapter(
                         shimmerLayout.visibility = View.GONE
                         holder.image.setImageResource(R.drawable.place_holder_img)
                         holder.image.visibility = View.VISIBLE
+
                     }
                 )
             }

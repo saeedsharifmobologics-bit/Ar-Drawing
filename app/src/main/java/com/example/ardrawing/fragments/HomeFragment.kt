@@ -14,6 +14,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.imageLoader
@@ -42,13 +43,14 @@ class HomeFragment : Fragment() {
     private lateinit var permissionHandler: PermissionHandler
     private lateinit var sharePreference: ArDrawingSharePreference
 
-    private val readStoragePermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+    private val readStoragePermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
             if (isGranted) {
                 Toast.makeText(requireContext(), "Permission granted", Toast.LENGTH_SHORT).show()
             } else {
                 val requestCount = sharePreference.getReadStoragePermissionCount()
-                when (requestCount){
-                    0 ->{
+                when (requestCount) {
+                    0 -> {
                         sharePreference.saveReadStoragePermissionCount(1)
                         permissionHandler.showRetryDialog("GalleryPermission")
                     }
@@ -61,25 +63,24 @@ class HomeFragment : Fragment() {
         }
 
 
-    private val cameraPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
-        if (isGranted) {
-            Toast.makeText(requireContext(), "Permission granted", Toast.LENGTH_SHORT).show()
-        } else {
-            val requestCount = sharePreference.getCameraPermissionCount()
-            when (requestCount){
-                0 ->{
-                    sharePreference.saveCameraPermissionCount(1)
-                    permissionHandler.showRetryDialog("CameraPermission")
-                }
+    private val cameraPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+            if (isGranted) {
+                Toast.makeText(requireContext(), "Permission granted", Toast.LENGTH_SHORT).show()
+            } else {
+                val requestCount = sharePreference.getCameraPermissionCount()
+                when (requestCount) {
+                    0 -> {
+                        sharePreference.saveCameraPermissionCount(1)
+                        permissionHandler.showRetryDialog("CameraPermission")
+                    }
 
-                else -> {
-                    permissionHandler.showSettingsDialog()
+                    else -> {
+                        permissionHandler.showSettingsDialog()
+                    }
                 }
             }
         }
-    }
-
-
 
 
     /*
@@ -162,7 +163,7 @@ class HomeFragment : Fragment() {
                 }
             }
 
-        val urlList= allUrlList()
+        val urlList = allUrlList()
 
 
         binding.moreDrawer.setOnClickListener {
@@ -194,8 +195,7 @@ class HomeFragment : Fragment() {
 
             if (permissionHandler.isReadMediaImagesGranted()) {
                 CommonUtils.pickImageFromGallery(galleryLauncher)
-            }
-            else {
+            } else {
                 permissionHandler.requestReadMediaImagesPermission()
             }
         }
@@ -204,7 +204,8 @@ class HomeFragment : Fragment() {
             permissionHandler = PermissionHandler(requireContext(), cameraPermissionLauncher)
             imageUri = CommonUtils.createImageUri(requireContext())
             if (imageUri == null) {
-                Toast.makeText(requireContext(), "Failed to create image file", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Failed to create image file", Toast.LENGTH_SHORT)
+                    .show()
                 return@setOnClickListener
             }
 
@@ -217,53 +218,131 @@ class HomeFragment : Fragment() {
         }
 
 
-    /*    val includedLayout = binding.catogoriesSection
+        /*    val includedLayout = binding.catogoriesSection
 
-        includedLayout.seeAll1.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToViewCategoryFragment("Anime")
-            findNavController().navigate(action)
-        }
+            includedLayout.seeAll1.setOnClickListener {
+                val action = HomeFragmentDirections.actionHomeFragmentToViewCategoryFragment("Anime")
+                findNavController().navigate(action)
+            }
 
-        includedLayout.seeAll2.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToViewCategoryFragment("Anatomy")
-            findNavController().navigate(action)
-        }
+            includedLayout.seeAll2.setOnClickListener {
+                val action = HomeFragmentDirections.actionHomeFragmentToViewCategoryFragment("Anatomy")
+                findNavController().navigate(action)
+            }
 
 
 
-        includedLayout.seeAll3.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToViewCategoryFragment("Object")
-            findNavController().navigate(action)
-        }*/
+            includedLayout.seeAll3.setOnClickListener {
+                val action = HomeFragmentDirections.actionHomeFragmentToViewCategoryFragment("Object")
+                findNavController().navigate(action)
+            }*/
         val categoryList = listOf(
             CategoryModel(
                 "Birds",
                 listOf(
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds/birds01.png"),
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds/birds02.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds/birds01.png"),
-
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds/birds03.png")
+                )
+            ),
+            CategoryModel(
+                "Boats",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/boats/boats01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/boats/boats02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/boats/boats03.png")
+                )
+            ),
+            CategoryModel(
+                "Characters",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/character/character01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/character/character02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/character/character03.png")
+                )
+            ),
+            CategoryModel(
+                "Trees",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/tree/tree01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/tree/tree02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/tree/tree03.png")
+                )
+            ),
+            CategoryModel(
+                "Vegetables",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/vegetables/vegetable01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/vegetables/vegetable02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/vegetables/vegetable03.png")
+                )
+            ),
+            CategoryModel(
+                "Animals",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Animals/animals01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Animals/animals02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Animals/animals03.png")
+                )
+            ),
+            CategoryModel(
+                "Bacteria",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Bacteria's/bacteria1.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Bacteria's/bacteria2.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Bacteria's/bacteria3.png")
                 )
             ),
             CategoryModel(
                 "Fruits",
                 listOf(
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits06.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits07.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits06.png"),)
-            ))
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits03.png")
+                )
+            ),
+            CategoryModel(
+                "Human Organs",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Human%20Organs/humanorgans01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Human%20Organs/humanorgans02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Human%20Organs/humanorgans03.png"),
 
-binding.parentRecyclerView.apply{
-        layoutManager = LinearLayoutManager(requireContext())
-        adapter = ParentAdapter(categoryList) { categoryName ->
-            // 🔥 Handle "See All" clicks
-            Toast.makeText(
-                requireContext(),
-                "See all clicked for $categoryName",
-                Toast.LENGTH_SHORT
-            ).show()
+                    )
+            ),
+            CategoryModel(
+                "Pirates",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Pirats/pirats01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Pirats/pirats02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Pirats/pirats03.png"),
+                )
+            ),
+            CategoryModel(
+                "Plants",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Plants/plants01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Plants/plants02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Plants/plants03.png"),
+                )
+            ),
+            CategoryModel(
+                "Toys",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Toys/toy01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Toys/toy02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Toys/toy03.png"),
+                )
+            )
+        )
+
+        binding.parentRecyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = ParentAdapter(categoryList) { categoryName ->
+                val action= HomeFragmentDirections.actionHomeFragmentToViewCategoryFragment(categoryName)
+                findNavController().navigate(action)
+            }
         }
-    }
 
     }
 

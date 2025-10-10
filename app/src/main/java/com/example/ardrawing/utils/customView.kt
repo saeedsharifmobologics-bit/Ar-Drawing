@@ -26,6 +26,7 @@ import kotlin.apply
 import kotlin.let
 import kotlin.math.atan2
 import kotlin.ranges.coerceIn
+import androidx.core.graphics.withClip
 
 class OverlayView @JvmOverloads constructor(
     context: Context,
@@ -164,22 +165,38 @@ class OverlayView @JvmOverloads constructor(
 
 
     private fun drawMainRectangle(canvas: Canvas) {
+        if (image == null) return
+
         paint.apply {
             style = Paint.Style.FILL
             alpha = alphaValue
         }
 
+        val padding = 5f
+        val paddedRect = RectF(rectF).apply {
+            inset(padding, padding)
+        }
+
         val path = Path().apply {
             addRoundRect(
-                rectF,
+                paddedRect,
                 RECT_CORNER_RADIUS,
                 RECT_CORNER_RADIUS,
                 Path.Direction.CW
             )
         }
-        canvas.clipPath(path)
-        canvas.drawBitmap(image!!, null, rectF, paint)
+
+        // 🟡 Save canvas before clipping
+        canvas.withClip(path) {
+
+            // 🔸 Apply clip path only for image
+            // 🔸 Draw image inside padded rect
+            drawBitmap(image!!, null, paddedRect, paint)
+
+            // 🟢 Restore original canvas (no clip)
+        }
     }
+
 
     private fun drawStrokeMask(canvas: Canvas) {
             strokeMask?.let {
