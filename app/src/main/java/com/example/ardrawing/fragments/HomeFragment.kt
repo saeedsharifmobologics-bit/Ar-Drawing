@@ -31,7 +31,6 @@ import com.example.ardrawing.utils.ImageHolder
 import com.example.ardrawing.utils.ImageUrlList.allUrlList
 import com.example.ardrawing.utils.PermissionHandler
 import kotlinx.coroutines.launch
-import kotlin.collections.List
 import kotlin.random.Random
 
 
@@ -42,11 +41,16 @@ class HomeFragment : Fragment() {
     private var imageUri: Uri? = null
     private lateinit var permissionHandler: PermissionHandler
     private lateinit var sharePreference: ArDrawingSharePreference
+    private var pendingAction: (() -> Unit)? = null
+
 
     private val readStoragePermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
             if (isGranted) {
                 Toast.makeText(requireContext(), "Permission granted", Toast.LENGTH_SHORT).show()
+                pendingAction?.invoke()
+                pendingAction = null
+
             } else {
                 val requestCount = sharePreference.getReadStoragePermissionCount()
                 when (requestCount) {
@@ -67,6 +71,9 @@ class HomeFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
             if (isGranted) {
                 Toast.makeText(requireContext(), "Permission granted", Toast.LENGTH_SHORT).show()
+                pendingAction?.invoke()
+                pendingAction = null
+
             } else {
                 val requestCount = sharePreference.getCameraPermissionCount()
                 when (requestCount) {
@@ -82,31 +89,6 @@ class HomeFragment : Fragment() {
             }
         }
 
-
-    /*
-
-        private val multiplePermissionLauncher =
-            registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-                val allGranted = permissions.all { it.value }
-
-                if (allGranted) {
-                    Toast.makeText(requireContext(), "Permissions granted ", Toast.LENGTH_SHORT).show()
-                } else {
-                    val requestCount = sharePreference.getInt()
-
-                    when (requestCount) {
-                        0 -> {
-                            sharePreference.saveInt(1)
-                            permissionHandler.showRetryDialog()
-                        }
-
-                        else -> {
-                            permissionHandler.showSettingsDialog()
-                        }
-                    }
-                }
-            }
-    */
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -134,7 +116,6 @@ class HomeFragment : Fragment() {
                 ImageHolder.pickLocation = "gallery"
 
                 ImageHolder.bitmap = bitmap
-
 
                 val action = HomeFragmentDirections.actionHomeFragmentToSelectionModeFragment()
                 findNavController().navigate(action)
@@ -191,16 +172,24 @@ class HomeFragment : Fragment() {
         }
 
         binding.gallerylinearLayout.setOnClickListener {
+            val action= HomeFragmentDirections.actionHomeFragmentToProfileFragment()
+            findNavController().navigate(action)
+         /*   pendingAction=null
             permissionHandler = PermissionHandler(requireContext(), readStoragePermissionLauncher)
 
             if (permissionHandler.isReadMediaImagesGranted()) {
                 CommonUtils.pickImageFromGallery(galleryLauncher)
             } else {
+                pendingAction={
+                    CommonUtils.pickImageFromGallery(galleryLauncher)
+                }
+
                 permissionHandler.requestReadMediaImagesPermission()
-            }
+            }*/
         }
 
         binding.cameraBtnLayout.setOnClickListener {
+            pendingAction=null
             permissionHandler = PermissionHandler(requireContext(), cameraPermissionLauncher)
             imageUri = CommonUtils.createImageUri(requireContext())
             if (imageUri == null) {
@@ -212,30 +201,16 @@ class HomeFragment : Fragment() {
             if (permissionHandler.isCameraPermissionGranted()) {
                 cameraLauncher.launch(imageUri!!)
             } else {
+                pendingAction={
+                    cameraLauncher.launch(imageUri!!)
+
+                }
                 permissionHandler.requestCameraPermission()
             }
 
         }
 
 
-        /*    val includedLayout = binding.catogoriesSection
-
-            includedLayout.seeAll1.setOnClickListener {
-                val action = HomeFragmentDirections.actionHomeFragmentToViewCategoryFragment("Anime")
-                findNavController().navigate(action)
-            }
-
-            includedLayout.seeAll2.setOnClickListener {
-                val action = HomeFragmentDirections.actionHomeFragmentToViewCategoryFragment("Anatomy")
-                findNavController().navigate(action)
-            }
-
-
-
-            includedLayout.seeAll3.setOnClickListener {
-                val action = HomeFragmentDirections.actionHomeFragmentToViewCategoryFragment("Object")
-                findNavController().navigate(action)
-            }*/
         val categoryList = listOf(
             CategoryModel(
                 "Birds",
@@ -339,7 +314,8 @@ class HomeFragment : Fragment() {
         binding.parentRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = ParentAdapter(categoryList) { categoryName ->
-                val action= HomeFragmentDirections.actionHomeFragmentToViewCategoryFragment(categoryName)
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToViewCategoryFragment(categoryName)
                 findNavController().navigate(action)
             }
         }

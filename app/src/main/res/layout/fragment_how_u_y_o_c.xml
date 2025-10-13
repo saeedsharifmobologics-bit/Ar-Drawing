@@ -27,6 +27,7 @@
             tools:layout_editor_absoluteX="0dp" />
 
         <TextView
+            android:id="@+id/textDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -36,6 +37,17 @@
             app:layout_constraintTop_toBottomOf="@+id/draw_with_camera_title" />
 
 
+
+    <FrameLayout
+        android:id="@+id/ads_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/textDescription"
+        >
+
+
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

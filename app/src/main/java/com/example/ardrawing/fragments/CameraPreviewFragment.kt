@@ -75,6 +75,7 @@ class CameraPreviewFragment : Fragment() {
     private var lastStartTime: Long = 0L // when recording/resumed last
     private var opacitySeekbarValue: Int? = 20
     private var sketchIntensity: Float? = 0.2f
+    private var startSpentTime: Long = 0L
 
     private lateinit var permissionHandler: PermissionHandler
     private lateinit var sharePreference: ArDrawingSharePreference
@@ -245,7 +246,6 @@ class CameraPreviewFragment : Fragment() {
             when (recordingState) {
                 RecordingState.IDLE -> {
                     if (permissionHandler.isRequestAudioPermission()) {
-
                         startRecording()
 
                     } else {
@@ -284,6 +284,7 @@ class CameraPreviewFragment : Fragment() {
 
     // --- Recording Control Functions ---
 
+    @RequiresPermission(Manifest.permission.RECORD_AUDIO)
     private fun startRecording() {
         recording = CameraPreviewUtils.startVideoRecording(
             requireContext(),
@@ -486,6 +487,25 @@ class CameraPreviewFragment : Fragment() {
         } catch (e: ActivityNotFoundException) {
             Toast.makeText(requireContext(), "Gallery app not found", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        startSpentTime = System.currentTimeMillis()
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        val endTime = System.currentTimeMillis()
+        val duration = endTime - startSpentTime // time in milliseconds
+
+        val oldTime = sharePreference.getSpentCountTime()
+        val newTotal = oldTime + duration
+
+        // Save the new total time
+        sharePreference.spentCountTime(newTotal)
     }
 
 

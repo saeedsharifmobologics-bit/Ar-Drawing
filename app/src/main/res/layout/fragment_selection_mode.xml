@@ -62,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_120sdp"
                 android:scaleType="fitXY"
-                android:src="@drawable/draw_with_camera_img" />
+                android:src="@drawable/draw_with_camer_screen_png" />
 
             <!-- Top-right check icon -->
             <ImageView

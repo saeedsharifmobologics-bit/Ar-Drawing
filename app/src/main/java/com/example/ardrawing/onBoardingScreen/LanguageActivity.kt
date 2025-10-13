@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ardrawing.R
 import com.example.ardrawing.adapters.LanguageAdapter
 import com.example.ardrawing.databinding.ActivityLanguageBinding
-import com.example.ardrawing.databinding.FragmentLanguageBinding
 import com.example.ardrawing.utils.AppLaunchPrefs
 import com.example.ardrawing.utils.LanguageManager
 

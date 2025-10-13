@@ -7,11 +7,10 @@ import androidx.core.content.edit
 class ArDrawingSharePreference(context: Context) {
 
     private val PREFS_NAME = "ar_drawing_prefs"
-
-    // Alag keys for different permissions
     private val KEY_CAMERA_PERMISSION_COUNT = "key_camera_permission_count"
     private val KEY_READ_STORAGE_PERMISSION_COUNT = "key_read_storage_permission_count"
     private val KEY_AUDIO_PERMISSION_COUNT = "key_audio_permission_count"
+    private val KEY_SPENT_COUNT = "key_spent_count"
 
     private val prefs: SharedPreferences =
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
@@ -41,6 +40,14 @@ class ArDrawingSharePreference(context: Context) {
 
     fun getAudioPermissionCount(): Int {
         return prefs.getInt(KEY_AUDIO_PERMISSION_COUNT, 0)
+    }
+
+    fun spentCountTime(value: Float) {
+        prefs.edit { putFloat(KEY_SPENT_COUNT, 0.0f) }
+    }
+
+    fun getSpentCountTime(): Float {
+        return prefs.getFloat(KEY_SPENT_COUNT,0.0f)
     }
 
     // Optional: clear all counts

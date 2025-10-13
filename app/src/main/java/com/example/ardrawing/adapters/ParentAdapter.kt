@@ -19,8 +19,7 @@ class ParentAdapter(
         parent: ViewGroup,
         viewType: Int
     ): ParentViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.catogories_section, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.catogories_section, parent, false)
         return ParentViewHolder(view)
     }
 

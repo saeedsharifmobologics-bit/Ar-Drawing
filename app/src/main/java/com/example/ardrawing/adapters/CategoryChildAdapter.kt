@@ -57,7 +57,6 @@ class CategoryChildAdapter(
 
         if (imageUrl.isNotBlank()) {
             holder.image.load(imageUrl) {
-                crossfade(true)
                 allowHardware(false)
                 size(ViewSizeResolver(holder.image)) // yeh important hai
                 scale(coil.size.Scale.FILL)

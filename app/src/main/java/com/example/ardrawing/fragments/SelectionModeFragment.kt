@@ -25,6 +25,9 @@ class SelectionModeFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
             if (isGranted) {
                 Toast.makeText(requireContext(), "Permission granted", Toast.LENGTH_SHORT).show()
+
+                pendingAction?.invoke()
+                pendingAction = null // Reset after calling
             } else {
                 val requestCount = sharePreference.getCameraPermissionCount()
                 when (requestCount) {
@@ -84,28 +87,20 @@ class SelectionModeFragment : Fragment() {
         binding.continueBtn.setOnClickListener {
             when (selectedMode) {
                 DrawMode.SCREEN -> {
-                    val action =
-                        SelectionModeFragmentDirections.actionSelectionModeFragmentToCameraPreviewFragment(
-                            255
-                        )
+                    // No permission required, navigate directly
+                    val action = SelectionModeFragmentDirections
+                        .actionSelectionModeFragmentToCameraPreviewFragment(255)
                     findNavController().navigate(action)
                 }
 
                 DrawMode.CAMERA -> {
                     if (permissionHandler.isCameraPermissionGranted()) {
-
-                        val action =
-                            SelectionModeFragmentDirections.actionSelectionModeFragmentToCameraPreviewFragment(
-                                100
-                            )
+                        val action = SelectionModeFragmentDirections
+                            .actionSelectionModeFragmentToCameraPreviewFragment(100)
                         findNavController().navigate(action)
                     } else {
-                        // Permission not granted, request it and set pending navigation action
-                        pendingAction = {
-                            val action =
-                                SelectionModeFragmentDirections.actionSelectionModeFragmentToCameraPreviewFragment(
-                                    100
-                                )
+                        // Permission not granted, save action as pending and request permission
+                        pendingAction = { val action = SelectionModeFragmentDirections.actionSelectionModeFragmentToCameraPreviewFragment(100)
                             findNavController().navigate(action)
                         }
                         permissionHandler.requestCameraPermission()
@@ -113,11 +108,11 @@ class SelectionModeFragment : Fragment() {
                 }
 
                 DrawMode.NONE -> {
-                    Toast.makeText(requireContext(), "Please Select Mode", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(requireContext(), "Please Select Mode", Toast.LENGTH_SHORT).show()
                 }
             }
         }
+
 
     }
 

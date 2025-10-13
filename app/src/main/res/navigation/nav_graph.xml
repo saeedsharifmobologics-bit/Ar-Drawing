@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_homeFragment_to_subscriptionFragment"
             app:destination="@id/subscriptionFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
 
 
     </fragment>
@@ -103,4 +106,9 @@
             android:id="@+id/action_appLibraryFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.ardrawing.fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

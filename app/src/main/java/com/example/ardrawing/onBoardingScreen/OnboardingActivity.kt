@@ -32,6 +32,7 @@ class OnboardingActivity : AppCompatActivity() {
 
         adapter = OnboardingPagerAdapter(this)
         binding.viewPager.adapter = adapter
+        binding.dotsIndicator.attachTo(binding.viewPager)
 
         setupViewPagerCallbacks()
         setupButtonListeners()
@@ -60,7 +61,8 @@ class OnboardingActivity : AppCompatActivity() {
         binding.skipBtn.setOnClickListener {
             navigateToMain()
         }
-    }
+
+         }
 
     private fun updateButtonState(position: Int) {
         when (position) {

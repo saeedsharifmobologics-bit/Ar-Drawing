@@ -3,7 +3,9 @@ package com.example.ardrawing.adapters
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ardrawing.R
 import com.example.ardrawing.databinding.LanguageCardLayoutBinding
 
 class LanguageAdapter(
@@ -21,7 +23,7 @@ class LanguageAdapter(
 
             // Card border highlight
             binding.root.strokeColor =
-                if (position == selectedPosition) Color.BLACK
+                if (position == selectedPosition) ContextCompat.getColor(binding.root.context, R.color.lines_color)
                 else Color.LTGRAY
 
             binding.root.setOnClickListener {

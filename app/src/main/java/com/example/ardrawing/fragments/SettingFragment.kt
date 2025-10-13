@@ -1,5 +1,6 @@
 package com.example.ardrawing.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.ardrawing.MainActivity
 import com.example.ardrawing.R
 import com.example.ardrawing.databinding.FragmentSettingBinding
+import com.example.ardrawing.onBoardingScreen.LanguageActivity
 import com.example.ardrawing.utils.CommonUtils
 
 
@@ -42,6 +44,10 @@ class SettingFragment : Fragment() {
                 requireContext(),
                 "https://play.google.com/store/apps/developer?id=Energy+apps"
             )
+        }
+
+        binding.languageBtn.setOnClickListener {
+            startActivity(Intent(requireContext(), LanguageActivity::class.java))
         }
 
         binding.goPremiumLayout.setOnClickListener {

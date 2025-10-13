@@ -48,8 +48,8 @@ android {
     buildFeatures {
         viewBinding = true
     }
-
-    // ✅ Lokalenow config
+/*
+    // Lokalenow config
     lokalenow {
         languages = listOf(
             "en", // English
@@ -66,10 +66,10 @@ android {
 
         )
         activate = true
-    }
+    }*/
 }
 
-// ✅ Kotlin + Java toolchain (forces consistent JDK)
+//Kotlin + Java toolchain (forces consistent JDK)
 kotlin {
     jvmToolchain(17)
 }
@@ -105,5 +105,6 @@ dependencies {
     implementation("io.coil-kt:coil:2.7.0")
 
     implementation("com.facebook.shimmer:shimmer:0.5.0")
+    implementation("com.tbuonomo:dotsindicator:5.1.0")
     implementation(project(":sdk"))
 }

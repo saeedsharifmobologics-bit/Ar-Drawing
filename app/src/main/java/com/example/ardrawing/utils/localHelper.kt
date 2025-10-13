@@ -44,5 +44,13 @@ object AppLaunchPrefs {
         val sharedPref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         return sharedPref.getBoolean(KEY_FIRST_LAUNCH, true)
     }
+
+     fun formatDuration(ms: Long): String {
+        val seconds = ms / 1000
+        val minutes = seconds / 60
+        val remainingSeconds = seconds % 60
+        return "$minutes min $remainingSeconds sec"
+    }
+
 }
 
