@@ -1,37 +1,52 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/_5sdp"
->
+    android:padding="@dimen/_5sdp">
 
-
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer_view_container"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/_100sdp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_100sdp"
-            android:background="@drawable/custom_image_view_shape" />
-    </com.facebook.shimmer.ShimmerFrameLayout>
-
-
+    <!-- Image 1 -->
     <ImageView
-        android:padding="@dimen/_10sdp"
-        android:id="@+id/ArDrawingDataImage"
+        android:id="@+id/section_image_1"
         android:layout_width="0dp"
         android:layout_height="@dimen/_100sdp"
-        android:scaleType="fitXY"
+        android:layout_marginEnd="4dp"
         android:background="@drawable/custom_image_view_shape"
+        android:padding="@dimen/_5sdp"
+        android:scaleType="fitXY"
         android:src="@drawable/character_08"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/section_image_2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <!-- Image 2 -->
+    <ImageView
+        android:id="@+id/section_image_2"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/custom_image_view_shape"
+        android:padding="@dimen/_5sdp"
+        android:scaleType="fitXY"
+        android:src="@drawable/character_08"
+        app:layout_constraintEnd_toStartOf="@+id/section_image_3"
+        app:layout_constraintStart_toEndOf="@id/section_image_1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <!-- Image 3 -->
+    <ImageView
+        android:id="@+id/section_image_3"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_100sdp"
+        android:background="@drawable/custom_image_view_shape"
+        android:padding="@dimen/_5sdp"
+        android:scaleType="fitXY"
+        android:src="@drawable/character_08"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/section_image_2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

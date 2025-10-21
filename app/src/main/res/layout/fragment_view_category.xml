@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/appBackground"
+    android:orientation="vertical"
     tools:context=".fragments.ViewCategoryFragment">
 
-   <androidx.recyclerview.widget.RecyclerView
-       android:id="@+id/view_favouriteUrl_RV"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"/>
+    <FrameLayout
+        android:id="@+id/ads_container"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-</FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/view_favouriteUrl_RV"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

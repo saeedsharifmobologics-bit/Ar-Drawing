@@ -11,11 +11,11 @@
         android:layout_height="wrap_content"
         android:text="Category Name"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:fontFamily="@font/sfpro_bold"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tvSeeAll"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/rvChild"
         android:layout_marginEnd="8dp"/>
 
     <!-- See All -->
@@ -24,31 +24,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="See all"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="#171217"
         android:textSize="14sp"
+        android:fontFamily="@font/sfpro_regular"
+
         app:layout_constraintTop_toTopOf="@id/tvCategoryName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/tvCategoryName" />
-
-    <!-- Child RecyclerView -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvChild"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:nestedScrollingEnabled="false"
-        app:layout_constraintTop_toBottomOf="@id/tvCategoryName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:orientation="horizontal"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="@dimen/_4sdp"
-        android:background="@color/lines_color"
-        app:layout_constraintTop_toBottomOf="@id/rvChild"/>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

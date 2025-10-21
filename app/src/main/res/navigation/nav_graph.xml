@@ -10,25 +10,55 @@
         android:id="@+id/homeFragment"
         android:name="com.example.ardrawing.fragments.HomeFragment"
         android:label="fragment_home"
+
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_categoriesFragment"
-            app:destination="@id/categoriesFragment" />
+            app:destination="@id/categoriesFragment"
+
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
         <action
             android:id="@+id/action_homeFragment_to_viewCategoryFragment"
-            app:destination="@id/viewCategoryFragment" />
+            app:destination="@id/viewCategoryFragment"
+
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
         <action
             android:id="@+id/action_homeFragment_to_selectionModeFragment"
-            app:destination="@id/selectionModeFragment" />
+            app:destination="@id/selectionModeFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
         <action
             android:id="@+id/action_homeFragment_to_settingFragment"
-            app:destination="@id/settingFragment" />
+            app:destination="@id/settingFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
         <action
             android:id="@+id/action_homeFragment_to_subscriptionFragment"
-            app:destination="@id/subscriptionFragment" />
+            app:destination="@id/subscriptionFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+        <action
+            android:id="@+id/action_homeFragment_to_viewCategoryFragment2"
+            app:destination="@id/viewCategoryFragment" />
 
 
     </fragment>
@@ -36,13 +66,22 @@
         android:id="@+id/categoriesFragment"
         android:name="com.example.ardrawing.fragments.CategoriesFragment"
         android:label="fragment_categories"
-        tools:layout="@layout/fragment_categories">
+        tools:layout="@layout/fragment_categories"
+        >
         <action
             android:id="@+id/action_categoriesFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
         <action
             android:id="@+id/action_categoriesFragment_to_viewCategoryFragment"
-            app:destination="@id/viewCategoryFragment" />
+            app:destination="@id/viewCategoryFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/viewCategoryFragment"
@@ -51,13 +90,21 @@
         tools:layout="@layout/fragment_view_category">
         <action
             android:id="@+id/action_viewCategoryFragment_to_categoriesFragment"
-            app:destination="@id/categoriesFragment" />
+            app:destination="@id/categoriesFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
         <argument
             android:name="categories"
             app:argType="string"/>
         <action
             android:id="@+id/action_viewCategoryFragment_to_selectionModeFragment"
-            app:destination="@id/selectionModeFragment" />
+            app:destination="@id/selectionModeFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/selectionModeFragment"
@@ -68,7 +115,11 @@
 
         <action
             android:id="@+id/action_selectionModeFragment_to_cameraPreviewFragment"
-            app:destination="@id/cameraPreviewFragment" />
+            app:destination="@id/cameraPreviewFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/cameraPreviewFragment"
@@ -78,6 +129,13 @@
         <argument
             android:name="transperencyValue"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_cameraPreviewFragment_to_appVideoFragment"
+            app:destination="@id/appVideoFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
@@ -86,7 +144,11 @@
         tools:layout="@layout/fragment_setting" >
         <action
             android:id="@+id/action_settingFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/subscriptionFragment"
@@ -95,20 +157,98 @@
         tools:layout="@layout/fragment_subscription" >
         <action
             android:id="@+id/action_subscriptionFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
     </fragment>
     <fragment
-        android:id="@+id/appLibraryFragment"
-        android:name="com.example.ardrawing.fragments.AppLibraryFragment"
-        android:label="fragment_app_library"
-        tools:layout="@layout/fragment_app_library" >
+        android:id="@+id/appImagesFragment"
+        android:name="com.example.ardrawing.statesFragments.AppImagesFragment"
+        android:label="fragment_app_Images"
+        tools:layout="@layout/fragment_app_images" >
         <action
-            android:id="@+id/action_appLibraryFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_appImagesFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"
+            />
+        <action
+            android:id="@+id/action_appImagesFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.ardrawing.fragments.ProfileFragment"
+        android:name="com.example.ardrawing.statesFragments.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_appImagesFragment"
+            app:destination="@id/appImagesFragment"
+
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+        <action
+            android:id="@+id/action_profileFragment_to_appVideoFragment"
+            app:destination="@id/appVideoFragment"
+
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+    </fragment>
+    <fragment
+        android:id="@+id/appVideoFragment"
+        android:name="com.example.ardrawing.statesFragments.AppVideoFragment"
+        android:label="fragment_app_video"
+        tools:layout="@layout/fragment_app_video" >
+        <action
+            android:id="@+id/action_appVideoFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+        <action
+            android:id="@+id/action_appVideoFragment_to_videoPlayFragment"
+            app:destination="@id/videoPlayFragment"
+
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/videoPlayFragment"
+        android:name="com.example.ardrawing.adapters.profileAdapter.VideoPlayFragment"
+        android:label="fragment_video_play"
+        tools:layout="@layout/fragment_video_play" >
+
+        <argument
+            android:name="video_uri"
+            app:argType="string" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="com.example.ardrawing.fragments.FavouriteFragment"
+        android:label="fragment_favourite"
+        tools:layout="@layout/fragment_favourite" />
+
+
 </navigation>

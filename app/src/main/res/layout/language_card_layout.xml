@@ -13,8 +13,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:background="@color/white"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="@dimen/_6sdp"
+        >
 
         <TextView
             android:id="@+id/tvLanguage"
@@ -22,14 +24,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="English"
-            android:textSize="16sp"
+            android:fontFamily="@font/sfpro_bold"
+
+            android:layout_marginStart="@dimen/_10sdp"
+            android:textSize="@dimen/_15ssp"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatRadioButton
             android:id="@+id/rbLanguage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:buttonTint="@color/lines_color"
+            app:buttonTint="@color/black"
             android:clickable="false"
             android:focusable="false" />
 

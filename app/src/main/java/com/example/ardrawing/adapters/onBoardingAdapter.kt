@@ -13,7 +13,7 @@ class OnboardingPagerAdapter(
         HowDrawWithCameraFragment(),
         DrawHowWithScreenFragment(),
         HowUYOCFragment(),
-        SketchBoxFragment()
+
     )
 
     override fun getItemCount(): Int = fragments.size

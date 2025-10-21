@@ -2,61 +2,76 @@ package com.example.ardrawing.fragments
 
 import android.content.res.Configuration
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Lifecycle
-import org.koin.androidx.viewmodel.ext.android.viewModel
-
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.ardrawing.adapters.ArDrawingDataAdapter
-
+import com.example.ardrawing.adsManger.ScreenStatusLogs
+import com.example.ardrawing.adsManger.adsUtils.loadNativeAd
+import com.example.ardrawing.buinesslogiclayer.ArDrawingViewmodel
+import com.example.ardrawing.dataClass.ArDrawingData
 import com.example.ardrawing.databinding.FragmentViewCategoryBinding
-import com.example.ardrawing.data.ArDrawingData
 import com.example.ardrawing.utils.ImageUrlList.getDataByCategory
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlin.apply
-
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ViewCategoryFragment : Fragment() {
-    lateinit var binding: FragmentViewCategoryBinding
-    lateinit var adapter: ArDrawingDataAdapter
+
+    private lateinit var binding: FragmentViewCategoryBinding
+    private lateinit var adapter: ArDrawingDataAdapter
+    private val viewModel: ArDrawingViewmodel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentViewCategoryBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        ScreenStatusLogs.logScreenView("ViewCategoryFragment","ViewCategoryFragment")
 
         val args: ViewCategoryFragmentArgs by navArgs()
         val category = args.categories
 
+        // URL list by category
         val urlList: List<ArDrawingData> = getDataByCategory(category)
 
+        //Initialize adapter with empty favourite list initially
+        adapter = ArDrawingDataAdapter(
+            favouriteUrllist = urlList,
+            dbList = emptyList(),
+            context = requireContext(),
+            viewModel = viewModel,
+            screenName = "ViewCategoryFragment"
+        )
 
-
-
-        adapter = ArDrawingDataAdapter(urlList, emptyList(), requireContext())
-
+        //RecyclerView setup
         binding.viewFavouriteUrlRV.apply {
-            val orientation = requireContext().resources.configuration.orientation
+            val orientation = resources.configuration.orientation
             val spanCount = if (orientation == Configuration.ORIENTATION_LANDSCAPE) 3 else 2
-
             layoutManager = GridLayoutManager(requireContext(), spanCount)
             adapter = this@ViewCategoryFragment.adapter
         }
 
-
+        // Observe favourite list from ViewModel
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.favoriteList.collectLatest { favList ->
+                // update adapter's favourite list when data changes
+                adapter.updateDbList(favList)
+            }
+        }
     }
 
+    override fun onResume() {
+        loadNativeAd(requireView(),requireContext())
+        super.onResume()
+    }
 }

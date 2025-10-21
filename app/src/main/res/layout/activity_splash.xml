@@ -3,23 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@color/white"
+    android:background="@color/appBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".onBoardingScreen.SplashActivity">
 
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animation_view"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidline1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.17" />
 
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/painting" />
+    <ImageView
+        android:id="@+id/sketch_image"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:src="@drawable/sketch_box_screen_png"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guidline1" />
+
+    <TextView
+        android:id="@+id/sketch_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp"
+        android:text="@string/sketch_box"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_32ssp"
+        android:fontFamily="@font/sfpro_bold"
+        app:layout_constraintTop_toBottomOf="@id/sketch_image" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp"
+        android:fontFamily="@font/sfpro_bold"
+
+        android:text="@string/sketch_box_tagline"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_18ssp"
+        app:layout_constraintTop_toBottomOf="@id/sketch_title" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

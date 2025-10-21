@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/_20sdp"
     android:padding="@dimen/_10sdp"
+    android:background="@color/appBackground"
+
     tools:context=".fragments.SettingFragment">
 
     <!-- Back Button -->
@@ -48,7 +50,7 @@
             android:text="General"
             android:textColor="@color/black"
             android:textSize="@dimen/_20sdp"
-            android:textStyle="bold"
+            android:fontFamily="@font/sfpro_bold"
             app:layout_constraintBottom_toTopOf="@+id/home"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -61,39 +63,41 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Home"
+            android:fontFamily="@font/sfpro_regular"
+
             android:textSize="@dimen/_13ssp"
-            app:layout_constraintBottom_toTopOf="@+id/library"
+            app:layout_constraintBottom_toTopOf="@+id/language_btn_txt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/general" />
 
-        <!-- Library -->
+        <!-- Images -->
         <TextView
-            android:id="@+id/library"
+            android:id="@+id/language_btn_txt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Library"
+            android:text="Language Change"
             android:textSize="@dimen/_13ssp"
+            android:fontFamily="@font/sfpro_regular"
+
             app:layout_constraintBottom_toTopOf="@+id/legal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@+id/language_btn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/home" />
 
-  <!-- Library -->
-        <TextView
+        <ImageButton
             android:id="@+id/language_btn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Language"
-            android:textSize="@dimen/_13ssp"
-            app:layout_constraintHorizontal_bias="0.1"
-
-            app:layout_constraintBottom_toTopOf="@+id/legal"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/next_btn_ic"
+            app:layout_constraintBottom_toBottomOf="@id/language_btn_txt"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/library" />
+            app:layout_constraintTop_toTopOf="@id/language_btn_txt" />
+
+
+
 
         <!-- Legal -->
         <TextView
@@ -103,12 +107,12 @@
             android:text="Legal"
             android:textColor="@color/black"
             android:textSize="@dimen/_20sdp"
-            android:textStyle="bold"
+            android:fontFamily="@font/sfpro_bold"
             app:layout_constraintBottom_toTopOf="@+id/privacyPolicy"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/library" />
+            app:layout_constraintTop_toBottomOf="@+id/language_btn_txt" />
 
         <!-- Privacy Policy -->
         <TextView
@@ -117,6 +121,8 @@
             android:layout_height="wrap_content"
             android:text="Privacy Policy"
             android:textSize="@dimen/_13ssp"
+            android:fontFamily="@font/sfpro_regular"
+
             app:layout_constraintBottom_toTopOf="@+id/termsOfService"
             app:layout_constraintEnd_toStartOf="@+id/privacyPolicy_btn"
             app:layout_constraintStart_toStartOf="parent"
@@ -139,6 +145,8 @@
             android:layout_height="wrap_content"
             android:text="Terms of Service"
             android:textSize="@dimen/_13ssp"
+            android:fontFamily="@font/sfpro_regular"
+
             app:layout_constraintBottom_toTopOf="@+id/helpSupport"
             app:layout_constraintEnd_toStartOf="@+id/termsOfService_btn"
             app:layout_constraintStart_toStartOf="parent"
@@ -162,7 +170,7 @@
             android:text="Help &amp; Support"
             android:textColor="@color/black"
             android:textSize="@dimen/_20sdp"
-            android:textStyle="bold"
+            android:fontFamily="@font/sfpro_bold"
             app:layout_constraintBottom_toTopOf="@+id/faqs"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -175,6 +183,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="FAQs"
+            android:fontFamily="@font/sfpro_regular"
+
             android:textSize="@dimen/_13ssp"
             app:layout_constraintBottom_toTopOf="@+id/shareApp"
             app:layout_constraintEnd_toStartOf="@+id/faqs_btn"
@@ -198,6 +208,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Share App"
+            android:fontFamily="@font/sfpro_regular"
+
             android:textSize="@dimen/_13ssp"
             app:layout_constraintBottom_toTopOf="@+id/moreApps"
             app:layout_constraintEnd_toStartOf="@+id/shareApp_btn"
@@ -221,6 +233,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="More Apps"
+            android:fontFamily="@font/sfpro_regular"
+
             android:textSize="@dimen/_13ssp"
             app:layout_constraintBottom_toTopOf="@+id/goPremium"
             app:layout_constraintEnd_toStartOf="@+id/moreApps_btn"
@@ -246,7 +260,7 @@
             android:text="Go Premium"
             android:textColor="@color/black"
             android:textSize="@dimen/_20sdp"
-            android:textStyle="bold"
+            android:fontFamily="@font/sfpro_bold"
             app:layout_constraintBottom_toTopOf="@+id/go_premium_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -276,10 +290,11 @@
                 android:text="Subscription"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sdp"
-                android:textStyle="bold"
+                android:fontFamily="@font/sfpro_bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/premium_btn"
                 app:layout_constraintTop_toTopOf="@id/premium_btn" />
+
 
             <TextView
                 android:layout_width="0dp"
@@ -287,6 +302,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:text="Manage Your Subscription"
                 android:textColor="@color/drawwithTextDecColor"
+                android:fontFamily="@font/sfpro_regular"
 
                 android:textSize="@dimen/_13sdp"
 

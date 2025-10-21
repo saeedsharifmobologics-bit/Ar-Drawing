@@ -1,6 +1,7 @@
 package com.example.ardrawing.utils
 
-import com.example.ardrawing.data.ArDrawingData
+import com.example.ardrawing.dataClass.ArDrawingData
+import com.example.ardrawing.dataClass.CategoryModel
 
 object ImageUrlList {
 
@@ -517,7 +518,113 @@ object ImageUrlList {
             )
 
             else -> emptyList()
+
         }
+
+    }
+
+     fun createMainCategoryList(): List<CategoryModel> {
+        return listOf(
+
+            CategoryModel(
+                "Birds",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds/birds01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds/birds02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds/birds03.png")
+                )
+            ),
+            CategoryModel(
+                "Boats",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/boats/boats01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/boats/boats02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/boats/boats03.png")
+                )
+            ),
+            CategoryModel(
+                "Characters",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/character/character01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/character/character02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/character/character03.png")
+                )
+            ),
+            CategoryModel(
+                "Trees",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/tree/tree01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/tree/tree02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/tree/tree03.png")
+                )
+            ),
+            CategoryModel(
+                "Vegetables",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/vegetables/vegetable01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/vegetables/vegetable02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/vegetables/vegetable03.png")
+                )
+            ),
+            CategoryModel(
+                "Animals",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Animals/animals01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Animals/animals02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Animals/animals03.png")
+                )
+            ),
+            CategoryModel(
+                "Bacteria",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Bacteria's/bacteria1.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Bacteria's/bacteria2.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Bacteria's/bacteria3.png")
+                )
+            ),
+            CategoryModel(
+                "Fruits",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits03.png")
+                )
+            ),
+            CategoryModel(
+                "Human Organs",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Human%20Organs/humanorgans01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Human%20Organs/humanorgans02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Human%20Organs/humanorgans03.png"),
+
+                    )
+            ),
+            CategoryModel(
+                "Pirates",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Pirats/pirats01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Pirats/pirats02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Pirats/pirats03.png"),
+                )
+            ),
+            CategoryModel(
+                "Plants",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Plants/plants01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Plants/plants02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Plants/plants03.png"),
+                )
+            ),
+            CategoryModel(
+                "Toys",
+                listOf(
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Toys/toy01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Toys/toy02.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Toys/toy03.png"),
+                )
+            )
+        )
+
     }
 
 }

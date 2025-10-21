@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/subsription_screen_bg"
     tools:context=".fragments.SubscriptionFragment">
 
     <ScrollView
@@ -12,384 +12,662 @@
         android:layout_height="match_parent"
         android:fillViewport="true">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <!-- Top Bar -->
-            <RelativeLayout
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/line1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="8dp">
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.09" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_close"
-                    android:layout_width="@dimen/_24sdp"
-                    android:layout_height="@dimen/_24sdp"
-                    android:layout_alignParentStart="true"
-                    android:layout_margin="@dimen/_8sdp"
-                    android:background="@drawable/close_prime_btn" />
+            <ImageView
+                android:id="@+id/king_img"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:src="@drawable/king_ic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line1" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_restore"
-                    android:layout_width="@dimen/_80sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:background="@drawable/restore_btn"
-
-
-                    android:textSize="14sp" />
-            </RelativeLayout>
-
-            <!-- Title & Subtitle -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Unlimited Access"
-                android:textColor="#000000"
-                android:textSize="22sp"
-                android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/btnClose"
+                android:layout_width="@dimen/_34sdp"
+                android:layout_height="@dimen/_34sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:src="@drawable/prime_cancel_ic"
+                app:layout_constraintBottom_toTopOf="@+id/king_img"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
+                android:id="@+id/unlock_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="4dp"
-                android:text="Access the most advanced AI research assistant"
-                android:textColor="#888888"
-                android:textSize="14sp" />
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:background="@drawable/unlock_all_feature_txt"
+                app:layout_constraintTop_toBottomOf="@id/king_img" />
 
-            <!-- Image with Gradient -->
-            <FrameLayout
+            <TextView
+                android:id="@+id/unlock_tv_desc"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="16dp">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:fontFamily="@font/sfpro_regular"
+                android:text="Get access to all lessons, premium brush packs,\n and an ad-free experience."
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toBottomOf="@id/unlock_tv" />
 
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:id="@+id/header_image"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="8dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/draw_with_camer_screen_png" />
-
-                        <ImageView
-                            android:id="@+id/header_image2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="8dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/draw_with_screen_img" />
-
-                        <ImageView
-                            android:id="@+id/header_image3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="8dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/draw_with_camera_img" />
-
-                        <!-- Add more images if needed -->
-
-                    </LinearLayout>
-                </HorizontalScrollView>
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_gravity="top"
-                    android:background="@drawable/gradient_top_white" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_gravity="bottom"
-                    android:background="@drawable/gradient_bottom_white" />
-            </FrameLayout>
-
-            <!-- Feature List -->
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="vertical">
+                android:id="@+id/no_ads_btn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_58sdp"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:background="@drawable/premiumbtn_shape"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="@id/unlock_tv"
+                app:layout_constraintStart_toStartOf="@id/unlock_tv"
+                app:layout_constraintTop_toBottomOf="@id/unlock_tv_desc">
 
-                <!-- Repeat for each feature -->
-                <LinearLayout
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/no_ads_prime_img" />
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="@dimen/_10sdp"
-                    android:paddingVertical="8dp">
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:fontFamily="@font/sfpro_bold"
+                    android:text="No Ads"
+                    android:textColor="@color/white" />
 
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/selected_mode_tick" />
+            </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Ads Free!"
-                        android:textSize="16sp" />
-                </LinearLayout>
+            <LinearLayout
+                android:id="@+id/unlimitedgeneration_btn"
 
-                <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_58sdp"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:background="@drawable/premiumbtn_shape"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="@id/no_ads_btn"
+                app:layout_constraintStart_toStartOf="@id/no_ads_btn"
+                app:layout_constraintTop_toBottomOf="@id/no_ads_btn">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/unlimited_prime_img" />
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:fontFamily="@font/sfpro_bold"
+                    android:text="Unlimited AI Generations"
+                    android:textColor="@color/white" />
 
-                    android:paddingHorizontal="@dimen/_10sdp"
-                    android:paddingVertical="8dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/selected_mode_tick" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Unlimited AI Generations"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="@dimen/_10sdp"
-
-                    android:paddingVertical="8dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/selected_mode_tick" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Unlimited Pro Sketches"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="@dimen/_10sdp"
-
-                    android:paddingVertical="8dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/selected_mode_tick" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Record Time-lapse Video"
-                        android:textSize="16sp" />
-                </LinearLayout>
             </LinearLayout>
 
 
-            <!-- Plan Scroller -->
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+            <LinearLayout
+                android:id="@+id/access_all_gallery_btn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_58sdp"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:background="@drawable/premiumbtn_shape"
+                android:gravity="center"
+                android:orientation="horizontal"
                 android:padding="@dimen/_10sdp"
-                android:scrollbars="none">
+                app:layout_constraintEnd_toEndOf="@id/unlimitedgeneration_btn"
+                app:layout_constraintStart_toStartOf="@id/unlimitedgeneration_btn"
+                app:layout_constraintTop_toBottomOf="@id/unlimitedgeneration_btn">
 
-                <LinearLayout
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/access_all_prime_img" />
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:fontFamily="@font/sfpro_bold"
+                    android:text="Access all Gallery Sketches "
+                    android:textColor="@color/white" />
 
-                    <!-- First Plan -->
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/first_plan"
-                        android:layout_width="@dimen/_150sdp"
-                        android:layout_height="@dimen/_100sdp"
-                        android:layout_marginEnd="8dp"
-                        android:padding="10dp"
-                        android:background="@drawable/plan_bg_card">
+            </LinearLayout>
 
-                        <!-- Plan Title -->
-                        <TextView
-                            android:id="@+id/trail_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="3-Day Free Trial"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/plan_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="@+id/access_all_gallery_btn"
+                app:layout_constraintStart_toStartOf="@+id/access_all_gallery_btn"
+                app:layout_constraintTop_toBottomOf="@id/access_all_gallery_btn">
 
-                        <!-- Tick Icon -->
-                        <ImageView
-                            android:id="@+id/plan_tick"
-                            android:layout_width="@dimen/_20sdp"
-                            android:layout_height="@dimen/_20sdp"
-                            android:src="@drawable/selected_mode_tick"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@id/trail_name" />
+                <LinearLayout
+                    android:id="@+id/weekly_plan_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/prices_card_bg"
+                    android:gravity="center"
+                    android:orientation="vertical"
 
-                        <!-- Plan Price -->
-                        <TextView
-                            android:id="@+id/plan_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rs:-1299/-"
-                            android:textSize="@dimen/_20sdp"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="@id/trail_name"
-                            app:layout_constraintTop_toBottomOf="@id/trail_name" />
+                    android:padding="@dimen/_17sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/montly_plan_btn"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                        <!-- Plan Duration -->
-                        <TextView
-                            android:id="@+id/plan_duration"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Weekly"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="@id/plan_price" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sfpro_bold"
+                        android:text="Weekly"
+                        android:textColor="@color/white" />
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/second_plan"
-                        android:layout_width="@dimen/_150sdp"
-                        android:layout_height="@dimen/_100sdp"
-                        android:layout_marginEnd="8dp"
-                        android:padding="10dp"
-                        android:background="@drawable/plan_bg_card">
-
-                        <!-- Plan Title -->
-                        <TextView
-                            android:id="@+id/trail_name2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="3-Day Free Trial "
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <!-- Tick Icon -->
-                        <ImageView
-                            android:id="@+id/plan_tick2"
-                            android:layout_width="@dimen/_20sdp"
-                            android:layout_height="@dimen/_20sdp"
-                            android:src="@drawable/selected_mode_tick"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@id/trail_name2" />
-
-                        <!-- Plan Price -->
-                        <TextView
-                            android:id="@+id/plan_price2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rs:-1799/-"
-                            android:textSize="@dimen/_20sdp"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="@id/trail_name2"
-                            app:layout_constraintTop_toBottomOf="@id/trail_name2" />
-
-                        <!-- Plan Duration -->
-                        <TextView
-                            android:id="@+id/plan_duration2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Monthly"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="@id/plan_price2" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <!-- Third Plan (Yearly) -->
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/third_plan"
-                        android:layout_width="@dimen/_150sdp"
-                        android:layout_height="@dimen/_100sdp"
-                        android:padding="10dp"
-                        android:background="@drawable/plan_bg_card">
-
-                        <TextView
-                            android:id="@+id/trail_name3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Yearly Plan"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <ImageView
-                            android:id="@+id/plan_tick3"
-                            android:layout_width="@dimen/_20sdp"
-                            android:layout_height="@dimen/_20sdp"
-                            android:src="@drawable/selected_mode_tick"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@id/trail_name3" />
-
-                        <TextView
-                            android:id="@+id/plan_price3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rs:-9999/-"
-                            android:textSize="@dimen/_20sdp"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="@id/trail_name3"
-                            app:layout_constraintTop_toBottomOf="@id/trail_name3" />
-
-                        <TextView
-                            android:id="@+id/plan_duration3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Yearly"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="@id/plan_price3" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
+                    <TextView
+                        android:id="@+id/weekly_plane_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sfpro_regular"
+                        android:text="$59.99/-"
+                        android:textColor="@color/white" />
 
 
                 </LinearLayout>
 
-            </HorizontalScrollView>
+                <LinearLayout
+                    android:id="@+id/yearly_plan_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/prices_card_bg"
+                    android:gravity="center"
+                    android:orientation="vertical"
 
-            <!-- Unlock Access Button -->
+                    android:padding="@dimen/_17sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/montly_plan_btn"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sfpro_bold"
+                        android:text="Yearly"
+
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/yearly_plane_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sfpro_regular"
+                        android:text="$59.99/-"
+
+                        android:textColor="@color/white" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/montly_plan_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/prices_card_bg"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_17sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/yearly_plan_btn"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/weekly_plan_btn"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sfpro_bold"
+                        android:text="Montly"
+
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/montly_plane_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sfpro_regular"
+                        android:text="$59.99/-"
+
+                        android:textColor="@color/white" />
+
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/subscribe_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/prime_subscribe_btn"
+                android:fontFamily="@font/sfpro_bold"
+                android:text="Subscribe Now"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@id/no_ads_btn"
+                app:layout_constraintStart_toStartOf="@id/no_ads_btn"
+                app:layout_constraintTop_toBottomOf="@id/plan_layout" />
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
-                android:background="@drawable/selected_guiddialog_bg"
-                android:text="Unlock Access"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="16sp" />
-        </LinearLayout>
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/sfpro_regular"
+                android:text="Cancel anytime, 7-day free trial included."
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toBottomOf="@id/subscribe_btn" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </ScrollView>
 </FrameLayout>
+
+
+    <!-- <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                &lt;!&ndash; Top Bar &ndash;&gt;
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="8dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_close"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_24sdp"
+                        android:layout_alignParentStart="true"
+                        android:layout_margin="@dimen/_8sdp"
+                        android:background="@drawable/close_prime_btn" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_restore"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:background="@drawable/restore_btn"
+
+
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                &lt;!&ndash; Title & Subtitle &ndash;&gt;
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Unlimited Access"
+                    android:textColor="#000000"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="4dp"
+                    android:text="Access the most advanced AI research assistant"
+                    android:textColor="#888888"
+                    android:textSize="14sp" />
+
+                &lt;!&ndash; Image with Gradient &ndash;&gt;
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="16dp">
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/header_image"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="8dp"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/draw_with_camera_png" />
+
+                            <ImageView
+                                android:id="@+id/header_image2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="8dp"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/draw_with_screen_png" />
+
+                            <ImageView
+                                android:id="@+id/header_image3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="8dp"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/draw_with_camera_png" />
+
+                            &lt;!&ndash; Add more Images if needed &ndash;&gt;
+
+                        </LinearLayout>
+                    </HorizontalScrollView>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_gravity="top"
+                        android:background="@drawable/gradient_top_white" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_gravity="bottom"
+                        android:background="@drawable/gradient_bottom_white" />
+                </FrameLayout>
+
+                &lt;!&ndash; Feature List &ndash;&gt;
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical">
+
+                    &lt;!&ndash; Repeat for each feature &ndash;&gt;
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="8dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/selected_mode_tick" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Ads Free!"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="8dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/selected_mode_tick" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Unlimited AI Generations"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="@dimen/_10sdp"
+
+                        android:paddingVertical="8dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/selected_mode_tick" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Unlimited Pro Sketches"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="@dimen/_10sdp"
+
+                        android:paddingVertical="8dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/selected_mode_tick" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Record Time-lapse Video"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                &lt;!&ndash; Plan Scroller &ndash;&gt;
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:padding="@dimen/_10sdp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        &lt;!&ndash; First Plan &ndash;&gt;
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/first_plan"
+                            android:layout_width="@dimen/_150sdp"
+                            android:layout_height="@dimen/_100sdp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/plan_bg_card"
+                            android:padding="10dp">
+
+                            &lt;!&ndash; Plan Title &ndash;&gt;
+                            <TextView
+                                android:id="@+id/trail_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="3-Day Free Trial"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            &lt;!&ndash; Tick Icon &ndash;&gt;
+                            <ImageView
+                                android:id="@+id/plan_tick"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/selected_mode_tick"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/trail_name" />
+
+                            &lt;!&ndash; Plan Price &ndash;&gt;
+                            <TextView
+                                android:id="@+id/plan_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rs:-1299/-"
+                                android:textSize="@dimen/_20sdp"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="@id/trail_name"
+                                app:layout_constraintTop_toBottomOf="@id/trail_name" />
+
+                            &lt;!&ndash; Plan Duration &ndash;&gt;
+                            <TextView
+                                android:id="@+id/plan_duration"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Weekly"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="@id/plan_price" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/second_plan"
+                            android:layout_width="@dimen/_150sdp"
+                            android:layout_height="@dimen/_100sdp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/plan_bg_card"
+                            android:padding="10dp">
+
+                            &lt;!&ndash; Plan Title &ndash;&gt;
+                            <TextView
+                                android:id="@+id/trail_name2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="3-Day Free Trial "
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            &lt;!&ndash; Tick Icon &ndash;&gt;
+                            <ImageView
+                                android:id="@+id/plan_tick2"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/selected_mode_tick"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/trail_name2" />
+
+                            &lt;!&ndash; Plan Price &ndash;&gt;
+                            <TextView
+                                android:id="@+id/plan_price2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rs:-1799/-"
+                                android:textSize="@dimen/_20sdp"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="@id/trail_name2"
+                                app:layout_constraintTop_toBottomOf="@id/trail_name2" />
+
+                            &lt;!&ndash; Plan Duration &ndash;&gt;
+                            <TextView
+                                android:id="@+id/plan_duration2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Monthly"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="@id/plan_price2" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        &lt;!&ndash; Third Plan (Yearly) &ndash;&gt;
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/third_plan"
+                            android:layout_width="@dimen/_150sdp"
+                            android:layout_height="@dimen/_100sdp"
+                            android:background="@drawable/plan_bg_card"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:id="@+id/trail_name3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Yearly Plan"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/plan_tick3"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/selected_mode_tick"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/trail_name3" />
+
+                            <TextView
+                                android:id="@+id/plan_price3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rs:-9999/-"
+                                android:textSize="@dimen/_20sdp"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="@id/trail_name3"
+                                app:layout_constraintTop_toBottomOf="@id/trail_name3" />
+
+                            <TextView
+                                android:id="@+id/plan_duration3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Yearly"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="@id/plan_price3" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+                &lt;!&ndash; Unlock Access Button &ndash;&gt;
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/selected_guiddialog_bg"
+                    android:text="Unlock Access"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>-->

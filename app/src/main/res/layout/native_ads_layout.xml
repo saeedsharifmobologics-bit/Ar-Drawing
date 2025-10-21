@@ -1,76 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.gms.ads.nativead.NativeAdView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/native_ad_main_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/native_ad_view"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/_10sdp"
+    android:paddingTop="@dimen/_5sdp"
+    android:paddingEnd="@dimen/_10sdp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <!-- ===================== SHIMMER PLACEHOLDER ===================== -->
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_container"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/native_ad_border"
-        android:padding="@dimen/_10sdp">
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shimmer_auto_start="true"
+        app:shimmer_duration="1200">
 
-        <ImageView
-            android:id="@+id/adsimageView"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:scaleType="fitXY"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/RoundedImageView" />
-
-        <TextView
-            android:id="@+id/ad_icon_made"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_20sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:background="@drawable/ads_drawable_native_icn"
-            android:padding="0dp"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_6sdp"
-            app:layout_constraintStart_toEndOf="@+id/adsimageView"
-            app:layout_constraintTop_toTopOf="@+id/adsimageView" />
-
-        <TextView
-            android:id="@+id/ad_headline"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:text="Ad Headline"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/ad_icon_made"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ad_icon_made"
-            app:layout_constraintTop_toTopOf="@+id/ad_icon_made" />
-
-
-        <TextView
-            android:id="@+id/ad_body"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:maxLines="2"
-            android:text="Ad body text"
-            app:layout_constraintBottom_toBottomOf="@+id/adsimageView"
-            app:layout_constraintStart_toStartOf="@+id/ad_icon_made"
-            app:layout_constraintTop_toBottomOf="@id/ad_headline" />
-
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/ad_call_to_action"
+        <!-- Skeleton placeholder matching the shape of your ad -->
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/selected_guiddialog_bg"
-            android:backgroundTint="#545050"
+            android:background="@drawable/native_ad_border"
+            android:padding="@dimen/_10sdp">
 
-            android:text="Install"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ad_body" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:id="@+id/shimmer_icon"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/custom_image_view_shape"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-</com.google.android.gms.ads.nativead.NativeAdView>
+            <View
+                android:id="@+id/shimmer_title"
+                android:layout_width="0dp"
+                android:layout_height="12dp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:background="@drawable/custom_image_view_shape"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/shimmer_icon"
+                app:layout_constraintTop_toTopOf="@id/shimmer_icon" />
+
+            <View
+                android:id="@+id/shimmer_body"
+                android:layout_width="0dp"
+                android:layout_height="12dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/custom_image_view_shape"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/shimmer_title"
+                app:layout_constraintTop_toBottomOf="@id/shimmer_title" />
+
+            <View
+                android:id="@+id/shimmer_button"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/custom_image_view_shape"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/shimmer_body" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <!-- ===================== REAL NATIVE AD ===================== -->
+    <com.google.android.gms.ads.nativead.NativeAdView
+        android:id="@+id/native_ad_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/native_ad_border"
+            android:padding="@dimen/_10sdp">
+
+            <ImageView
+                android:id="@+id/adsimageView"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:scaleType="fitXY"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/RoundedImageView" />
+
+            <TextView
+                android:id="@+id/ad_icon_made"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:background="@drawable/ads_drawable_native_icn"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_6sdp"
+                app:layout_constraintStart_toEndOf="@+id/adsimageView"
+                app:layout_constraintTop_toTopOf="@+id/adsimageView" />
+
+            <TextView
+                android:id="@+id/ad_headline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:fontFamily="@font/sfpro_bold"
+                android:maxLines="1"
+                android:text="Ad Headline"
+                app:layout_constraintBottom_toBottomOf="@+id/ad_icon_made"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ad_icon_made"
+                app:layout_constraintTop_toTopOf="@+id/ad_icon_made" />
+
+            <TextView
+                android:id="@+id/ad_body"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/sfpro_regular"
+                android:maxLines="2"
+                android:text="Ad body text"
+                app:layout_constraintBottom_toBottomOf="@+id/adsimageView"
+                app:layout_constraintStart_toStartOf="@+id/ad_icon_made"
+                app:layout_constraintTop_toBottomOf="@id/ad_headline" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/ad_call_to_action"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/selected_guiddialog_bg"
+                android:backgroundTint="#545050"
+                android:fontFamily="@font/sfpro_bold"
+                android:text="Install"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ad_body" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.gms.ads.nativead.NativeAdView>
+</androidx.constraintlayout.widget.ConstraintLayout>

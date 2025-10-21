@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.ardrawing.R
+import com.example.ardrawing.adsManger.ScreenStatusLogs
 import com.example.ardrawing.utils.CommonUtils
+import com.example.ardrawing.adsManger.adsUtils.loadNativeAd
 
 class HowUYOCFragment : Fragment() {
 
@@ -20,7 +22,7 @@ class HowUYOCFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        CommonUtils.loadNativeAd(requireView(),requireContext())
+        ScreenStatusLogs.logScreenView("HowUYOCFragment","HowUYOCFragment")
     }
 
 

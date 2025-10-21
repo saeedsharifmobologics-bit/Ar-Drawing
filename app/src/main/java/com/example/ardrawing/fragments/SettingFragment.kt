@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.ardrawing.MainActivity
 import com.example.ardrawing.R
+import com.example.ardrawing.adsManger.ScreenStatusLogs
 import com.example.ardrawing.databinding.FragmentSettingBinding
 import com.example.ardrawing.onBoardingScreen.LanguageActivity
 import com.example.ardrawing.utils.CommonUtils
@@ -29,6 +30,7 @@ class SettingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        ScreenStatusLogs.logScreenView("SettingFragment","SettingFragment")
 
         val navController = (requireActivity() as AppCompatActivity).supportFragmentManager.findFragmentById(R.id.nav_host_fragment)?.findNavController()
         binding.backBtn.setOnClickListener {
@@ -56,10 +58,7 @@ class SettingFragment : Fragment() {
             navController?.navigate(R.id.subscriptionFragment)
         }
 
-        binding.library.setOnClickListener {
-            (activity as? MainActivity)?.closeDrawer()
-            navController?.navigate(R.id.appLibraryFragment)
-        }
+
 
 
         binding.privacyPolicyBtn.setOnClickListener {

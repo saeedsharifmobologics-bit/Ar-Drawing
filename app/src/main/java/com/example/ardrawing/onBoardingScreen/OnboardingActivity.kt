@@ -11,6 +11,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.ardrawing.MainActivity
 import com.example.ardrawing.R
 import com.example.ardrawing.adapters.OnboardingPagerAdapter
+import com.example.ardrawing.adsManger.Utils
+import com.example.ardrawing.adsManger.adsUtils
 import com.example.ardrawing.databinding.ActivityOnBoardingBinding
 
 class OnboardingActivity : AppCompatActivity() {
@@ -29,7 +31,9 @@ class OnboardingActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        if (Utils.subscriptionState) {
+            adsUtils.loadNativeAd(binding.root,this)
+        }
         adapter = OnboardingPagerAdapter(this)
         binding.viewPager.adapter = adapter
         binding.dotsIndicator.attachTo(binding.viewPager)
@@ -62,14 +66,15 @@ class OnboardingActivity : AppCompatActivity() {
             navigateToMain()
         }
 
-         }
+    }
 
     private fun updateButtonState(position: Int) {
         when (position) {
             0, 1 -> {
                 binding.continueBtn.text = getString(R.string.next)
             }
-            2, 3 -> {
+
+            2 -> {
                 binding.continueBtn.text = getString(R.string.lets_start)
             }
         }
@@ -80,6 +85,8 @@ class OnboardingActivity : AppCompatActivity() {
 
     private fun navigateToMain() {
         startActivity(Intent(this, MainActivity::class.java))
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         finish()
     }
+
 }

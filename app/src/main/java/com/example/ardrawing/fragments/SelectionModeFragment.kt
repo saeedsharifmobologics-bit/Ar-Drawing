@@ -8,11 +8,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.core.util.DebugUtils
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.ardrawing.R
+import com.example.ardrawing.adsManger.ScreenStatusLogs
 import com.example.ardrawing.databinding.FragmentSelectionModeBinding
 import com.example.ardrawing.utils.ArDrawingSharePreference
 import com.example.ardrawing.utils.PermissionHandler
+import kotlinx.coroutines.launch
 
 enum class DrawMode { SCREEN, CAMERA, NONE }
 
@@ -62,6 +66,7 @@ class SelectionModeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        ScreenStatusLogs.logScreenView("SelectionModeFragment","SelectionModeFragment")
 
         updateSelection()
         permissionHandler= PermissionHandler(requireContext(),cameraPermissionLauncher)
@@ -83,6 +88,9 @@ class SelectionModeFragment : Fragment() {
             findNavController().popBackStack()
         }
 
+        lifecycleScope.launch{
+
+        }
 
         binding.continueBtn.setOnClickListener {
             when (selectedMode) {

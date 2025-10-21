@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <string name="draw_with_camera">ارسم بالكاميرا</string>
+  <string name="draw_with_camera_description">استخدم حاملًا ثلاثي القوائم أو كوبًا أو مجموعة من الكتب لتثبيت هاتفك في مكانه أثناء الرسم.</string>
+  <string name="draw_with_screen">ارسم بالشاشة</string>
+  <string name="draw_with_screen_description">ضع ورقة على شاشة هاتفك واتبع الخطوط لتتبع صورتك بسهولة.</string>
+  <string name="upload_your_own_collection">قم بتحميل مجموعتك الخاصة</string>
+  <string name="upload_your_own_collection_description">اختر الرسومات أو الصور المفضلة لديك وابدأ في التتبع بسهولة.</string>
+  <string name="sketch_box">صندوق الرسم</string>
+  <string name="sketch_box_tagline">الرسومات أصبحت سهلة</string>
+  <string name="continue_text">يكمل</string>
+  <string name="next">التالي</string>
+  <string name="lets_start">ابدأ</string>
+  <string name="skip">يتخطى</string>
+  <string name="create_your_own">إنشاء بنفسك</string>
+  <string name="camera">آلة تصوير</string>
+  <string name="gallery">معرض</string>
+  <string name="sketch_gallery">معرض الرسم</string>
+  <string name="categories">فئات الرسم</string>
+  <string name="see_all">رؤية الكل</string>
+  <string name="hello_blank_fragment">مرحبا جزء فارغ</string>
+  <string name="stats">احصائيات</string>
+  <string name="favourite">مفضل</string>
+  <string name="categories_bottom_txt">فئات</string>
+  <string name="home">بيت</string>
+</resources>

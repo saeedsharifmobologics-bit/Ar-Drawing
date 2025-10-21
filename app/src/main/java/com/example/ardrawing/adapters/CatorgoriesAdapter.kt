@@ -51,7 +51,12 @@ class CategoriesAdapter(
 
     }
 
-    fun filter(query: String) {
+    fun updateList(newItems: List<CategoriesItem>) {
+        filteredList = newItems.toMutableList()
+        notifyDataSetChanged()
+    }
+
+ /*   fun filter(query: String) {
         val lowerQuery = query.lowercase().trim()
         filteredList = if (lowerQuery.isEmpty()) {
             items.toMutableList()
@@ -59,7 +64,7 @@ class CategoriesAdapter(
             items.filter { it.categoryName.lowercase().contains(lowerQuery) }.toMutableList()
         }
         notifyDataSetChanged()
-    }
+    }*/
 
 
 }

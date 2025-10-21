@@ -12,6 +12,9 @@ class ArDrawingSharePreference(context: Context) {
     private val KEY_AUDIO_PERMISSION_COUNT = "key_audio_permission_count"
     private val KEY_SPENT_COUNT = "key_spent_count"
 
+    private  val PREF_NAME = "appLaunch"
+    private  val KEY_FIRST_LAUNCH = "isFirstLaunch"
+
     private val prefs: SharedPreferences =
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
@@ -41,14 +44,29 @@ class ArDrawingSharePreference(context: Context) {
     fun getAudioPermissionCount(): Int {
         return prefs.getInt(KEY_AUDIO_PERMISSION_COUNT, 0)
     }
-
-    fun spentCountTime(value: Float) {
-        prefs.edit { putFloat(KEY_SPENT_COUNT, 0.0f) }
+    fun spentCountTime(value: Long) {
+        prefs.edit().putLong(KEY_SPENT_COUNT, value).apply()
     }
 
-    fun getSpentCountTime(): Float {
-        return prefs.getFloat(KEY_SPENT_COUNT,0.0f)
+    fun getSpentCountTime(): Long {
+        return prefs.getLong(KEY_SPENT_COUNT, 0L)
     }
+
+
+    // Set first launch flag
+    fun setFirstLaunchDone(context: Context, done: Boolean) {
+        val sharedPref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        sharedPref.edit {
+            putBoolean(KEY_FIRST_LAUNCH, done)
+        }
+    }
+
+    // Get first launch flag (default true = first launch)
+    fun isFirstLaunch(context: Context): Boolean {
+        val sharedPref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        return sharedPref.getBoolean(KEY_FIRST_LAUNCH, true)
+    }
+
 
     // Optional: clear all counts
     fun clearAll() {
@@ -59,3 +77,5 @@ class ArDrawingSharePreference(context: Context) {
         }
     }
 }
+
+

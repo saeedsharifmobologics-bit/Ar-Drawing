@@ -1,6 +1,9 @@
 package com.example.ardrawing.fragments
 
+import CameraPreviewUtils.applySketchOverlayInBackground
 import CameraPreviewUtils.showSaveDialog
+import CameraPreviewUtils.srcMat
+import CameraPreviewUtils.updateButtonState
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -32,15 +35,13 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.example.ardrawing.databinding.FragmentCameraPreviewBinding
-import com.example.ardrawing.utils.ImageHolder
 import com.example.ardrawing.R
+import com.example.ardrawing.adsManger.ScreenStatusLogs
 import com.example.ardrawing.buinesslogiclayer.ArDrawingViewmodel
 import com.example.ardrawing.fragments.SelectionModeFragment.Companion.selectedMode
 import com.example.ardrawing.utils.ArDrawingSharePreference
 import com.example.ardrawing.utils.CommonUtils
-import com.example.ardrawing.utils.CommonUtils.updateButtonState
 import com.example.ardrawing.utils.PermissionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -111,7 +112,9 @@ class CameraPreviewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sharePreference=ArDrawingSharePreference(requireContext())
+
+        ScreenStatusLogs.logScreenView("CameraPreviewFragment","CameraPreviewFragment")
+        sharePreference = ArDrawingSharePreference(requireContext())
         if (selectedMode == DrawMode.CAMERA) {
             opacitySeekbarValue = 150
             sketchIntensity = 0.4f
@@ -147,7 +150,7 @@ class CameraPreviewFragment : Fragment() {
 
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             findNavController().popBackStack()
-            ImageHolder.pickLocation = null
+            CommonUtils.ImageHolder.pickLocation = null
         }
 
         // Set transparency in ViewModel & seekbar
@@ -158,17 +161,19 @@ class CameraPreviewFragment : Fragment() {
     private fun setupCustomView() {
         // Ensure ViewModel is set first
         binding.customView.setViewModel(viewModel, requireActivity())
-        bitmap = ImageHolder.bitmap!!
+        bitmap = CommonUtils.ImageHolder.bitmap!!
         binding.customView.image = bitmap
 
-        val imagePickLocation = ImageHolder.pickLocation
+        val imagePickLocation = CommonUtils.ImageHolder.pickLocation
 
         // Convert bitmap to Mat and store in CommonUtils
         val tempMat = Mat()
-        Utils.bitmapToMat(bitmap, tempMat)
-        CommonUtils.srcMat = tempMat
 
-        // Brightness Controls visible only for gallery/camera images
+        Utils.bitmapToMat(bitmap, tempMat)
+        srcMat = tempMat
+
+
+        // Brightness Controls visible only for gallery/camera Images
         if (imagePickLocation == "gallery" || imagePickLocation == "camera") {
             binding.screenBrightness.visibility = View.VISIBLE
             binding.sketchSeekbar.visibility = View.VISIBLE
@@ -177,7 +182,7 @@ class CameraPreviewFragment : Fragment() {
 
             lifecycleScope.launch {
                 val sketchBitmap = withContext(Dispatchers.Default) {
-                    CommonUtils.applySketchOverlayInBackground(sketchIntensity!!)
+                    applySketchOverlayInBackground(sketchIntensity!!)
                 }
                 binding.customView.updateSketchImage(sketchBitmap)
             }
@@ -194,7 +199,7 @@ class CameraPreviewFragment : Fragment() {
                     sketchJob = lifecycleScope.launch {
                         delay(120)
                         val sketchBitmap = withContext(Dispatchers.Default) {
-                            CommonUtils.applySketchOverlayInBackground(progress / 100f)
+                            applySketchOverlayInBackground(progress / 100f)
                         }
                         binding.customView.updateSketchImage(sketchBitmap)
                     }
@@ -465,8 +470,8 @@ class CameraPreviewFragment : Fragment() {
     fun savedVideoDialog() {
         val alertDialog = androidx.appcompat.app.AlertDialog.Builder(requireContext())
         alertDialog.setTitle("Did you want to see the Video")
-        alertDialog.setPositiveButton("View Gallery") { _, _ ->
-            openGalleryApp()
+        alertDialog.setPositiveButton("View Video") { _, _ ->
+            findNavController().navigate(CameraPreviewFragmentDirections.actionCameraPreviewFragmentToAppVideoFragment())
 
         }
         alertDialog.setNegativeButton("Cancel") { dialog, _ ->
@@ -477,17 +482,6 @@ class CameraPreviewFragment : Fragment() {
 
     }
 
-    fun openGalleryApp() {
-        val intent = Intent(Intent.ACTION_MAIN)
-        intent.addCategory(Intent.CATEGORY_APP_GALLERY)
-
-        // If no default Gallery app is found, fallback to file picker
-        try {
-            startActivity(intent)
-        } catch (e: ActivityNotFoundException) {
-            Toast.makeText(requireContext(), "Gallery app not found", Toast.LENGTH_SHORT).show()
-        }
-    }
 
     override fun onResume() {
         super.onResume()
@@ -504,6 +498,7 @@ class CameraPreviewFragment : Fragment() {
         val oldTime = sharePreference.getSpentCountTime()
         val newTotal = oldTime + duration
 
+        Log.d("spent_Time", newTotal.toString())
         // Save the new total time
         sharePreference.spentCountTime(newTotal)
     }
@@ -511,6 +506,7 @@ class CameraPreviewFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        ImageHolder.pickLocation = null
+        CommonUtils.ImageHolder.pickLocation = null
     }
+
 }

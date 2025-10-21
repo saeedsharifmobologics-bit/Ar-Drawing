@@ -5,4 +5,18 @@
     <color name="full_light_gray">#D5EFEDED</color>
     <color name="drawwithTextDecColor">#9C4A82</color>
     <color name="lines_color">#F526B0</color>
+
+
+
+
+    <color name="appBackground">#FFFFFF</color>
+    <color name="buttonBackground">#66196D</color>
+    <color name="buttomNavBackground">#D0C3D5</color>
+    <color name="buttomNavItemBackground">#66196D</color>
+    <color name="cardBorderPrimary">#71594A</color>
+    <color name="onboardingTextColor">#582A01</color>
+
+
+
+
 </resources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <string name="draw_with_camera">Desenhe com a câmera</string>
+  <string name="draw_with_camera_description">Use um tripé, um copo ou uma pilha de livros para segurar o telefone enquanto desenha.</string>
+  <string name="draw_with_screen">Desenhe com tela</string>
+  <string name="draw_with_screen_description">Coloque um papel sobre a tela do seu telefone e siga as linhas para traçar sua imagem com facilidade.</string>
+  <string name="upload_your_own_collection">Envie sua própria coleção</string>
+  <string name="upload_your_own_collection_description">Escolha seus esboços ou fotos favoritos e comece a traçar com facilidade.</string>
+  <string name="sketch_box">Caixa de esboço</string>
+  <string name="sketch_box_tagline">Esboços facilitados</string>
+  <string name="continue_text">Continuar</string>
+  <string name="next">Próximo</string>
+  <string name="lets_start">Comece</string>
+  <string name="skip">Pular</string>
+  <string name="create_your_own">Crie o seu próprio</string>
+  <string name="camera">Câmera</string>
+  <string name="gallery">Galeria</string>
+  <string name="sketch_gallery">Galeria de esboços</string>
+  <string name="categories">Categorias de esboço</string>
+  <string name="see_all">Ver tudo</string>
+  <string name="hello_blank_fragment">Olá fragmento em branco</string>
+  <string name="stats">Estatísticas</string>
+  <string name="favourite">Favorito</string>
+  <string name="categories_bottom_txt">Categorias</string>
+  <string name="home">Lar</string>
+</resources>

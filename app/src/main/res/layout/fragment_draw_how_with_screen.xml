@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/appBackground"
+
     tools:context=".onBoardingScreen.DrawHowWithScreenFragment">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_200sdp"
-        android:scaleType="centerCrop"
+        android:scaleType="fitXY"
+
         android:src="@drawable/draw_with_screen_png"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,7 +24,8 @@
         android:gravity="center"
         android:padding="@dimen/_10sdp"
         android:text="@string/draw_with_screen"
-        android:textStyle="bold"
+        android:fontFamily="@font/sfpro_bold"
+        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -31,21 +35,14 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="@dimen/_10sdp"
+        android:fontFamily="@font/sfpro_regular"
+
         android:text="@string/draw_with_screen_description"
-        android:textColor="@color/drawwithTextDecColor"
+        android:textColor="@color/onboardingTextColor"
         app:layout_constraintTop_toBottomOf="@+id/draw_with_camera_title" />
 
 
-    <FrameLayout
-        android:id="@+id/ads_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/_10sdp"
-        app:layout_constraintTop_toBottomOf="@id/textDescription"
-        >
 
-
-    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

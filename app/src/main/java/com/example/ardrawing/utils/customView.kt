@@ -42,7 +42,7 @@ class OverlayView @JvmOverloads constructor(
         const val MIN_SCALE = 0.5f
         const val MAX_SCALE = 3.0f
         const val RECT_CORNER_RADIUS = 30f
-        const val BORDER_STROKE_WIDTH = 14f
+        const val BORDER_STROKE_WIDTH = 6f
         const val STROKE_MASK_ALPHA = 120
     }
 
@@ -186,14 +186,10 @@ class OverlayView @JvmOverloads constructor(
             )
         }
 
-        // 🟡 Save canvas before clipping
         canvas.withClip(path) {
 
-            // 🔸 Apply clip path only for image
-            // 🔸 Draw image inside padded rect
             drawBitmap(image!!, null, paddedRect, paint)
 
-            // 🟢 Restore original canvas (no clip)
         }
     }
 
@@ -217,7 +213,7 @@ class OverlayView @JvmOverloads constructor(
     private fun drawBorder(canvas: Canvas) {
         paint.apply {
             style = Paint.Style.STROKE
-            color = if (isLocked) Color.GRAY else  ContextCompat.getColor(context, R.color.lines_color)
+            color = if (isLocked) Color.GRAY else  ContextCompat.getColor(context, R.color.buttonBackground)
             strokeWidth = BORDER_STROKE_WIDTH
             alpha = 255
         }
@@ -226,7 +222,7 @@ class OverlayView @JvmOverloads constructor(
 
     private fun drawLockButton(canvas: Canvas) {
         paint.style = Paint.Style.FILL
-        paint.color = if (isLocked) Color.DKGRAY else  ContextCompat.getColor(context, R.color.lines_color)
+        paint.color = if (isLocked) Color.DKGRAY else  ContextCompat.getColor(context, R.color.buttonBackground)
         canvas.drawCircle(lockCircleRect.centerX(), lockCircleRect.centerY(), CIRCLE_RADIUS, paint)
 
         lockIcon?.let {
@@ -241,7 +237,7 @@ class OverlayView @JvmOverloads constructor(
 
     private fun drawResetButton(canvas: Canvas) {
         paint.style = Paint.Style.FILL
-        paint.color =  ContextCompat.getColor(context, R.color.lines_color)
+        paint.color =  ContextCompat.getColor(context, R.color.buttonBackground)
         canvas.drawCircle(
             resetCircleRect.centerX(),
             resetCircleRect.centerY(),

@@ -23,7 +23,7 @@ class LanguageAdapter(
 
             // Card border highlight
             binding.root.strokeColor =
-                if (position == selectedPosition) ContextCompat.getColor(binding.root.context, R.color.lines_color)
+                if (position == selectedPosition) ContextCompat.getColor(binding.root.context, R.color.black)
                 else Color.LTGRAY
 
             binding.root.setOnClickListener {

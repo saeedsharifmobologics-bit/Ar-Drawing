@@ -1,42 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <androidx.constraintlayout.widget.ConstraintLayout
-
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    android:fillViewport="true"
+    android:background="@color/appBackground"
     tools:context=".fragments.CategoriesFragment">
 
-    <!-- Custom Search Bar -->
-    <EditText
-        android:id="@+id/searchBar"
+    <FrameLayout
+        android:id="@+id/ads_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
-        android:background="@drawable/rounded_search_bar_bg"
-        android:drawableStart="@android:drawable/ic_menu_search"
-        android:drawablePadding="8dp"
-        android:hint="Search categories..."
-        android:inputType="text"
-        android:padding="12dp"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/catogories_RV"
-        android:layout_width="match_parent"
+    <FrameLayout
+        android:id="@+id/appLayout"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:padding="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/ads_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchBar" />
+        android:gravity="center">
+
+        <!-- Outer ProgressBar -->
+        <ProgressBar
+            android:id="@+id/outerProgressBar"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/buttonBackground"
+            android:indeterminateTintMode="src_in" />
+
+        <!-- Inner ProgressBar -->
+        <ProgressBar
+            android:id="@+id/innerProgressBar"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="center"
+            android:indeterminateTint="#FF6B26F5"
+            android:indeterminateTintMode="src_in"
+            android:padding="@dimen/_3sdp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/catogoriesRV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

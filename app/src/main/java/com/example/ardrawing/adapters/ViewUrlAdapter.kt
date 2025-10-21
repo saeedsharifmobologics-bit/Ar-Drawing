@@ -1,34 +1,36 @@
 package com.example.ardrawing.adapters
 
 import android.content.Context
-import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.graphics.drawable.toBitmap
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import coil.transform.CircleCropTransformation
-import coil.transform.RoundedCornersTransformation
 import com.example.ardrawing.R
-import com.example.ardrawing.data.ArDrawingData
+import com.example.ardrawing.dataClass.ArDrawingData
 import com.example.ardrawing.fragments.ViewCategoryFragmentDirections
-import com.example.ardrawing.utils.ImageHolder
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
 import androidx.core.graphics.toColorInt
 import coil.size.ViewSizeResolver
+import com.example.ardrawing.buinesslogiclayer.ArDrawingViewmodel
+import com.example.ardrawing.utils.CommonUtils
 
 class ArDrawingDataAdapter(
     private var favouriteUrllist: List<ArDrawingData>,
     private var dbList: List<ArDrawingData>,
     private val context: Context,
+    private val viewModel: ArDrawingViewmodel,
+    private val screenName: String,
 ) : RecyclerView.Adapter<ArDrawingDataAdapter.ArDrawingDataHolder>() {
+    override
 
-    override fun onCreateViewHolder(
+    fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ) = ArDrawingDataHolder(
@@ -37,16 +39,19 @@ class ArDrawingDataAdapter(
 
     override fun onBindViewHolder(holder: ArDrawingDataHolder, position: Int) {
         val data = favouriteUrllist[position]
-        val imageUrl = data.favouritefavouriteUrl
-        holder.image
+        val imageUrl = data.favouriteUrl
 
         val shimmerLayout =
             holder.itemView.findViewById<ShimmerFrameLayout>(R.id.shimmer_view_container)
 
-        // Create shimmer with custom colors
+        if (screenName == "FavouriteFragment") {
+            holder.favoriteBtn.visibility = View.GONE
+        }
+
+        // Shimmer setup
         val shimmer = Shimmer.ColorHighlightBuilder()
-            .setBaseColor("#E0E0E0".toColorInt())       // Light gray base color
-            .setHighlightColor("#F5F5F5".toColorInt())  // Lighter highlight color
+            .setBaseColor("#E0E0E0".toColorInt())
+            .setHighlightColor("#F5F5F5".toColorInt())
             .setDuration(1500)
             .setDirection(Shimmer.Direction.LEFT_TO_RIGHT)
             .build()
@@ -55,13 +60,13 @@ class ArDrawingDataAdapter(
         shimmerLayout.visibility = View.VISIBLE
         shimmerLayout.startShimmer()
 
-        // Hide image initially till loaded
         holder.image.visibility = View.INVISIBLE
 
+        //Image load with Coil
         if (imageUrl.isNotBlank()) {
             holder.image.load(imageUrl) {
                 allowHardware(false)
-                size(ViewSizeResolver(holder.image)) // yeh important hai
+                size(ViewSizeResolver(holder.image))
                 scale(coil.size.Scale.FILL)
 
                 listener(
@@ -85,13 +90,31 @@ class ArDrawingDataAdapter(
             holder.image.visibility = View.VISIBLE
         }
 
+        //Check agar image favourite mein hai to heart red karo
+        val isFavourite = dbList.any { it.favouriteUrl == imageUrl }
+
+        if (isFavourite) {
+            holder.favoriteBtn.setBackgroundResource(R.drawable.favourite_ic)  // red heart
+        } else {
+            holder.favoriteBtn.setBackgroundResource(R.drawable.notfavourite_ic) // normal heart
+        }
+
         holder.image.setOnClickListener {
             val drawable = holder.image.drawable?.toBitmap()
             drawable?.let {
-                ImageHolder.bitmap = it
-                val action =
-                    ViewCategoryFragmentDirections.actionViewCategoryFragmentToSelectionModeFragment()
+                CommonUtils.ImageHolder.bitmap = it
+                val action = ViewCategoryFragmentDirections.actionViewCategoryFragmentToSelectionModeFragment()
                 holder.itemView.findNavController().navigate(action)
+            }
+        }
+
+        holder.favoriteBtn.setOnClickListener {
+            if (isFavourite) {
+                viewModel.removeFavorite(imageUrl,{ boolean->
+                    Log.d("DeletedStatus",boolean.toString())
+                })
+            } else {
+                viewModel.addFavorite(imageUrl)
             }
         }
     }
@@ -100,6 +123,18 @@ class ArDrawingDataAdapter(
 
     class ArDrawingDataHolder(view: View) : RecyclerView.ViewHolder(view) {
         val image: ImageView = view.findViewById(R.id.ArDrawingDataImage)
+        val favoriteBtn: AppCompatButton = view.findViewById(R.id.favoriteBtn)
+    }
+
+
+    fun updateList(newList: List<ArDrawingData>) {
+        this.favouriteUrllist = newList
+        notifyDataSetChanged()
+    }
+
+    fun updateDbList(newList: List<ArDrawingData>) {
+        this.dbList = newList
+        notifyDataSetChanged()
     }
 
 

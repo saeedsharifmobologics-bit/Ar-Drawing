@@ -22,6 +22,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/selected_guiddialog_bg"
             android:padding="@dimen/_10sdp"
+            android:fontFamily="@font/sfpro_bold"
+
             android:text="@string/draw_with_camera"
             android:textAllCaps="false"
             android:textColor="@color/white"
@@ -40,6 +42,8 @@
             android:padding="@dimen/_10sdp"
             android:text="@string/draw_with_screen"
             android:textAllCaps="false"
+            android:fontFamily="@font/sfpro_bold"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

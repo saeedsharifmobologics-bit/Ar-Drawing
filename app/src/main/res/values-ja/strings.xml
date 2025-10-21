@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <string name="draw_with_camera">カメラで描く</string>
+  <string name="draw_with_camera_description">描画中に携帯電話を所定の位置に保持するには、三脚、ガラス、または本の山を使用します。</string>
+  <string name="draw_with_screen">スクリーンで描く</string>
+  <string name="draw_with_screen_description">携帯電話の画面に紙を置き、線に沿って画像を簡単にトレースします。</string>
+  <string name="upload_your_own_collection">自分のコレクションをアップロードする</string>
+  <string name="upload_your_own_collection_description">お気に入りのスケッチや写真を選択して、簡単にトレースを開始できます。</string>
+  <string name="sketch_box">スケッチボックス</string>
+  <string name="sketch_box_tagline">スケッチが簡単に</string>
+  <string name="continue_text">続く</string>
+  <string name="next">次</string>
+  <string name="lets_start">始めましょう</string>
+  <string name="skip">スキップ</string>
+  <string name="create_your_own">独自のを作成する</string>
+  <string name="camera">カメラ</string>
+  <string name="gallery">ギャラリー</string>
+  <string name="sketch_gallery">スケッチギャラリー</string>
+  <string name="categories">スケッチのカテゴリ</string>
+  <string name="see_all">すべて見る</string>
+  <string name="hello_blank_fragment">こんにちは、空白のフラグメント</string>
+  <string name="stats">統計</string>
+  <string name="favourite">お気に入り</string>
+  <string name="categories_bottom_txt">カテゴリー</string>
+  <string name="home">家</string>
+</resources>

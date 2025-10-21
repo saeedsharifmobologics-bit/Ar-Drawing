@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <string name="draw_with_camera">Рисуйте с помощью камеры</string>
+  <string name="draw_with_camera_description">Используйте штатив, стакан или стопку книг, чтобы удерживать телефон на месте во время рисования.</string>
+  <string name="draw_with_screen">Рисуйте с помощью экрана</string>
+  <string name="draw_with_screen_description">Положите бумагу на экран телефона и следуйте линиям, чтобы легко обвести изображение.</string>
+  <string name="upload_your_own_collection">Загрузите свою собственную коллекцию</string>
+  <string name="upload_your_own_collection_description">Выберите понравившиеся эскизы или фотографии и начните с легкостью обводить их.</string>
+  <string name="sketch_box">Эскизная коробка</string>
+  <string name="sketch_box_tagline">Эскизы — это просто</string>
+  <string name="continue_text">Продолжать</string>
+  <string name="next">Следующий</string>
+  <string name="lets_start">Начать</string>
+  <string name="skip">Пропускать</string>
+  <string name="create_your_own">Создайте свой собственный</string>
+  <string name="camera">Камера</string>
+  <string name="gallery">Галерея</string>
+  <string name="sketch_gallery">Галерея эскизов</string>
+  <string name="categories">Категории эскизов</string>
+  <string name="see_all">Посмотреть все</string>
+  <string name="hello_blank_fragment">Привет, пустой фрагмент</string>
+  <string name="stats">Статистика</string>
+  <string name="favourite">Любимый</string>
+  <string name="categories_bottom_txt">Категории</string>
+  <string name="home">Дом</string>
+</resources>

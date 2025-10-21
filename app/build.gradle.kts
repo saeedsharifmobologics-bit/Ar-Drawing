@@ -31,6 +31,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
 
@@ -47,8 +48,8 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
-/*
     // Lokalenow config
     lokalenow {
         languages = listOf(
@@ -66,7 +67,7 @@ android {
 
         )
         activate = true
-    }*/
+    }
 }
 
 //Kotlin + Java toolchain (forces consistent JDK)
@@ -100,11 +101,19 @@ dependencies {
     // For Kotlin Coroutines support
     implementation("io.insert-koin:koin-android:4.1.1")
 
-    implementation("com.airbnb.android:lottie:6.0.0")
 
-    implementation("io.coil-kt:coil:2.7.0")
+    implementation("io.coil-kt:coil:2.7.0") // latest stable Coil v2.x (2.7.0) ya 3.x (jese available ho)
+    implementation("io.coil-kt:coil-video:2.2.2") // for video frame decoder (version match kare)
+
 
     implementation("com.facebook.shimmer:shimmer:0.5.0")
     implementation("com.tbuonomo:dotsindicator:5.1.0")
+    implementation("com.github.ibrahimsn98:SmoothBottomBar:1.7.9")
+
+
+    implementation("androidx.room:room-runtime:2.8.2")
+    ksp("androidx.room:room-compiler:2.8.2")
+
+    implementation("com.android.billingclient:billing-ktx:7.0.0")
     implementation(project(":sdk"))
 }

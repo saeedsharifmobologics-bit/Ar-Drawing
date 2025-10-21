@@ -12,12 +12,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ardrawing.R
 import com.example.ardrawing.adapters.LanguageAdapter
 import com.example.ardrawing.databinding.ActivityLanguageBinding
-import com.example.ardrawing.utils.AppLaunchPrefs
+import com.example.ardrawing.utils.ArDrawingSharePreference
 import com.example.ardrawing.utils.LanguageManager
+import com.example.ardrawing.adsManger.adsUtils
+import com.example.ardrawing.adsManger.adsUtils.preloadInterstitialAd
+import com.example.ardrawing.adsManger.adsUtils.showInterstitialAd
 
 class LanguageActivity : AppCompatActivity() {
     lateinit var binding: ActivityLanguageBinding
     private var selectedLang: String = "en"
+    lateinit var arDrawingSharePreference: ArDrawingSharePreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,22 +32,29 @@ class LanguageActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        preloadInterstitialAd(this)
+
+        arDrawingSharePreference = ArDrawingSharePreference(this)
         setupLanguageList()
 
         binding.continueBtn.setOnClickListener {
-            if (selectedLang.isEmpty()) {
-                Toast.makeText(this, "Please select a language", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+                if (selectedLang.isEmpty()) {
+                    Toast.makeText(this, "Please select a language", Toast.LENGTH_SHORT).show()
+
+                } else {
+                    // Store selected language globally
+                    LanguageManager.selectedLang = selectedLang
+                    LanguageManager.setLanguage(this, LanguageManager.selectedLang)
+                    arDrawingSharePreference.setFirstLaunchDone(this, false)
+                    startActivity(Intent(this, OnboardingActivity::class.java))
+                    finish()
+                }
+
+
             }
 
-            // Store selected language globally
-            LanguageManager.selectedLang = selectedLang
-            LanguageManager.setLanguage(this, LanguageManager.selectedLang)
-            AppLaunchPrefs.setFirstLaunchDone(this,false)
-            startActivity(Intent(this, OnboardingActivity::class.java))
-            finish()
 
-        }
+
 
     }
 
@@ -72,5 +83,11 @@ class LanguageActivity : AppCompatActivity() {
 
     }
 
+
+    override fun onResume() {
+        super.onResume()
+        adsUtils.loadBannerAd(binding.root, this)
+
+    }
 
 }

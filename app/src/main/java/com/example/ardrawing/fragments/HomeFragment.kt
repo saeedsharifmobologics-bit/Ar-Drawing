@@ -5,6 +5,9 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.os.StrictMode
+import android.util.Log
+
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,16 +24,24 @@ import coil.imageLoader
 import coil.request.ImageRequest
 import com.example.ardrawing.MainActivity
 import com.example.ardrawing.R
-import com.example.ardrawing.adapters.ParentAdapter
-import com.example.ardrawing.data.ArDrawingData
-import com.example.ardrawing.data.CategoryModel
+import com.example.ardrawing.adapters.MultiViewTypeAdapter
+import com.example.ardrawing.adsManger.ScreenStatusLogs
+import com.example.ardrawing.adsManger.Utils
 import com.example.ardrawing.databinding.FragmentHomeBinding
 import com.example.ardrawing.utils.ArDrawingSharePreference
 import com.example.ardrawing.utils.CommonUtils
-import com.example.ardrawing.utils.ImageHolder
+import com.example.ardrawing.utils.CommonUtils.getRotateAnticlockwiseAnimation
+import com.example.ardrawing.utils.CommonUtils.getRotateClockwiseAnimation
 import com.example.ardrawing.utils.ImageUrlList.allUrlList
+import com.example.ardrawing.utils.ImageUrlList.createMainCategoryList
 import com.example.ardrawing.utils.PermissionHandler
+import com.example.ardrawing.adsManger.adsUtils.loadNativeAd
+import com.example.ardrawing.adsManger.adsUtils.preloadInterstitialAd
+import com.example.ardrawing.adsManger.adsUtils.showInterstitialAd
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
 
@@ -42,6 +53,7 @@ class HomeFragment : Fragment() {
     private lateinit var permissionHandler: PermissionHandler
     private lateinit var sharePreference: ArDrawingSharePreference
     private var pendingAction: (() -> Unit)? = null
+
 
 
     private val readStoragePermissionLauncher =
@@ -101,21 +113,54 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        ScreenStatusLogs.logScreenView("HomeFragment","HomeFragment")
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            Log.d("AdLoader","Runned Start")
+            delay(1000)
+            if (!Utils.subscriptionState){
+                loadNativeAd(requireView(),requireContext())
+
+            }
+            Log.d("AdLoader","Runned executed")
+
+        }
+
+        preloadInterstitialAd(requireActivity())
+
+        /*
+        StrictMode.setThreadPolicy(
+                    StrictMode.ThreadPolicy.Builder()
+                        .detectAll()
+                        .penaltyLog()
+                        .penaltyFlashScreen() // UI freeze hone pe screen flash karegi
+                        .build()
+                )
+
+                StrictMode.setVmPolicy(
+                    StrictMode.VmPolicy.Builder()
+                        .detectAll()
+                        .penaltyLog()
+                        .build()
+                )*/
+
+
 
         sharePreference = ArDrawingSharePreference(requireContext())
 
         // Request permissions
         /*  permissionHandler.requestPermission()*/
-        CommonUtils.loadNativeAd(requireView(), requireContext())
+
+
 
         galleryLauncher = CommonUtils.registerGalleryPicker(this) { uri ->
             uri?.let {
                 val inputStream = requireContext().contentResolver.openInputStream(uri)
                 val bitmap = BitmapFactory.decodeStream(inputStream)
                 inputStream?.close()
-                ImageHolder.pickLocation = "gallery"
+                CommonUtils.ImageHolder.pickLocation = "gallery"
 
-                ImageHolder.bitmap = bitmap
+                CommonUtils.ImageHolder.bitmap = bitmap
 
                 val action = HomeFragmentDirections.actionHomeFragmentToSelectionModeFragment()
                 findNavController().navigate(action)
@@ -135,16 +180,14 @@ class HomeFragment : Fragment() {
                     val bitmap = BitmapFactory.decodeStream(inputStream)
                     inputStream?.close()
 
-                    ImageHolder.bitmap = bitmap
-                    ImageHolder.pickLocation = "camera"
+                    CommonUtils.ImageHolder.bitmap = bitmap
+                    CommonUtils.ImageHolder.pickLocation = "camera"
                     val action = HomeFragmentDirections.actionHomeFragmentToSelectionModeFragment()
                     findNavController().navigate(action)
                 } else {
                     Toast.makeText(requireContext(), "Capture failed", Toast.LENGTH_SHORT).show()
                 }
             }
-
-        val urlList = allUrlList()
 
 
         binding.moreDrawer.setOnClickListener {
@@ -157,39 +200,63 @@ class HomeFragment : Fragment() {
         }
 
         binding.quickStartBtn.setOnClickListener {
-            val randomImage = Random.nextInt(urlList.size)
-            val randomElement = urlList[randomImage].favouritefavouriteUrl
-            lifecycleScope.launch {
-                val bitmp = urlToBitmap(randomElement, requireContext())
-                ImageHolder.bitmap = bitmp
-            }
-            val action = HomeFragmentDirections.actionHomeFragmentToSelectionModeFragment()
-            findNavController().navigate(action)
+            showInterstitialAd(requireActivity(),{
+                lifecycleScope.launch(Dispatchers.IO) {
+                    // Step 1: List load karo background me
+                    val urlList = allUrlList()
+
+                    // Check karo list empty to nahi
+                    if (urlList.isEmpty()) {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(requireContext(), "No images found!", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                        return@launch
+                    }
+
+                    // Step 2: Random image select karo
+                    val randomIndex = Random.nextInt(urlList.size)
+                    val randomElement = urlList[randomIndex].favouriteUrl
+
+                    // Step 3: Bitmap load karo
+                    val bitmap = urlToBitmap(randomElement, requireContext())
+                    CommonUtils.ImageHolder.bitmap = bitmap
+
+                    // Step 4: Navigate back to Main thread pe
+                    withContext(Dispatchers.Main) {
+                        val action = HomeFragmentDirections.actionHomeFragmentToSelectionModeFragment()
+                        findNavController().navigate(action)
+                    }
+                }
+
+            })
+
         }
+
+
         binding.viewNowBtn.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToCategoriesFragment()
             findNavController().navigate(action)
         }
 
         binding.gallerylinearLayout.setOnClickListener {
-            val action= HomeFragmentDirections.actionHomeFragmentToProfileFragment()
-            findNavController().navigate(action)
-         /*   pendingAction=null
+            pendingAction = null
             permissionHandler = PermissionHandler(requireContext(), readStoragePermissionLauncher)
 
             if (permissionHandler.isReadMediaImagesGranted()) {
                 CommonUtils.pickImageFromGallery(galleryLauncher)
             } else {
-                pendingAction={
+                pendingAction = {
                     CommonUtils.pickImageFromGallery(galleryLauncher)
+
                 }
 
                 permissionHandler.requestReadMediaImagesPermission()
-            }*/
+            }
         }
 
         binding.cameraBtnLayout.setOnClickListener {
-            pendingAction=null
+            pendingAction = null
             permissionHandler = PermissionHandler(requireContext(), cameraPermissionLauncher)
             imageUri = CommonUtils.createImageUri(requireContext())
             if (imageUri == null) {
@@ -201,7 +268,7 @@ class HomeFragment : Fragment() {
             if (permissionHandler.isCameraPermissionGranted()) {
                 cameraLauncher.launch(imageUri!!)
             } else {
-                pendingAction={
+                pendingAction = {
                     cameraLauncher.launch(imageUri!!)
 
                 }
@@ -210,131 +277,62 @@ class HomeFragment : Fragment() {
 
         }
 
+        val clockwiseRotation=getRotateClockwiseAnimation(requireContext())
+        val anticlockwiseRotation=getRotateAnticlockwiseAnimation(requireContext())
 
-        val categoryList = listOf(
-            CategoryModel(
-                "Birds",
-                listOf(
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds/birds01.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds/birds02.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds/birds03.png")
-                )
-            ),
-            CategoryModel(
-                "Boats",
-                listOf(
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/boats/boats01.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/boats/boats02.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/boats/boats03.png")
-                )
-            ),
-            CategoryModel(
-                "Characters",
-                listOf(
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/character/character01.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/character/character02.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/character/character03.png")
-                )
-            ),
-            CategoryModel(
-                "Trees",
-                listOf(
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/tree/tree01.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/tree/tree02.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/tree/tree03.png")
-                )
-            ),
-            CategoryModel(
-                "Vegetables",
-                listOf(
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/vegetables/vegetable01.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/vegetables/vegetable02.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/vegetables/vegetable03.png")
-                )
-            ),
-            CategoryModel(
-                "Animals",
-                listOf(
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Animals/animals01.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Animals/animals02.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Animals/animals03.png")
-                )
-            ),
-            CategoryModel(
-                "Bacteria",
-                listOf(
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Bacteria's/bacteria1.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Bacteria's/bacteria2.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Bacteria's/bacteria3.png")
-                )
-            ),
-            CategoryModel(
-                "Fruits",
-                listOf(
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits01.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits02.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits03.png")
-                )
-            ),
-            CategoryModel(
-                "Human Organs",
-                listOf(
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Human%20Organs/humanorgans01.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Human%20Organs/humanorgans02.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Human%20Organs/humanorgans03.png"),
-
-                    )
-            ),
-            CategoryModel(
-                "Pirates",
-                listOf(
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Pirats/pirats01.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Pirats/pirats02.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Pirats/pirats03.png"),
-                )
-            ),
-            CategoryModel(
-                "Plants",
-                listOf(
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Plants/plants01.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Plants/plants02.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Plants/plants03.png"),
-                )
-            ),
-            CategoryModel(
-                "Toys",
-                listOf(
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Toys/toy01.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Toys/toy02.png"),
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Toys/toy03.png"),
-                )
-            )
-        )
-
-        binding.parentRecyclerView.apply {
+        binding.CategerySectionRecyclerView.apply {
+            binding.innerProgressBar.startAnimation(clockwiseRotation)
+            binding.outerProgressBar.startAnimation(anticlockwiseRotation)
+            binding.innerProgressBar.visibility = View.VISIBLE
+            binding.outerProgressBar.visibility = View.VISIBLE
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = ParentAdapter(categoryList) { categoryName ->
-                val action =
-                    HomeFragmentDirections.actionHomeFragmentToViewCategoryFragment(categoryName)
-                findNavController().navigate(action)
+            setHasFixedSize(true)
+
+            lifecycleScope.launch(Dispatchers.IO) {
+                delay(700)
+
+                val categoryList = createMainCategoryList()
+                val adapterItems = mutableListOf<Any>().apply {
+                    for (category in categoryList) {
+                        add(category.categoryName)
+                        add(category.images)
+                    }
+                }
+
+                withContext(Dispatchers.Main) {
+                    binding.innerProgressBar.visibility = View.GONE
+                    binding.outerProgressBar.visibility = View.GONE
+
+                    val adapter = MultiViewTypeAdapter(adapterItems)
+                    binding.CategerySectionRecyclerView.adapter = adapter
+                }
             }
+
         }
 
     }
 
-    suspend fun urlToBitmap(url: String, context: Context): Bitmap? {
-        return context.imageLoader.execute(
+
+
+
+suspend fun urlToBitmap(url: String, context: Context): Bitmap? =
+    withContext(Dispatchers.IO) {
+        context.imageLoader.execute(
             ImageRequest.Builder(context)
                 .data(url)
-                .allowHardware(false) // if you need to manipulate the bitmap
+                .allowHardware(false)
                 .build()
         ).drawable?.toBitmap()
     }
 
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onResume() {
+        super.onResume()
 
     }
 
-}
+override fun onDestroy() {
+    super.onDestroy()
+
+}}
+

@@ -6,23 +6,40 @@ import android.graphics.RectF
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
-import com.example.ardrawing.data.OverlayState
+import androidx.lifecycle.viewModelScope
+import com.example.ardrawing.dataClass.ArDrawingData
+import com.example.ardrawing.dataClass.OverlayState
+import com.example.ardrawing.dbUtils.ArDrawingDataDao
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
-class ArDrawingViewmodel : ViewModel() {
+class ArDrawingViewmodel(private val dao: ArDrawingDataDao) : ViewModel() {
 
-
-    var bitmap: Bitmap? = null
 
     private val _overlayState = MutableStateFlow(OverlayState())
     val overlayState: StateFlow<OverlayState> = _overlayState
 
+    private val _favoriteList = MutableStateFlow<List<ArDrawingData>>(emptyList())
+    val favoriteList: StateFlow<List<ArDrawingData>> = _favoriteList
+
+    init {
+        // Observe database changes on initialization
+        observeFavorites()
+    }
+
+    private fun observeFavorites() {
+        viewModelScope.launch {
+            dao.getAllFavorites().collectLatest { list ->
+                _favoriteList.value = list
+            }
+        }
+    }
+
 
     private var cameraProvider: ProcessCameraProvider? = null
-
-
 
 
     fun getCameraProvider(context: Context, onReady: (ProcessCameraProvider) -> Unit) {
@@ -48,6 +65,7 @@ class ArDrawingViewmodel : ViewModel() {
     fun setSketchLevel(level: Int) {
         _overlayState.update { it.copy(sketchLevel = level) }
     }
+
     fun resetState(defaultRect: RectF) {
         updateState { currentState ->
             currentState.copy(
@@ -80,6 +98,21 @@ class ArDrawingViewmodel : ViewModel() {
 
     fun setDetectionEnabled(enabled: Boolean) {
         updateState { it.copy(isDetectionEnabled = enabled) }
+    }
+
+    //Add new favorite
+    fun addFavorite(url: String) {
+        viewModelScope.launch {
+            dao.addFavorite(ArDrawingData(favouriteUrl = url))
+        }
+    }
+
+
+    fun removeFavorite(url: String, onResult: (Boolean) -> Unit) {
+        viewModelScope.launch {
+            val rowDeleted = dao.removeFavorite(url)
+            onResult(rowDeleted > 0)
+        }
     }
 
 
