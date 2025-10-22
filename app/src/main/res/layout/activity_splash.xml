@@ -31,9 +31,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="@dimen/_10sdp"
-        android:text="@string/sketch_box"
+        android:text="@string/app_name"
         android:textColor="@color/black"
-        android:textSize="@dimen/_32ssp"
+        android:textSize="@dimen/_22ssp"
         android:fontFamily="@font/sfpro_bold"
         app:layout_constraintTop_toBottomOf="@id/sketch_image" />
 

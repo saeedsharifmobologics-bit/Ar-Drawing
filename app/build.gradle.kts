@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.ardrawing"
+    namespace = "com.sketchbox.drawingapp"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.ardrawing"
+        applicationId = "com.sketchbox.drawingapp.anime.flower.pencil.sketch.art"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -88,7 +88,7 @@ dependencies {
     implementation(libs.firebase.config)
     implementation(libs.play.services.ads)
 
-    val camerax_version = "1.5.0"
+    val camerax_version = "1.5.1"
     implementation("androidx.camera:camera-core:$camerax_version")
     implementation("androidx.camera:camera-camera2:$camerax_version")
     implementation("androidx.camera:camera-lifecycle:$camerax_version")
@@ -103,7 +103,7 @@ dependencies {
 
 
     implementation("io.coil-kt:coil:2.7.0") // latest stable Coil v2.x (2.7.0) ya 3.x (jese available ho)
-    implementation("io.coil-kt:coil-video:2.2.2") // for video frame decoder (version match kare)
+    implementation("io.coil-kt:coil-video:2.7.0") // for video frame decoder (version match kare)
 
 
     implementation("com.facebook.shimmer:shimmer:0.5.0")
@@ -114,6 +114,6 @@ dependencies {
     implementation("androidx.room:room-runtime:2.8.2")
     ksp("androidx.room:room-compiler:2.8.2")
 
-    implementation("com.android.billingclient:billing-ktx:7.0.0")
+    implementation("com.android.billingclient:billing-ktx:7.1.1")
     implementation(project(":sdk"))
 }

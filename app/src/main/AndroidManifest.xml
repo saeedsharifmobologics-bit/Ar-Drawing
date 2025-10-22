@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.ardrawing">
+    package="com.sketchbox.drawingapp">
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -19,7 +19,7 @@
         android:required="false" />
 
     <application
-        android:name=".ArApp"
+        android:name="com.sketchbox.drawingapp.ArApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -31,18 +31,18 @@
 
         >
         <activity
-            android:name=".onBoardingScreen.LanguageActivity"
+            android:name="com.sketchbox.drawingapp.onBoardingScreen.LanguageActivity"
             android:screenOrientation="portrait"
 
             android:exported="false" />
         <activity
-            android:name=".onBoardingScreen.OnboardingActivity"
+            android:name="com.sketchbox.drawingapp.onBoardingScreen.OnboardingActivity"
             android:exported="false"
             android:screenOrientation="portrait"
 
             android:theme="@style/Theme.ArDrawing" /> <!-- Onboarding Activity -->
         <activity
-            android:name=".MainActivity"
+            android:name="com.sketchbox.drawingapp.MainActivity"
             android:exported="false"
             android:theme="@style/Theme.ArDrawing"
 
@@ -50,7 +50,7 @@
 
 
         <activity
-            android:name=".onBoardingScreen.SplashActivity"
+            android:name="com.sketchbox.drawingapp.onBoardingScreen.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             >
@@ -62,7 +62,7 @@
         </activity> <!-- FileProvider for sharing files (Images, etc.) -->
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.ardrawing.fileProvider"
+            android:authorities="com.sketchbox.drawingapp.fileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

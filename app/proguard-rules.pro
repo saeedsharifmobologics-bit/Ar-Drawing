@@ -5,8 +5,8 @@
 # For more details, see
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
--keep class com.example.ardrawing.dbUtils.** {*;}
--keep class com.example.ardrawing.koinModule.** {*;}
+-keep class com.sketchbox.drawingapp.dbUtils.** {*;}
+-keep class com.sketchbox.drawingapp.koinModule.** {*;}
 -keep class org.opencv.android.OpenCVLoader { *; }
 
 # If your project uses WebView with JS, uncomment the following

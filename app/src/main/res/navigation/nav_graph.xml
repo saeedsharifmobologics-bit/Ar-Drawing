@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.ardrawing.fragments.HomeFragment"
+        android:name="com.sketchbox.drawingapp.fragments.HomeFragment"
         android:label="fragment_home"
 
         tools:layout="@layout/fragment_home">
@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
-        android:name="com.example.ardrawing.fragments.CategoriesFragment"
+        android:name="com.sketchbox.drawingapp.fragments.CategoriesFragment"
         android:label="fragment_categories"
         tools:layout="@layout/fragment_categories"
         >
@@ -85,7 +85,7 @@
     </fragment>
     <fragment
         android:id="@+id/viewCategoryFragment"
-        android:name="com.example.ardrawing.fragments.ViewCategoryFragment"
+        android:name="com.sketchbox.drawingapp.fragments.ViewCategoryFragment"
         android:label="fragment_view_category"
         tools:layout="@layout/fragment_view_category">
         <action
@@ -108,7 +108,7 @@
     </fragment>
     <fragment
         android:id="@+id/selectionModeFragment"
-        android:name="com.example.ardrawing.fragments.SelectionModeFragment"
+        android:name="com.sketchbox.drawingapp.fragments.SelectionModeFragment"
         android:label="fragment_selection_mode"
         tools:layout="@layout/fragment_selection_mode">
 
@@ -123,7 +123,7 @@
     </fragment>
     <fragment
         android:id="@+id/cameraPreviewFragment"
-        android:name="com.example.ardrawing.fragments.CameraPreviewFragment"
+        android:name="com.sketchbox.drawingapp.fragments.CameraPreviewFragment"
         android:label="fragment_camera_preview"
         tools:layout="@layout/fragment_camera_preview">
         <argument
@@ -139,7 +139,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.example.ardrawing.fragments.SettingFragment"
+        android:name="com.sketchbox.drawingapp.fragments.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" >
         <action
@@ -152,7 +152,7 @@
     </fragment>
     <fragment
         android:id="@+id/subscriptionFragment"
-        android:name="com.example.ardrawing.fragments.SubscriptionFragment"
+        android:name="com.sketchbox.drawingapp.fragments.SubscriptionFragment"
         android:label="fragment_subscription"
         tools:layout="@layout/fragment_subscription" >
         <action
@@ -165,7 +165,7 @@
     </fragment>
     <fragment
         android:id="@+id/appImagesFragment"
-        android:name="com.example.ardrawing.statesFragments.AppImagesFragment"
+        android:name="com.sketchbox.drawingapp.statesFragments.AppImagesFragment"
         android:label="fragment_app_Images"
         tools:layout="@layout/fragment_app_images" >
         <action
@@ -187,7 +187,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.ardrawing.statesFragments.ProfileFragment"
+        android:name="com.sketchbox.drawingapp.statesFragments.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -209,7 +209,7 @@
     </fragment>
     <fragment
         android:id="@+id/appVideoFragment"
-        android:name="com.example.ardrawing.statesFragments.AppVideoFragment"
+        android:name="com.sketchbox.drawingapp.statesFragments.AppVideoFragment"
         android:label="fragment_app_video"
         tools:layout="@layout/fragment_app_video" >
         <action
@@ -234,7 +234,7 @@
 
     <fragment
         android:id="@+id/videoPlayFragment"
-        android:name="com.example.ardrawing.adapters.profileAdapter.VideoPlayFragment"
+        android:name="com.sketchbox.drawingapp.adapters.profileAdapter.VideoPlayFragment"
         android:label="fragment_video_play"
         tools:layout="@layout/fragment_video_play" >
 
@@ -246,7 +246,7 @@
 
     <fragment
         android:id="@+id/favouriteFragment"
-        android:name="com.example.ardrawing.fragments.FavouriteFragment"
+        android:name="com.sketchbox.drawingapp.fragments.FavouriteFragment"
         android:label="fragment_favourite"
         tools:layout="@layout/fragment_favourite" />
 

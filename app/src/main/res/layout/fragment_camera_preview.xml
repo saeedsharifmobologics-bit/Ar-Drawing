@@ -23,7 +23,7 @@
             app:layout_constraintBottom_toTopOf="@id/firstGuidline"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.example.ardrawing.utils.OverlayView
+        <com.sketchbox.drawingapp.utils.OverlayView
             android:id="@+id/custom_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
