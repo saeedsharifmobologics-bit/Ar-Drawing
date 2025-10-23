@@ -5,6 +5,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 
 import androidx.fragment.app.Fragment
@@ -12,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.graphics.drawable.toBitmap
@@ -38,6 +41,7 @@ import com.sketchbox.drawingapp.adsManger.adsUtils.loadNativeAd
 import com.sketchbox.drawingapp.adsManger.adsUtils.preloadInterstitialAd
 import com.sketchbox.drawingapp.adsManger.adsUtils.showInterstitialAd
 import com.sketchbox.drawingapp.fragments.CameraLauncher.isCameraFeatureActive
+import com.sketchbox.drawingapp.utils.ReviewManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -56,6 +60,8 @@ class HomeFragment : Fragment() {
     private lateinit var permissionHandler: PermissionHandler
     private lateinit var sharePreference: ArDrawingSharePreference
     private var pendingAction: (() -> Unit)? = null
+    private var doubleBackToExitPressedOnce = false
+
 
 
     private val readStoragePermissionLauncher =
@@ -116,7 +122,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ScreenStatusLogs.logScreenView("HomeFragment", "HomeFragment")
-
+        setupBackPressHandler()
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             Log.d("AdLoader", "Runned Start")
             delay(1000)
@@ -328,6 +334,32 @@ class HomeFragment : Fragment() {
                     .build()
             ).drawable?.toBitmap()
         }
+
+    private fun setupBackPressHandler() {
+        // Custom back press callback
+        requireActivity().onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (doubleBackToExitPressedOnce) {
+                    //Second back press → open review and exit
+                    ReviewManager.showInAppReview(requireContext())
+                    requireActivity().finishAffinity() // close app after review
+                } else {
+                    doubleBackToExitPressedOnce = true
+                    Toast.makeText(
+                        requireContext(),
+                        "Press back again to exit",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    // Reset flag after 2 seconds
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        doubleBackToExitPressedOnce = false
+                    }, 2000)
+                }
+            }
+        })
+    }
+
 
 
 }

@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-    private var doubleBackToExitPressedOnce = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,30 +56,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun setupBackPressHandler() {
-        // Custom back press callback
-        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                if (doubleBackToExitPressedOnce) {
-                    //Second back press → open review and exit
-                    ReviewManager.showInAppReview(this@MainActivity)
-                    finishAffinity() // close app after review
-                } else {
-                    doubleBackToExitPressedOnce = true
-                    Toast.makeText(
-                        this@MainActivity,
-                        "Press back again to exit",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                    // Reset flag after 2 seconds
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        doubleBackToExitPressedOnce = false
-                    }, 2000)
-                }
-            }
-        })
-    }
 
     private fun setupBottomNavigation() {
         val bottomBar = binding.bottomNavigationBar

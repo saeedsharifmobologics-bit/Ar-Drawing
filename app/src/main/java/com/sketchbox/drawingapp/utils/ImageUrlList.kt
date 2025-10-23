@@ -559,7 +559,7 @@ object ImageUrlList {
                 )
             ),
             CategoryModel(
-                context.getString(R.string.category_birds),
+                context.getString(R.string.category_trees),
                 listOf(
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/tree/tree01.png"),
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/tree/tree02.png"),
