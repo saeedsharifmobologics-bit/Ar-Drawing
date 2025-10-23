@@ -1,5 +1,8 @@
 package com.sketchbox.drawingapp.utils
 
+import android.content.Context
+import androidx.core.content.ContextCompat
+import com.sketchbox.drawingapp.R
 import com.sketchbox.drawingapp.dataClass.ArDrawingData
 import com.sketchbox.drawingapp.dataClass.CategoryModel
 
@@ -154,9 +157,9 @@ object ImageUrlList {
     }
 
 
-    fun getDataByCategory(category: String): List<ArDrawingData> {
+    fun getDataByCategory(category: String,context: Context): List<ArDrawingData> {
         return when (category) {
-            "Birds" -> listOf(
+            context.getString(R.string.category_birds) -> listOf(
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds/birds01.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds/birds02.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds/birds03.png"),
@@ -170,8 +173,7 @@ object ImageUrlList {
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds/birds11.png")
             )
 
-            "Boats" -> listOf(
-                ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/boats/boats01.png"),
+            context.getString(R.string.category_boats) -> listOf(
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/boats/boats02.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/boats/boats03.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/boats/boats04.png"),
@@ -192,7 +194,8 @@ object ImageUrlList {
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/boats/boats19.png")
             )
 
-            "Characters" -> listOf(
+            context.getString(R.string.category_characters),
+                -> listOf(
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/character/character01.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/character/character02.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/character/character03.png"),
@@ -211,7 +214,8 @@ object ImageUrlList {
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/character/character16.png")
             )
 
-            "Trees" -> listOf(
+            context.getString(R.string.category_trees)
+                -> listOf(
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/tree/tree01.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/tree/tree02.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/tree/tree03.png"),
@@ -258,7 +262,8 @@ object ImageUrlList {
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/tree/tree44.png")
             )
 
-            "Vegetables" -> listOf(
+            context.getString(R.string.category_vegetables)
+                -> listOf(
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/vegetables/vegetable01.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/vegetables/vegetable02.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/vegetables/vegetable03.png"),
@@ -309,7 +314,8 @@ object ImageUrlList {
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/vegetables/vegetable48.png")
             )
 
-            "Animals" -> listOf(
+            context.getString(R.string.category_animals)
+                -> listOf(
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Animals/animals01.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Animals/animals02.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Animals/animals03.png"),
@@ -340,7 +346,8 @@ object ImageUrlList {
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Animals/animals28.png")
             )
 
-            "Bacteria" -> listOf(
+            context.getString(R.string.category_bacteria)
+                -> listOf(
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Bacteria's/bacteria1.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Bacteria's/bacteria2.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Bacteria's/bacteria3.png"),
@@ -350,7 +357,8 @@ object ImageUrlList {
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Bacteria's/bacteria7.png")
             )
 
-            "Fruits" -> listOf(
+            context.getString(R.string.category_fruits)
+                -> listOf(
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits01.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits02.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits03.png"),
@@ -416,7 +424,8 @@ object ImageUrlList {
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits63.png")
             )
 
-            "Human Organs" -> listOf(
+            context.getString(R.string.category_human_organs)
+                -> listOf(
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Human%20Organs/humanorgans01.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Human%20Organs/humanorgans02.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Human%20Organs/humanorgans03.png"),
@@ -439,7 +448,8 @@ object ImageUrlList {
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Human%20Organs/humanorgans20.png")
             )
 
-            "Pirates" -> listOf(
+            context.getString(R.string.category_pirates)
+                -> listOf(
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Pirats/pirats01.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Pirats/pirats02.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Pirats/pirats03.png"),
@@ -459,7 +469,8 @@ object ImageUrlList {
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Pirats/pirats17.png")
             )
 
-            "Plants" -> listOf(
+            context.getString(R.string.category_plants)
+                -> listOf(
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Plants/plants01.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Plants/plants02.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Plants/plants03.png"),
@@ -504,7 +515,7 @@ object ImageUrlList {
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Plants/plants42.png")
             )
 
-            "Toys" -> listOf(
+            context.getString(R.string.category_toys) -> listOf(
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Toys/toy01.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Toys/toy02.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Toys/toy03.png"),
@@ -514,20 +525,18 @@ object ImageUrlList {
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Toys/toy07.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Toys/toy08.png"),
                 ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Toys/toy09.png"),
-                ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Toys/toy10.png")
-            )
-
+                ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Toys/toy10.png"))
             else -> emptyList()
 
         }
 
     }
 
-     fun createMainCategoryList(): List<CategoryModel> {
+     fun createMainCategoryList(context: Context): List<CategoryModel> {
         return listOf(
 
             CategoryModel(
-                "Birds",
+                context.getString(R.string.category_birds),
                 listOf(
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds/birds01.png"),
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/birds/birds02.png"),
@@ -535,23 +544,22 @@ object ImageUrlList {
                 )
             ),
             CategoryModel(
-                "Boats",
+                context.getString(R.string.category_boats),
                 listOf(
-                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/boats/boats01.png"),
+                    ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/boats/boats08.png"),
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/boats/boats02.png"),
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/boats/boats03.png")
                 )
             ),
             CategoryModel(
-                "Characters",
-                listOf(
+                context.getString(R.string.category_characters),                listOf(
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/character/character01.png"),
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/character/character02.png"),
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/character/character03.png")
                 )
             ),
             CategoryModel(
-                "Trees",
+                context.getString(R.string.category_birds),
                 listOf(
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/tree/tree01.png"),
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/tree/tree02.png"),
@@ -559,7 +567,7 @@ object ImageUrlList {
                 )
             ),
             CategoryModel(
-                "Vegetables",
+                context.getString(R.string.category_vegetables),
                 listOf(
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/vegetables/vegetable01.png"),
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/vegetables/vegetable02.png"),
@@ -567,7 +575,7 @@ object ImageUrlList {
                 )
             ),
             CategoryModel(
-                "Animals",
+                context.getString(R.string.category_animals),
                 listOf(
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Animals/animals01.png"),
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Animals/animals02.png"),
@@ -575,7 +583,7 @@ object ImageUrlList {
                 )
             ),
             CategoryModel(
-                "Bacteria",
+                context.getString(R.string.category_bacteria),
                 listOf(
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Bacteria's/bacteria1.png"),
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Bacteria's/bacteria2.png"),
@@ -583,7 +591,7 @@ object ImageUrlList {
                 )
             ),
             CategoryModel(
-                "Fruits",
+                context.getString(R.string.category_fruits),
                 listOf(
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits01.png"),
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Fruits/fruits02.png"),
@@ -591,7 +599,7 @@ object ImageUrlList {
                 )
             ),
             CategoryModel(
-                "Human Organs",
+                context.getString(R.string.category_human_organs),
                 listOf(
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Human%20Organs/humanorgans01.png"),
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Human%20Organs/humanorgans02.png"),
@@ -600,7 +608,7 @@ object ImageUrlList {
                     )
             ),
             CategoryModel(
-                "Pirates",
+                context.getString(R.string.category_pirates),
                 listOf(
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Pirats/pirats01.png"),
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Pirats/pirats02.png"),
@@ -608,7 +616,7 @@ object ImageUrlList {
                 )
             ),
             CategoryModel(
-                "Plants",
+                context.getString(R.string.category_plants),
                 listOf(
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Plants/plants01.png"),
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Plants/plants02.png"),
@@ -616,7 +624,7 @@ object ImageUrlList {
                 )
             ),
             CategoryModel(
-                "Toys",
+                context.getString(R.string.category_toys),
                 listOf(
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Toys/toy01.png"),
                     ArDrawingData("https://raw.githubusercontent.com/saeedsharifmobologics-bit/arDrawingImages/main/Toys/toy02.png"),

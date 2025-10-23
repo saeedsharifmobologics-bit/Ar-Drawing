@@ -1,7 +1,13 @@
 package com.sketchbox.drawingapp
 
+import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
@@ -13,11 +19,15 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import com.sketchbox.drawingapp.databinding.ActivityMainBinding
 import com.sketchbox.drawingapp.fragments.SettingFragment
+import com.sketchbox.drawingapp.utils.CommonUtils
+import com.sketchbox.drawingapp.utils.CommonUtils.showLeaveCameraDialog
+import com.sketchbox.drawingapp.utils.ReviewManager
 
 class MainActivity : AppCompatActivity() {
+
     lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-
+    private var doubleBackToExitPressedOnce = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +35,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Light status bar for better visibility on light backgrounds
-        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = true
+        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars =
+            true
+
         // Apply system window insets to main container
         val mainContainer = findViewById<View>(R.id.main_container)
         ViewCompat.setOnApplyWindowInsetsListener(mainContainer) { view, insets ->
@@ -34,40 +46,61 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-
-        // Setup NavController from NavHostFragment once
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        // Setup NavController
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-
+        setupBackPressHandler()
         setupBottomNavigation()
         setupDrawerListener()
         setupBottomBarVisibilityController()
+
+    }
+
+    private fun setupBackPressHandler() {
+        // Custom back press callback
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (doubleBackToExitPressedOnce) {
+                    //Second back press → open review and exit
+                    ReviewManager.showInAppReview(this@MainActivity)
+                    finishAffinity() // close app after review
+                } else {
+                    doubleBackToExitPressedOnce = true
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Press back again to exit",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    // Reset flag after 2 seconds
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        doubleBackToExitPressedOnce = false
+                    }, 2000)
+                }
+            }
+        })
     }
 
     private fun setupBottomNavigation() {
         val bottomBar = binding.bottomNavigationBar
         bottomBar.itemMenuRes = R.menu.menu
 
-        // Initial sync: fallback to 0 if no match
-        bottomBar.itemActiveIndex = when (navController.currentDestination?.id) {
-            R.id.homeFragment -> 0
-            R.id.categoriesFragment -> 1
-            R.id.profileFragment -> 2
-            R.id.favouriteFragment -> 3
-            else -> 0
-        }
-
+        // Sync bottom bar index with current destination
         navController.addOnDestinationChangedListener { _, destination, _ ->
             val index = when (destination.id) {
                 R.id.homeFragment -> 0
                 R.id.categoriesFragment -> 1
                 R.id.profileFragment -> 2
                 R.id.favouriteFragment -> 3
-
-                else -> bottomBar.itemActiveIndex // fallback to current bottom bar selection
+                R.id.viewCategoryFragment -> 1
+                else -> bottomBar.itemActiveIndex
             }
+
             if (bottomBar.itemActiveIndex != index) {
+
                 bottomBar.itemActiveIndex = index
+
             }
         }
 
@@ -80,34 +113,52 @@ class MainActivity : AppCompatActivity() {
                 else -> return
             }
 
-            if (navController.currentDestination?.id != destinationId) {
+            // Ignore if already on same destination
+            if (navController.currentDestination?.id == destinationId) return
+
+            //If coming from CameraPreviewFragment, show confirmation dialog
+            if (navController.currentDestination?.id == R.id.cameraPreviewFragment) {
+                showLeaveCameraDialog(this) { success ->
+                    if (success) {
+                        val navOptions = NavOptions.Builder()
+                            .setLaunchSingleTop(true)
+                            .setPopUpTo(navController.graph.startDestinationId, false)
+                            .build()
+                        navController.navigate(destinationId, null, navOptions)
+
+                        // Change index ONLY after confirmed navigation
+                        bottomBar.itemActiveIndex = index
+                    } else {
+                        bottomBar.itemActiveIndex = 0
+                    }
+
+                }
+            } else {
                 val navOptions = NavOptions.Builder()
                     .setLaunchSingleTop(true)
                     .setPopUpTo(navController.graph.startDestinationId, false)
                     .build()
                 navController.navigate(destinationId, null, navOptions)
+                bottomBar.itemActiveIndex = index
             }
         }
-
     }
+
     private fun setupBottomBarVisibilityController() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.subscriptionFragment -> {  // 👈 this is the fragment where you want to HIDE bottom nav
-                    binding.bottomNavigationBar.visibility = View.GONE
-                }
-                else -> {
-                    binding.bottomNavigationBar.visibility = View.VISIBLE
-                }
+                R.id.subscriptionFragment -> binding.bottomNavigationBar.visibility = View.GONE
+                else -> binding.bottomNavigationBar.visibility = View.VISIBLE
             }
         }
     }
+
     private fun setupDrawerListener() {
         binding.drawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener {
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {}
             override fun onDrawerOpened(drawerView: View) {
-                // Load SettingFragment only when drawer opens and if not already loaded
-                val currentFragment = supportFragmentManager.findFragmentById(R.id.drawer_container)
+                val currentFragment =
+                    supportFragmentManager.findFragmentById(R.id.drawer_container)
                 if (currentFragment == null || currentFragment !is SettingFragment) {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.drawer_container, SettingFragment())
@@ -115,24 +166,22 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onDrawerClosed(drawerView: View) {
-            }
-            override fun onDrawerStateChanged(newState: Int) {
-
-            }
+            override fun onDrawerClosed(drawerView: View) {}
+            override fun onDrawerStateChanged(newState: Int) {}
         })
     }
 
-    // Open drawer only if it's not already open
-    fun openDrawer() {
+    fun openDrawer(){
         if (!binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
     }
 
-    fun closeDrawer() {
+    fun closeDrawer(){
+
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.closeDrawer(GravityCompat.START)
         }
+
     }
 }

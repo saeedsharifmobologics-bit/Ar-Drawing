@@ -7,7 +7,7 @@
     <!-- Border color and width -->
     <stroke
         android:width="2dp"
-        android:color="@color/cardBorderPrimary" /> <!-- pink border -->
+        android:color="@color/buttonBackground" /> <!-- pink border -->
 
     <corners android:radius="12dp" />
 </shape>

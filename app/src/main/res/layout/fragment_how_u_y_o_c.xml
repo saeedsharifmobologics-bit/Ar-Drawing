@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/appBackground"
 
     tools:context=".onBoardingScreen.HowUYOCFragment">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_200sdp"
-            android:scaleType="fitXY"
-            android:src="@drawable/upload_your_own_collection_png"
-            app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:scaleType="fitXY"
+        android:src="@drawable/upload_your_own_collection_png"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/draw_with_camera_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:padding="@dimen/_10sdp"
-            android:text="@string/upload_your_own_collection"
-            android:fontFamily="@font/sfpro_bold"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
-            tools:layout_editor_absoluteX="0dp" />
+    <TextView
+        android:id="@+id/draw_with_camera_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sfpro_bold"
+        android:gravity="center"
+        android:padding="@dimen/_15sdp"
+        android:text="@string/upload_your_own_collection"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:layout_editor_absoluteX="0dp" />
 
-        <TextView
-            android:id="@+id/textDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="@dimen/_10sdp"
-            android:fontFamily="@font/sfpro_regular"
-
-            android:text="@string/upload_your_own_collection_description"
-            android:textColor="@color/onboardingTextColor"
-            app:layout_constraintTop_toBottomOf="@+id/draw_with_camera_title" />
+    <TextView
+        android:id="@+id/textDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sfpro_regular"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp"
+        android:text="@string/upload_your_own_collection_description"
+        android:textColor="@color/onboardingTextColor"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintTop_toBottomOf="@+id/draw_with_camera_title" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,7 @@ import androidx.activity.result.ActivityResultCaller
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
+import androidx.navigation.NavController
 import java.io.File
 import com.sketchbox.drawingapp.R
 
@@ -155,4 +156,24 @@ object CommonUtils {
     fun getRotateAnticlockwiseAnimation(context: Context): Animation {
         return AnimationUtils.loadAnimation(context, R.anim.rotate_anti_clockwise)
     }
+
+
+    fun showLeaveCameraDialog(
+        context: Context,
+        onConfirmed: (Boolean) -> Unit
+    ) {
+        androidx.appcompat.app.AlertDialog.Builder(context)
+            .setTitle("Switch mode?")
+            .setMessage("Do you really want to leave camera preview and switch?")
+            .setPositiveButton("Yes") { _, _ ->
+                onConfirmed(true) // ✅ Only navigate if user confirms
+            }
+            .setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+                onConfirmed(false)
+            }
+            .setCancelable(true)
+            .show()
+    }
+
 }

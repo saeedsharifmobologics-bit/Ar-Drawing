@@ -19,6 +19,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.imageLoader
+
 import coil.request.ImageRequest
 import com.sketchbox.drawingapp.MainActivity
 import com.sketchbox.drawingapp.R
@@ -80,7 +81,8 @@ class HomeFragment : Fragment() {
         }
 
 
-    private val cameraPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+    private val cameraPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
             if (isGranted) {
                 Toast.makeText(requireContext(), "Permission granted", Toast.LENGTH_SHORT).show()
                 pendingAction?.invoke()
@@ -173,7 +175,8 @@ class HomeFragment : Fragment() {
 
         }
 
-        cameraLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
+        cameraLauncher =
+            registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
                 if (success && imageUri != null) {
                     val inputStream = requireContext().contentResolver.openInputStream(imageUri!!)
                     val bitmap = BitmapFactory.decodeStream(inputStream)
@@ -193,7 +196,7 @@ class HomeFragment : Fragment() {
             (activity as? MainActivity)?.openDrawer()
         }
 
-        binding.billingBtn.setOnClickListener {
+        binding.billingImage.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_subscriptionFragment)
         }
 
@@ -222,8 +225,9 @@ class HomeFragment : Fragment() {
 
                     // Step 4: Navigate back to Main thread pe
                     withContext(Dispatchers.Main) {
-                        CommonUtils.ImageHolder.pickLocation=null
-                        val action = HomeFragmentDirections.actionHomeFragmentToSelectionModeFragment()
+                        CommonUtils.ImageHolder.pickLocation = null
+                        val action =
+                            HomeFragmentDirections.actionHomeFragmentToSelectionModeFragment()
                         findNavController().navigate(action)
                     }
                 }
@@ -292,7 +296,8 @@ class HomeFragment : Fragment() {
             lifecycleScope.launch(Dispatchers.IO) {
                 delay(700)
 
-                val categoryList = createMainCategoryList()
+                val categoryList = createMainCategoryList(requireContext())
+
                 val adapterItems = mutableListOf<Any>().apply {
                     for (category in categoryList) {
                         add(category.categoryName)
@@ -325,14 +330,5 @@ class HomeFragment : Fragment() {
         }
 
 
-    override fun onResume() {
-        super.onResume()
-
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-    }
 }
 

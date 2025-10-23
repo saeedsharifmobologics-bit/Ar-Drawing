@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_5sdp"
     android:padding="@dimen/_10sdp"
     android:background="@drawable/selection_card_border">
 
@@ -10,7 +11,7 @@
         android:id="@+id/selection_btn_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_10sdp"
+
         android:background="@drawable/selection_mode_btn_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,12 +53,15 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/gif_image_vieww"
         android:layout_width="0dp"
         android:layout_height="@dimen/_240sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:scaleType="fitXY"
+
+        app:shapeAppearance="@style/RoundedImageViewStyle"
+        android:layout_marginBottom="@dimen/_5sdp"
         app:layout_constraintEnd_toEndOf="@id/selection_btn_layout"
         app:layout_constraintStart_toStartOf="@id/selection_btn_layout"
         app:layout_constraintTop_toBottomOf="@id/selection_btn_layout" />

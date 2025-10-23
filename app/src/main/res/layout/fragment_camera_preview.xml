@@ -50,9 +50,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="top|start"
             android:textStyle="bold"
+            android:layout_marginTop="@dimen/_7sdp"
             android:textSize="@dimen/_20sdp"
             android:layout_marginStart="@dimen/_10sdp"
-            android:textColor="@color/buttonBackground"
+            android:textColor="#3C3A3A"
             android:text="0.0 Sec" />
 
     </FrameLayout>

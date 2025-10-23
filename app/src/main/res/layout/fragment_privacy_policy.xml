@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    tools:context=".fragments.PrivacyPolicyFragment">
+
+    <!-- 🔹 Top Bar -->
+    <LinearLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:elevation="4dp">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/back_btn" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Privacy Policy"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:fontFamily="@font/sfpro_bold" />
+    </LinearLayout>
+
+    <!-- 🔹 Scrollable Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Header -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Privacy Policy for Sketch Box"
+                android:textSize="17sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/sfpro_bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Effective Date: [Not Applicable]\nDeveloper/Company: Rydea GO\nContact Email: anwarsultanbibi@gmail.com"
+                android:textSize="14sp"
+                android:textColor="#444444"
+                android:fontFamily="@font/sfpro_regular" />
+
+            <!-- 1. Introduction -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="1. Introduction"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/sfpro_bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Welcome to Sketch Box (“we,” “our,” or “us”). \nThis Privacy Policy explains how we handle your data when you use our drawing and sketching application.\n\nWe respect your privacy and are committed to being transparent."
+                android:textSize="14sp"
+                android:textColor="#444444"
+                android:fontFamily="@font/sfpro_regular" />
+
+            <!-- 2. Information We Access -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sketch Box does not collect or store any personal information such as your name, email address, or contact details."
+                android:textSize="11sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/sfpro_bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="2. Information We Access"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/sfpro_bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="To provide core features of the app, Sketch Box requests limited device permissions:"
+                android:textSize="14sp"
+                android:textColor="#444444"
+                android:fontFamily="@font/sfpro_regular" />
+
+            <!-- Gallery Access -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="a. Gallery Access"
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/sfpro_bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Used to import images from your device so you can draw, color, or edit them. We do not upload or store your gallery images — they remain entirely on your device."
+                android:textSize="14sp"
+                android:textColor="#444444"
+                android:fontFamily="@font/sfpro_regular" />
+
+            <!-- Camera Access -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="b. Camera Access"
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/sfpro_bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Used to capture photos or live previews that can be drawn or edited inside the app. No camera images are sent to our servers or shared externally."
+                android:textSize="14sp"
+                android:textColor="#444444"
+                android:fontFamily="@font/sfpro_regular" />
+
+            <!-- Microphone Access -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="c. Microphone / Audio Recording"
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/sfpro_bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Used to record audio or sounds for sketch videos or sound-based creative tools. Recordings stay on your device unless you choose to export or share them manually."
+                android:textSize="14sp"
+                android:textColor="#444444"
+                android:fontFamily="@font/sfpro_regular" />
+
+            <!-- 3. Automatically Collected Data -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="3. Automatically Collected Data (Analytics &amp; Performance)"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/sfpro_bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We use Google Analytics for Firebase and Firebase Crashlytics to understand how the app is performing. These may collect anonymous data like app usage, device model, OS version, and crash logs — to help improve stability and experience."
+                android:textSize="14sp"
+                android:textColor="#444444"
+                android:fontFamily="@font/sfpro_regular" />
+
+            <!-- 4. Data Sharing -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="4. Data Sharing"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/sfpro_bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We do not share any data with third parties except for the anonymized performance data handled by Google’s Firebase tools.\nYou can view Google’s privacy policy here:\n🔗 https://policies.google.com/privacy"
+                android:textSize="14sp"
+                android:textColor="#444444"
+                android:fontFamily="@font/sfpro_regular" />
+
+            <!-- 5. Data Retention -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="5. Data Retention"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/sfpro_bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We do not store or retain your drawings, photos, or recordings.\nAll analytics data is managed securely by Firebase and retained only for diagnostic purposes."
+                android:textSize="14sp"
+                android:textColor="#444444"
+                android:fontFamily="@font/sfpro_regular" />
+
+            <!-- 6. Children’s Privacy -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="6. Children’s Privacy"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/sfpro_bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sketch Box is designed for general audiences.\nWe do not knowingly collect personal information from children or anyone else."
+                android:textSize="14sp"
+                android:textColor="#444444"
+                android:fontFamily="@font/sfpro_regular" />
+
+            <!-- 7. Security -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="7. Security"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/sfpro_bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We rely on trusted, industry-standard services like Firebase for analytics and crash reporting.\nYour creative content (drawings, photos, audio) remains safely on your device."
+                android:textSize="14sp"
+                android:textColor="#444444"
+                android:fontFamily="@font/sfpro_regular" />
+
+            <!-- 8. Updates to This Policy -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="8. Updates to This Policy"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/sfpro_bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We may update this Privacy Policy from time to time.\nAny updates will be reflected within the app or on its Google Play Store listing."
+                android:textSize="14sp"
+                android:textColor="#444444"
+                android:fontFamily="@font/sfpro_regular" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

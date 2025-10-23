@@ -22,27 +22,20 @@
         android:id="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textColor="@color/black"
-
-        android:textSize="@dimen/_15sdp"
         android:fontFamily="@font/sfpro_bold"
+        android:text="@string/sketch_box"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_17sdp"
         app:layout_constraintBottom_toBottomOf="@id/more_drawer"
-        app:layout_constraintEnd_toStartOf="@+id/billing_btn"
+        app:layout_constraintEnd_toStartOf="@+id/billing_image"
         app:layout_constraintStart_toEndOf="@+id/more_drawer"
         app:layout_constraintTop_toTopOf="@id/more_drawer" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/billing_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp"
-        android:background="@android:color/transparent"
-        android:drawableStart="@drawable/prime_subscription"
-        android:padding="@dimen/_10sdp"
-        android:text="Pro"
-        android:textAllCaps="false"
-        android:textColor="@color/cardBorderPrimary"
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/billing_image"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:background="@drawable/gif"
         app:layout_constraintBottom_toBottomOf="@+id/appName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -54,7 +47,7 @@
         android:layout_height="@dimen/_74sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:background="@drawable/quick_start_btn_bg"
-        app:layout_constraintEnd_toEndOf="@+id/billing_btn"
+        app:layout_constraintEnd_toEndOf="@+id/billing_image"
         app:layout_constraintStart_toStartOf="@+id/more_drawer"
         app:layout_constraintTop_toBottomOf="@id/appName">
 
@@ -65,10 +58,10 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/_14sdp"
             android:background="@drawable/quick_start_btn"
-            android:paddingEnd="@dimen/_15sdp"
             android:fontFamily="@font/sfpro_regular"
+            android:paddingEnd="@dimen/_15sdp"
 
-            android:text="Quick Start"
+            android:text="@string/quick_start"
             android:textAllCaps="false"
             android:textColor="@color/white" />
     </FrameLayout>
@@ -80,11 +73,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/sfpro_bold"
         android:text="@string/create_your_own"
         android:textColor="@color/black"
-        android:textSize="@dimen/_18ssp"
 
-        android:fontFamily="@font/sfpro_bold"
+        android:textSize="@dimen/_18ssp"
         app:layout_constraintStart_toStartOf="@id/quick_start_layout"
         app:layout_constraintTop_toBottomOf="@id/quick_start_layout" />
 
@@ -94,8 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/ads_container"
-        app:layout_constraintTop_toBottomOf="@id/createowntxt">
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@id/createowntxt"></FrameLayout>
 
     <!-- Camera Button -->
     <LinearLayout
@@ -119,10 +111,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/sfpro_bold"
             android:text="@string/camera"
             android:textColor="@color/white"
             android:textSize="@dimen/_14sdp"
-            android:fontFamily="@font/sfpro_bold"
 
             />
     </LinearLayout>
@@ -149,10 +141,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/sfpro_bold"
             android:text="@string/gallery"
             android:textColor="@color/white"
             android:textSize="@dimen/_14sdp"
-            android:fontFamily="@font/sfpro_bold"
 
 
             />
@@ -173,11 +165,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/sfpro_bold"
             android:text="@string/sketch_gallery"
             android:textColor="@color/black"
-            android:textSize="@dimen/_18ssp"
-            android:fontFamily="@font/sfpro_bold"
-            />
+            android:textSize="@dimen/_18ssp" />
 
         <FrameLayout
             android:id="@+id/view_now_layout"
@@ -194,8 +185,8 @@
                 android:layout_margin="@dimen/_14sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:background="@drawable/quick_start_btn"
-                android:text="View Now"
                 android:fontFamily="@font/sfpro_regular"
+                android:text="@string/view_now"
 
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
@@ -206,11 +197,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/sfpro_bold"
             android:text="@string/categories"
             android:textColor="@color/black"
-            android:textSize="@dimen/_18ssp"
 
-            android:fontFamily="@font/sfpro_bold"
+            android:textSize="@dimen/_18ssp"
 
             />
 
@@ -226,25 +217,25 @@
                 android:id="@+id/outerProgressBar"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
+                android:layout_gravity="center"
                 android:indeterminateTint="@color/buttonBackground"
-                android:indeterminateTintMode="src_in"
-                android:layout_gravity="center" />
+                android:indeterminateTintMode="src_in" />
 
             <!-- Inner ProgressBar -->
             <ProgressBar
                 android:id="@+id/innerProgressBar"
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
-                android:padding="@dimen/_3sdp"
+                android:layout_gravity="center"
                 android:indeterminateTint="#FF6B26F5"
                 android:indeterminateTintMode="src_in"
 
-                android:layout_gravity="center" />
+                android:padding="@dimen/_3sdp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/CategerySectionRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
         </FrameLayout>
 

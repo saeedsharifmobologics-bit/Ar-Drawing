@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sketchbox.drawingapp.adapters.profileAdapter.AppImagesAdapter
 import com.sketchbox.drawingapp.adsManger.ScreenStatusLogs
@@ -34,8 +35,11 @@ class AppImagesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ScreenStatusLogs.logScreenView("AppImagesFragment","AppImagesFragment")
+        ScreenStatusLogs.logScreenView("AppImagesFragment", "AppImagesFragment")
 
+        binding.backBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
         //  1. Empty adapter se pehle RecyclerView set karo
         adapter = AppImagesAdapter(imageUris)
         val orientation = resources.configuration.orientation

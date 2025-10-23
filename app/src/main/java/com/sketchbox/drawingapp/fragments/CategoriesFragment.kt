@@ -7,7 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
+import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sketchbox.drawingapp.R
@@ -47,7 +50,11 @@ class CategoriesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (!Utils.subscriptionState) {
+        binding.backBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
+        if (!Utils.subscriptionState)
+        {
             adsUtils.loadNativeAd(binding.root,requireContext())
         }
         ScreenStatusLogs.logScreenView("CategoriesFragment","CategoriesFragment")
@@ -71,18 +78,19 @@ class CategoriesFragment : Fragment() {
             delay(600)  // ya agar 5ms chahiye to delay(5)
             val categoryList = withContext(Dispatchers.IO) {
                 listOf(
-                    CategoriesItem("Birds", R.drawable.birds_04),
-                    CategoriesItem("Boats", R.drawable.boats_08),
-                    CategoriesItem("Characters", R.drawable.character_08),
-                    CategoriesItem("Trees", R.drawable.tree34),
-                    CategoriesItem("Vegetables", R.drawable.vegetable19),
-                    CategoriesItem("Animals", R.drawable.animals_11),
-                    CategoriesItem("Bacteria", R.drawable.bacteria_6),
-                    CategoriesItem("Fruits", R.drawable.fruits_24),
-                    CategoriesItem("Human Organs", R.drawable.humanorgans_02),
-                    CategoriesItem("Pirates", R.drawable.pirats_08),
-                    CategoriesItem("Plants", R.drawable.plants_24),
-                    CategoriesItem("Toys", R.drawable.toy_04)
+                    CategoriesItem(ContextCompat.getString(requireContext(), R.string.category_birds), R.drawable.birds_04),
+                    CategoriesItem(ContextCompat.getString(requireContext(), R.string.category_boats), R.drawable.boats_08),
+                    CategoriesItem(ContextCompat.getString(requireContext(), R.string.category_characters), R.drawable.character_08),
+                    CategoriesItem(ContextCompat.getString(requireContext(), R.string.category_trees), R.drawable.tree34),
+                    CategoriesItem(ContextCompat.getString(requireContext(), R.string.category_vegetables), R.drawable.vegetable19),
+                    CategoriesItem(ContextCompat.getString(requireContext(), R.string.category_animals), R.drawable.animals_11),
+                    CategoriesItem(ContextCompat.getString(requireContext(), R.string.category_bacteria), R.drawable.bacteria_6),
+                    CategoriesItem(ContextCompat.getString(requireContext(), R.string.category_fruits), R.drawable.fruits_24),
+                    CategoriesItem(ContextCompat.getString(requireContext(), R.string.category_human_organs), R.drawable.humanorgans_02),
+                    CategoriesItem(ContextCompat.getString(requireContext(), R.string.category_pirates), R.drawable.pirats_08),
+                    CategoriesItem(ContextCompat.getString(requireContext(), R.string.category_plants), R.drawable.plants_24),
+                    CategoriesItem(ContextCompat.getString(requireContext(), R.string.category_toys), R.drawable.toy_04)
+
                 )
             }
 

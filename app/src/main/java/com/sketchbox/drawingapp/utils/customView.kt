@@ -41,7 +41,7 @@ class OverlayView @JvmOverloads constructor(
         const val CIRCLE_RADIUS = 40f
         const val MIN_SCALE = 0.5f
         const val MAX_SCALE = 3.0f
-        const val RECT_CORNER_RADIUS = 30f
+        const val RECT_CORNER_RADIUS = 33f
         const val BORDER_STROKE_WIDTH = 6f
         const val STROKE_MASK_ALPHA = 120
     }

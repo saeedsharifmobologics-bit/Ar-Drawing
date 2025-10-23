@@ -33,7 +33,7 @@ class SplashActivity : AppCompatActivity() {
 
         arDrawingSharePreference = ArDrawingSharePreference(this)
 
-        // 🟡 Simulate subscription state from saved prefs (replace with your real logic)
+        //Simulate subscription state from saved prefs (replace with your real logic)
         val isUserSubscribed = Utils.subscriptionState // Replace with real logic
 
         // 🟡 Load splash ad
@@ -139,7 +139,7 @@ class SplashActivity : AppCompatActivity() {
         if (BuildConfig.DEBUG) {
             val debugSettings = ConsentDebugSettings.Builder(this)
                 .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
-                .addTestDeviceHashedId("F2CA8BFE17FE2211C369B5607091B2ED") // Replace with your own test ID
+                .addTestDeviceHashedId("045EBDCC9842BDEE73789EEBF1C962B4") // Replace with your own test ID
                 .build()
             paramsBuilder.setConsentDebugSettings(debugSettings)
         }

@@ -5,8 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sketchbox.drawingapp.adapters.ArDrawingDataAdapter
@@ -36,17 +39,23 @@ class ViewCategoryFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        if (!Utils.subscriptionState) {
-            adsUtils.loadNativeAd(binding.root,requireContext())
+        super.onViewCreated(
+            view, savedInstanceState
+        )
+        binding.backBtn.setOnClickListener {
+            findNavController().popBackStack()
         }
-        ScreenStatusLogs.logScreenView("ViewCategoryFragment","ViewCategoryFragment")
+        if (!Utils.subscriptionState) {
+            adsUtils.loadNativeAd(binding.root, requireContext())
+        }
+        ScreenStatusLogs.logScreenView("ViewCategoryFragment", "ViewCategoryFragment")
 
         val args: ViewCategoryFragmentArgs by navArgs()
         val category = args.categories
+        binding.appbarTxt.text = category
 
         // URL list by category
-        val urlList: List<ArDrawingData> = getDataByCategory(category)
+        val urlList: List<ArDrawingData> = getDataByCategory(category, requireContext())
 
         //Initialize adapter with empty favourite list initially
         adapter = ArDrawingDataAdapter(
@@ -74,7 +83,5 @@ class ViewCategoryFragment : Fragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
+
 }

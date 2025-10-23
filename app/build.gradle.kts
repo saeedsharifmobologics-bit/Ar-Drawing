@@ -103,8 +103,8 @@ dependencies {
 
 
     implementation("io.coil-kt:coil:2.7.0") // latest stable Coil v2.x (2.7.0) ya 3.x (jese available ho)
-    implementation("io.coil-kt:coil-video:2.7.0") // for video frame decoder (version match kare)
-
+    implementation("io.coil-kt:coil-video:2.7.0")
+    implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.29")
 
     implementation("com.facebook.shimmer:shimmer:0.5.0")
     implementation("com.tbuonomo:dotsindicator:5.1.0")
@@ -114,6 +114,9 @@ dependencies {
     implementation("androidx.room:room-runtime:2.8.2")
     ksp("androidx.room:room-compiler:2.8.2")
 
+    implementation("com.google.android.play:review:2.0.2")
+
     implementation("com.android.billingclient:billing-ktx:7.1.1")
+
     implementation(project(":sdk"))
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sketchbox.drawingapp.adapters.profileAdapter.AppVideosAdapter
 import com.sketchbox.drawingapp.adsManger.ScreenStatusLogs
@@ -34,7 +35,10 @@ class AppVideoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         ScreenStatusLogs.logScreenView("AppVideoFragment","AppVideoFragment")
 
-        //  1. Empty adapter pehle set karo (UI jaldi render hoga)
+        binding.backBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
+        // Empty adapter pehle set karo (UI jaldi render hoga)
         videosAdapter = AppVideosAdapter(videoUris)
         binding.videoRv.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)

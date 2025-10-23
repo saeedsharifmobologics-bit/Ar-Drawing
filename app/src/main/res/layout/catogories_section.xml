@@ -23,7 +23,7 @@
         android:id="@+id/tvSeeAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="See all"
+        android:text="@string/see_all"
         android:textColor="#171217"
         android:textSize="14sp"
         android:fontFamily="@font/sfpro_regular"

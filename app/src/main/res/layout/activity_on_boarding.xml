@@ -30,7 +30,7 @@
         android:id="@+id/dots_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:dotsColor="@color/black"
+        app:dotsColor="@color/buttonBackground"
         app:dotsCornerRadius="8dp"
         app:dotsSize="16dp"
         app:dotsSpacing="4dp"
@@ -44,10 +44,10 @@
         android:id="@+id/ads_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="@dimen/_10sdp"
-        app:layout_constraintBottom_toTopOf="@id/skip_btn"
-        app:layout_constraintTop_toBottomOf="@id/dots_indicator">
-    </FrameLayout>
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/continue_btn"
+        app:layout_constraintTop_toBottomOf="@+id/dots_indicator" />
+
 
     <TextView
         android:id="@+id/skip_btn"

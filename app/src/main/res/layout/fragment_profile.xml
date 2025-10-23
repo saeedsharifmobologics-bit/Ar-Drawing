@@ -15,19 +15,13 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="@dimen/_10sdp"
-        android:text="Profile"
+        android:text="@string/stats"
         android:textColor="@color/black"
         android:textSize="@dimen/_20sdp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Divider -->
-    <View
-        android:id="@+id/profile_line"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/full_light_gray"
-        app:layout_constraintTop_toBottomOf="@id/profile_title" />
+
 
     <!-- Two Top Boxes: Spent Count & Sketch Drawn -->
     <LinearLayout
@@ -38,7 +32,7 @@
         android:paddingStart="@dimen/_10sdp"
         android:paddingEnd="@dimen/_10sdp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/profile_line"
+        app:layout_constraintTop_toBottomOf="@id/profile_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -56,7 +50,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Spent Count"
+                android:text="@string/time_spent"
                 android:fontFamily="@font/sfpro_bold"
 
                 android:textColor="@color/black"
@@ -87,7 +81,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Drawing"
+                android:text="@string/total_drawing"
                 android:textColor="@color/black"
                 android:fontFamily="@font/sfpro_bold"
 
@@ -119,8 +113,8 @@
         app:layout_constraintBottom_toTopOf="@+id/view_sketch_Video_btn">
 
         <ImageView
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_weight="0.1"
             android:src="@drawable/camera_svg"
             app:tint="@color/buttonBackground" />
@@ -130,7 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="View Sketch Images"
+            android:text="@string/view_sketch_images_btn_txt"
             android:textColor="@color/black"
             android:textSize="@dimen/_16sdp"
             android:fontFamily="@font/sfpro_bold"
@@ -158,10 +152,9 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom_guidline">
 
         <ImageView
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_weight="0.1"
-            android:contentDescription="Camera Icon"
             android:src="@drawable/gallery_svg"
             app:tint="@color/buttonBackground" />
 
@@ -170,7 +163,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="View Sketch Video"
+            android:text="@string/view_sketch_video_btn_txt"
             android:textColor="@color/black"
             android:textSize="@dimen/_16sdp"
             android:fontFamily="@font/sfpro_bold"

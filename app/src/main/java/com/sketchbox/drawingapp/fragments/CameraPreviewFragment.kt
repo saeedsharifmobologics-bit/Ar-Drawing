@@ -150,7 +150,6 @@ class CameraPreviewFragment : Fragment() {
 
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             findNavController().popBackStack()
-            CommonUtils.ImageHolder.pickLocation = null
         }
 
         // Set transparency in ViewModel & seekbar

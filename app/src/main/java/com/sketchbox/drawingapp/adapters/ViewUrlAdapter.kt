@@ -99,16 +99,21 @@ class ArDrawingDataAdapter(
             holder.favoriteBtn.setBackgroundResource(R.drawable.notfavourite_ic) // normal heart
         }
 
-        holder.image.setOnClickListener {
-            val drawable = holder.image.drawable?.toBitmap()
-            drawable?.let {
-                CommonUtils.ImageHolder.bitmap = it
-                CommonUtils.ImageHolder.pickLocation=null
+        if(screenName=="FavouriteFragment"){
 
-                val action = ViewCategoryFragmentDirections.actionViewCategoryFragmentToSelectionModeFragment()
-                holder.itemView.findNavController().navigate(action)
+        }else{
+            holder.image.setOnClickListener {
+                val drawable = holder.image.drawable?.toBitmap()
+                drawable?.let {
+                    CommonUtils.ImageHolder.bitmap = it
+                    CommonUtils.ImageHolder.pickLocation=null
+
+                    val action = ViewCategoryFragmentDirections.actionViewCategoryFragmentToSelectionModeFragment()
+                    holder.itemView.findNavController().navigate(action)
+                }
             }
         }
+
 
         holder.favoriteBtn.setOnClickListener {
             if (isFavourite) {

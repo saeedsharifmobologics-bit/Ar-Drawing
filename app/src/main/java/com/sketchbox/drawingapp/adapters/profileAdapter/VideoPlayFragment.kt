@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.navigation.fragment.navArgs
 import com.sketchbox.drawingapp.databinding.FragmentVideoPlayBinding
@@ -26,7 +27,10 @@ class VideoPlayFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val args: VideoPlayFragmentArgs by navArgs()
         val videoUri = args.videoUri.toUri()
+        binding.backBtn.setOnClickListener {
+           findNavController().popBackStack()
 
+        }
         binding.videoView.setVideoURI(videoUri)
 
         // Jab video prepare ho jaye to play karna start karo
@@ -36,7 +40,7 @@ class VideoPlayFragment : Fragment() {
 
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-           findNavController().popBackStack()
+            findNavController().popBackStack()
         }
 
     }

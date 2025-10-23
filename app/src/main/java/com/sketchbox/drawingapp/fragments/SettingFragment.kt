@@ -29,9 +29,11 @@ class SettingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ScreenStatusLogs.logScreenView("SettingFragment","SettingFragment")
+        ScreenStatusLogs.logScreenView("SettingFragment", "SettingFragment")
 
-        val navController = (requireActivity() as AppCompatActivity).supportFragmentManager.findFragmentById(R.id.nav_host_fragment)?.findNavController()
+        val navController =
+            (requireActivity() as AppCompatActivity).supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+                ?.findNavController()
         binding.backBtn.setOnClickListener {
             (activity as? MainActivity)?.closeDrawer()
         }
@@ -61,10 +63,12 @@ class SettingFragment : Fragment() {
 
 
         binding.privacyPolicyBtn.setOnClickListener {
-            CommonUtils.openUrl(
-                requireContext(),
-                "https://chatgpt.com/?openaicom_referred=true"
-            )
+            (activity as? MainActivity)?.closeDrawer()
+            navController?.navigate(R.id.privacyPolicyFragment)
+            /* CommonUtils.openUrl(
+                 requireContext(),
+                 "https://chatgpt.com/?openaicom_referred=true"
+             )*/
         }
         binding.termsOfServiceBtn.setOnClickListener {
             CommonUtils.openUrl(

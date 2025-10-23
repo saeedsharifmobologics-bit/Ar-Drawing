@@ -48,7 +48,7 @@ class SelectionModeFragment : Fragment() {
     lateinit var binding: FragmentSelectionModeBinding
 
     companion object {
-        public var selectedMode: DrawMode = DrawMode.NONE
+        public var selectedMode: DrawMode = DrawMode.CAMERA
 
     }
 
