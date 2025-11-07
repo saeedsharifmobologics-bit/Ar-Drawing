@@ -61,6 +61,9 @@ class FavouriteFragment : Fragment() {
         // 🔹 Collect and update list when data changes
         viewLifecycleOwner.lifecycleScope.launch {
             viewmodel.favoriteList.collectLatest { list ->
+                if (list.isEmpty()){
+                    binding.emptyFavouritesContainer.visibility=View.VISIBLE
+                }
                 adapter.updateList(list ?: emptyList())
             }
         }

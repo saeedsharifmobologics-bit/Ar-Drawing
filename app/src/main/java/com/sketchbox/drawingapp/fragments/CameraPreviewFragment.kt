@@ -5,6 +5,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -113,7 +114,7 @@ class CameraPreviewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        ScreenStatusLogs.logScreenView("CameraPreviewFragment","CameraPreviewFragment")
+        ScreenStatusLogs.logScreenView("CameraPreviewFragment", "CameraPreviewFragment")
         sharePreference = ArDrawingSharePreference(requireContext())
         if (selectedMode == DrawMode.CAMERA) {
             opacitySeekbarValue = 150
@@ -160,7 +161,18 @@ class CameraPreviewFragment : Fragment() {
     private fun setupCustomView() {
         // Ensure ViewModel is set first
         binding.customView.setViewModel(viewModel, requireActivity())
-        bitmap = CommonUtils.ImageHolder.bitmap!!
+        val defaultImages = listOf(
+            R.drawable.animals_11,
+            R.drawable.boats_08,
+            R.drawable.birds_04,
+            R.drawable.pirats_08
+        )
+
+        val bitmap = CommonUtils.ImageHolder.bitmap ?: run {
+            val randomDrawable = defaultImages.random()
+            BitmapFactory.decodeResource(requireContext().resources, randomDrawable)
+        }
+
         binding.customView.image = bitmap
 
         val imagePickLocation = CommonUtils.ImageHolder.pickLocation

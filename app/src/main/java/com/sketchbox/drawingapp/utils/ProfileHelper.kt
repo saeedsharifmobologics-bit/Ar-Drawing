@@ -6,7 +6,7 @@ import android.provider.MediaStore
 
 object ProfileHelper {
 
-    fun getImagesFromArDrawer(context: Context): List<Uri> {
+     fun getImagesFromArDrawer(context: Context): List<Uri> {
         val imageUris = mutableListOf<Uri>()
 
         val collection = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
@@ -18,7 +18,7 @@ object ProfileHelper {
         )
 
         val selection = "${MediaStore.Images.Media.RELATIVE_PATH} LIKE ?"
-        val selectionArgs = arrayOf("%Pictures/AR Drawer Images%") // target your folder
+        val selectionArgs = arrayOf("%Pictures/AR Drawer Images%")
 
         val sortOrder = "${MediaStore.Images.Media.DATE_ADDED} DESC"
 
@@ -32,19 +32,16 @@ object ProfileHelper {
 
         cursor?.use {
             val idColumn = it.getColumnIndexOrThrow(MediaStore.Images.Media._ID)
-
             while (it.moveToNext()) {
                 val id = it.getLong(idColumn)
-
                 val contentUri = Uri.withAppendedPath(collection, id.toString())
                 imageUris.add(contentUri)
             }
         }
-
         return imageUris
     }
 
-    fun getVideoFromArDrawer(context: Context): List<Uri> {
+     fun getVideoFromArDrawer(context: Context): List<Uri> {
         val videoUris = mutableListOf<Uri>()
 
         val collection = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
@@ -56,7 +53,7 @@ object ProfileHelper {
         )
 
         val selection = "${MediaStore.Video.Media.RELATIVE_PATH} LIKE ?"
-        val selectionArgs = arrayOf("%Movies/Ar Drawer Video%") // target your folder
+        val selectionArgs = arrayOf("%Movies/Ar Drawer Video%")
 
         val sortOrder = "${MediaStore.Video.Media.DATE_ADDED} DESC"
 
@@ -70,18 +67,14 @@ object ProfileHelper {
 
         cursor?.use {
             val idColumn = it.getColumnIndexOrThrow(MediaStore.Video.Media._ID)
-
             while (it.moveToNext()) {
                 val id = it.getLong(idColumn)
                 val contentUri = Uri.withAppendedPath(collection, id.toString())
                 videoUris.add(contentUri)
             }
         }
-
         return videoUris
     }
-
-
 
     fun formatDuration(ms: Long): String {
         val seconds = ms / 1000

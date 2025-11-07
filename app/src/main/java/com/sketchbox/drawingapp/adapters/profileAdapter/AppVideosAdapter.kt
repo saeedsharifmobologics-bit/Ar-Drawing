@@ -19,8 +19,7 @@ class AppVideosAdapter(private val videoUris: List<Uri>) :
         parent: ViewGroup,
         viewType: Int
     ): VideoViewHolder {
-        val layoutInflater =
-            AppVideoItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val layoutInflater = AppVideoItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return VideoViewHolder(layoutInflater)
     }
 

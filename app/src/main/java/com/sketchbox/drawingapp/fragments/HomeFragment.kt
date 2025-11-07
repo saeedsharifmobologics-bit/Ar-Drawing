@@ -232,8 +232,7 @@ class HomeFragment : Fragment() {
                     // Step 4: Navigate back to Main thread pe
                     withContext(Dispatchers.Main) {
                         CommonUtils.ImageHolder.pickLocation = null
-                        val action =
-                            HomeFragmentDirections.actionHomeFragmentToSelectionModeFragment()
+                        val action = HomeFragmentDirections.actionHomeFragmentToSelectionModeFragment()
                         findNavController().navigate(action)
                     }
                 }

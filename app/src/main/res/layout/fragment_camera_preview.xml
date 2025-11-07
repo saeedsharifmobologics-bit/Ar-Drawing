@@ -21,7 +21,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toTopOf="@id/firstGuidline"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="TODO" />
+        </androidx.camera.view.PreviewView>
 
         <com.sketchbox.drawingapp.utils.OverlayView
             android:id="@+id/custom_view"
@@ -29,12 +36,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <!-- ✅ Info button in top-right corner -->
+        <!--Info button in top-right corner -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/info_btn"
             android:layout_width="@dimen/_36sdp"

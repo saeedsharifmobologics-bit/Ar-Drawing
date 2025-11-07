@@ -18,13 +18,11 @@ import com.sketchbox.drawingapp.databinding.FragmentSubscriptionBinding
 class SubscriptionFragment : Fragment() {
 
     private lateinit var binding: FragmentSubscriptionBinding
-    private var selectedProduct: ProductDetails? = null
     private lateinit var app: ArApp
+    private var selectedProduct: ProductDetails? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentSubscriptionBinding.inflate(inflater, container, false)
         app = requireActivity().application as ArApp
@@ -34,33 +32,39 @@ class SubscriptionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         ScreenStatusLogs.logScreenView("SubscriptionFragment", "SubscriptionFragment")
 
-        //Fetch available products
         val products = Utils.productsList
-        if (products.isNotEmpty()) {
-            weeklyPlanePrice.text = products.getOrNull(0)?.subscriptionOfferDetails?.firstOrNull()
-                ?.pricingPhases?.pricingPhaseList?.firstOrNull()?.formattedPrice ?: "$0.00"
-            montlyPlanePrice.text = products.getOrNull(1)?.subscriptionOfferDetails?.firstOrNull()
-                ?.pricingPhases?.pricingPhaseList?.firstOrNull()?.formattedPrice ?: "$0.00"
-            yearlyPlanePrice.text = products.getOrNull(2)?.subscriptionOfferDetails?.firstOrNull()
-                ?.pricingPhases?.pricingPhaseList?.firstOrNull()?.formattedPrice ?: "$0.00"
+        val planButtons = listOf(weeklyPlanBtn, montlyPlanBtn, yearlyPlanBtn)
+        val priceTexts = listOf(weeklyPlanePrice, montlyPlanePrice, yearlyPlanePrice)
 
-            // Set weekly plan as default
+        // Set prices if products are available
+        if (products.isNotEmpty()) {
+            products.forEachIndexed { index, product ->
+                val price = product.subscriptionOfferDetails
+                    ?.firstOrNull()
+                    ?.pricingPhases
+                    ?.pricingPhaseList
+                    ?.firstOrNull()
+                    ?.formattedPrice ?: "$0.00"
+                priceTexts.getOrNull(index)?.text = price
+            }
+
+            // Default weekly plan selected with background
             selectedProduct = products.getOrNull(0)
-            val planButtons = listOf(weeklyPlanBtn, montlyPlanBtn, yearlyPlanBtn)
-            updatePriceCard(weeklyPlanBtn, planButtons)
+                updateSelectedCard(weeklyPlanBtn, planButtons)
+        } else {
+            // Even if no product, show weekly card as selected visually
+            updateSelectedCard(weeklyPlanBtn, planButtons)
         }
 
-
-        //Plan selection
-        val planButtons = listOf(weeklyPlanBtn, montlyPlanBtn, yearlyPlanBtn)
+        // Plan selection clicks
         planButtons.forEachIndexed { index, layout ->
             layout.setOnClickListener {
-                updatePriceCard(layout, planButtons)
                 selectedProduct = products.getOrNull(index)
+                updateSelectedCard(layout, planButtons)
             }
         }
 
-        // Subscribe button
+        // Subscribe button click
         subscribeBtn.setOnClickListener {
             selectedProduct?.let { product ->
                 app.billingManager.launchPurchaseFlow(requireActivity(), product)
@@ -70,14 +74,12 @@ class SubscriptionFragment : Fragment() {
         // Close button
         btnClose.setOnClickListener {
             findNavController().popBackStack()
-
         }
     }
 
-    private fun updatePriceCard(selectedLayout: LinearLayout, allLayouts: List<LinearLayout>) {
-        allLayouts.forEach { layout ->
-            val bg =
-                if (layout == selectedLayout) R.drawable.price_selected_card_bg else R.drawable.prices_card_bg
+    private fun updateSelectedCard(selected: LinearLayout, all: List<LinearLayout>) {
+        all.forEach { layout ->
+            val bg = if (layout == selected) R.drawable.price_selected_card_bg else R.drawable.prices_card_bg
             layout.background = ContextCompat.getDrawable(requireContext(), bg)
         }
     }

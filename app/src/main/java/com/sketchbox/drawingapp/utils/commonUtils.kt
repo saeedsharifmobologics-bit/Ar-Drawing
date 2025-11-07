@@ -17,6 +17,8 @@ import com.sketchbox.drawingapp.R
 object CommonUtils {
 
 
+
+
     object ImageHolder {
         var bitmap: Bitmap? = null
         var pickLocation: String? = null
@@ -157,23 +159,27 @@ object CommonUtils {
         return AnimationUtils.loadAnimation(context, R.anim.rotate_anti_clockwise)
     }
 
-
     fun showLeaveCameraDialog(
         context: Context,
         onConfirmed: (Boolean) -> Unit
     ) {
-        androidx.appcompat.app.AlertDialog.Builder(context)
-            .setTitle("Switch mode?")
-            .setMessage("Do you really want to leave camera preview and switch?")
-            .setPositiveButton("Yes") { _, _ ->
-                onConfirmed(true) // ✅ Only navigate if user confirms
+        val dialog = androidx.appcompat.app.AlertDialog.Builder(context)
+            .setTitle(context.getString(R.string.switch_mode))
+            .setMessage(context.getString(R.string.switch_description))
+            .setPositiveButton(context.getString(R.string.yes_dialog)) { _, _ ->
+                onConfirmed(true)
             }
-            .setNegativeButton("No") { dialog, _ ->
-                dialog.dismiss()
+            .setNegativeButton(context.getString(R.string.no_dialog)) { dialogInterface, _ ->
+                dialogInterface.dismiss()
                 onConfirmed(false)
             }
-            .setCancelable(true)
-            .show()
+            .create()
+
+         dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+
+        dialog.show()
     }
+
 
 }

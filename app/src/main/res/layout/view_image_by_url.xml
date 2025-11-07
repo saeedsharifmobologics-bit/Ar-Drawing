@@ -18,12 +18,13 @@
             android:background="@drawable/custom_image_view_shape" />
     </com.facebook.shimmer.ShimmerFrameLayout>
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ArDrawingDataImage"
         android:layout_width="0dp"
         android:layout_height="@dimen/_140sdp"
         android:background="@drawable/custom_image_view_shape"
         android:padding="@dimen/_5sdp"
+        app:shapeAppearance="@style/RoundedImageViewStyle"
         android:scaleType="fitXY"
         android:src="@drawable/character_08"
         app:layout_constraintEnd_toEndOf="parent"

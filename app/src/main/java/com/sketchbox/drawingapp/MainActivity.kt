@@ -34,9 +34,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Light status bar for better visibility on light backgrounds
-        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars =
-            true
-
+        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = true
         // Apply system window insets to main container
         val mainContainer = findViewById<View>(R.id.main_container)
         ViewCompat.setOnApplyWindowInsetsListener(mainContainer) { view, insets ->
@@ -46,10 +44,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Setup NavController
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-        setupBackPressHandler()
         setupBottomNavigation()
         setupDrawerListener()
         setupBottomBarVisibilityController()
@@ -153,10 +149,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun closeDrawer(){
-
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.closeDrawer(GravityCompat.START)
         }
-
     }
 }

@@ -3,13 +3,18 @@ package com.sketchbox.drawingapp.buinesslogiclayer
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.RectF
+import android.net.Uri
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sketchbox.drawingapp.dataClass.ArDrawingData
 import com.sketchbox.drawingapp.dataClass.OverlayState
 import com.sketchbox.drawingapp.dbUtils.ArDrawingDataDao
+import com.sketchbox.drawingapp.utils.ProfileHelper.getImagesFromArDrawer
+import com.sketchbox.drawingapp.utils.ProfileHelper.getVideoFromArDrawer
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -25,6 +30,20 @@ class ArDrawingViewmodel(private val dao: ArDrawingDataDao) : ViewModel() {
     private val _favoriteList = MutableStateFlow<List<ArDrawingData>>(emptyList())
     val favoriteList: StateFlow<List<ArDrawingData>> = _favoriteList
 
+    private val _imagesList = MutableStateFlow<List<Uri>>(emptyList())
+    val appImagesList: StateFlow<List<Uri>> = _imagesList
+
+    private val _videosList = MutableStateFlow<List<Uri>>(emptyList())
+    val appVideosList: StateFlow<List<Uri>> = _videosList
+
+    private val _currentPosition = MutableLiveData<Int>()
+    val currentPosition: LiveData<Int> get() = _currentPosition
+
+    fun setCurrentPosition(pos: Int) {
+        _currentPosition.value = pos
+    }
+
+
     init {
         // Observe database changes on initialization
         observeFavorites()
@@ -35,6 +54,20 @@ class ArDrawingViewmodel(private val dao: ArDrawingDataDao) : ViewModel() {
             dao.getAllFavorites().collectLatest { list ->
                 _favoriteList.value = list
             }
+        }
+    }
+
+    fun loadImagesFromArDrawer(context: Context) {
+        viewModelScope.launch {
+            val list = getImagesFromArDrawer(context)
+            _imagesList.value = list
+        }
+    }
+
+    fun loadVideosFromArDrawer(context: Context) {
+        viewModelScope.launch {
+            val list = getVideoFromArDrawer(context)
+            _videosList.value = list
         }
     }
 

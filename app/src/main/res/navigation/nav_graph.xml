@@ -184,6 +184,9 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/fade_out"/>
+        <action
+            android:id="@+id/action_appImagesFragment_to_viewImagesFragment"
+            app:destination="@id/viewImagesFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -234,7 +237,7 @@
 
     <fragment
         android:id="@+id/videoPlayFragment"
-        android:name="com.sketchbox.drawingapp.adapters.profileAdapter.VideoPlayFragment"
+        android:name="com.sketchbox.drawingapp.statesFragments.VideoPlayFragment"
         android:label="fragment_video_play"
         tools:layout="@layout/fragment_video_play" >
 
@@ -254,6 +257,18 @@
         android:name="com.sketchbox.drawingapp.fragments.PrivacyPolicyFragment"
         android:label="fragment_privacy_policy"
         tools:layout="@layout/fragment_privacy_policy" />
+    <fragment
+        android:id="@+id/viewImagesFragment"
+        android:name="com.sketchbox.drawingapp.statesFragments.ViewImagesFragment"
+        android:label="fragment_view_images"
+        tools:layout="@layout/fragment_view_images" >
+        <action
+            android:id="@+id/action_viewImagesFragment_to_appImagesFragment"
+            app:destination="@id/appImagesFragment" />
+        <argument
+            android:name="selectedImageUri"
+            app:argType="string" />
+    </fragment>
 
 
 </navigation>

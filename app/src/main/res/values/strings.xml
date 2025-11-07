@@ -51,6 +51,19 @@
     <string name="total_drawing">Total Drawing</string>
     <string name="time_spent">Time Spent</string>
     <string name="favourite_images_txt">Favourite</string>
+    <string name="switch_mode">Switch mode?</string>
+    <string name="switch_description">Do you really want to leave camera preview and switch?</string>
+    <string name="yes_dialog">Yes</string>
+    <string name="no_dialog">No</string>
+    <string name="carousel_layout_behavior" translatable="false">
+    com.google.android.material.carousel.CarouselLayoutBehavior
+</string>
+
+    <string name="delete">Delete</string>
+    <string name="delete_image">Delete Image</string>
+    <string name="delete_image_dec">Are you sure you want to delete this image?</string>
+    <string name="no_videos_found">No Videos Found</string>
+    <string name="no_image_found">No Image Found</string>
 
 
 </resources>
