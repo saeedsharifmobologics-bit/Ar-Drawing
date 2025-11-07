@@ -63,8 +63,12 @@ class FavouriteFragment : Fragment() {
             viewmodel.favoriteList.collectLatest { list ->
                 if (list.isEmpty()){
                     binding.emptyFavouritesContainer.visibility=View.VISIBLE
+                }else{
+                    binding.emptyFavouritesContainer.visibility=View.GONE
+
+                    adapter.updateList(list)
                 }
-                adapter.updateList(list ?: emptyList())
+
             }
         }
     }

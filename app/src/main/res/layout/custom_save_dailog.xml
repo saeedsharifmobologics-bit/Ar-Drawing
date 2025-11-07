@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:padding="@dimen/_10sdp"
         android:gravity="center_horizontal"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,7 +22,7 @@
             android:id="@+id/titleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Congratulations!"
+            android:text="@string/congratulations"
             android:textColor="#000000"
             android:textSize="22sp"
             android:fontFamily="@font/sfpro_bold"
@@ -35,35 +36,25 @@
             android:gravity="center"
             android:fontFamily="@font/sfpro_regular"
 
-            android:text="Take a photo of your artwork to share it\nwith your friends."
+            android:text="@string/take_a_photo_of_your_artwork_to_share_it_nwith_your_friends"
             android:textColor="#444444"
             android:textSize="16sp" />
 
         <LinearLayout
             android:id="@+id/buttonLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/backToHomeBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="@color/full_light_gray"
-                android:text="Back to home"
-                android:fontFamily="@font/sfpro_regular"
-
-                android:textColor="#000000" />
 
             <Button
                 android:id="@+id/takePhotoBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/buttonBackground"
-                android:text="Take a Photo"
                 android:fontFamily="@font/sfpro_bold"
+                android:text="@string/take_a_photo"
 
                 android:textColor="#FFFFFF" />
         </LinearLayout>
@@ -73,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="No, I’m not finished yet."
+            android:text="@string/no_i_am_not_finished_yet"
             android:textColor="#888888"
             android:fontFamily="@font/sfpro_regular"
 

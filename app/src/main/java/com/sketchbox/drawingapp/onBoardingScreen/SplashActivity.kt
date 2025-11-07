@@ -36,10 +36,12 @@ class SplashActivity : AppCompatActivity() {
         //Simulate subscription state from saved prefs (replace with your real logic)
         val isUserSubscribed = Utils.subscriptionState // Replace with real logic
 
-        // 🟡 Load splash ad
+        //Load splash ad
+/*
         SplashAppOpenAdManager.loadSplashAd(this)
+*/
 
-        // 🟡 UMP Consent setup
+        // UMP Consent setup
         setupUMPConsent { consentNeeded ->
             isConsentNeeded = consentNeeded
             if (!isConsentNeeded) {

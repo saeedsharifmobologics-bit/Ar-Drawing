@@ -1,6 +1,7 @@
 package com.sketchbox.drawingapp.adapters
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -10,27 +11,32 @@ import com.sketchbox.drawingapp.databinding.LanguageCardLayoutBinding
 
 class LanguageAdapter(
     private val languages: List<Pair<String, String>>,
-    private var selectedPosition: Int = 0,
+    private var currentLangCode: String,
     private val onSelect: (String) -> Unit
 ) : RecyclerView.Adapter<LanguageAdapter.LanguageViewHolder>() {
 
     inner class LanguageViewHolder(val binding: LanguageCardLayoutBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(language: Pair<String, String>, position: Int) {
-            binding.tvLanguage.text = language.first
-            binding.rbLanguage.isChecked = (position == selectedPosition)
+        fun bind(language: Pair<String, String>) {
+            val isSelected = language.second.equals(currentLangCode, ignoreCase = true)
+            Log.d("LanguageActitivyt","Adapter$currentLangCode")
 
-            // Card border highlight
-            binding.root.strokeColor =
-                if (position == selectedPosition) ContextCompat.getColor(binding.root.context, R.color.black)
-                else Color.LTGRAY
+            binding.tvLanguage.text = language.first
+            binding.rbLanguage.isChecked = isSelected
+
+
+            binding.root.strokeColor = if (isSelected) ContextCompat.getColor(binding.root.context, R.color.black)
+            else
+                Color.LTGRAY
 
             binding.root.setOnClickListener {
-                val oldPosition = selectedPosition
-                selectedPosition = position
-                notifyItemChanged(oldPosition)
-                notifyItemChanged(selectedPosition)
+                val oldLang = currentLangCode
+                currentLangCode = language.second
+
+
+                notifyDataSetChanged()
+
                 onSelect(language.second)
             }
         }
@@ -42,9 +48,8 @@ class LanguageAdapter(
         return LanguageViewHolder(binding)
     }
 
-
     override fun onBindViewHolder(holder: LanguageViewHolder, position: Int) {
-        holder.bind(languages[position], position)
+        holder.bind(languages[position])
     }
 
     override fun getItemCount() = languages.size

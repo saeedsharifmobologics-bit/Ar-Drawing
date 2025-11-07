@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.sketchbox.drawingapp.adsManger.ScreenStatusLogs
+import com.sketchbox.drawingapp.adsManger.Utils
 import com.sketchbox.drawingapp.adsManger.adsUtils
 import com.sketchbox.drawingapp.databinding.FragmentProfileBinding
 import com.sketchbox.drawingapp.utils.ArDrawingSharePreference
@@ -29,19 +30,21 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ScreenStatusLogs.logScreenView("ProfileFragment","ProfileFragment")
+        ScreenStatusLogs.logScreenView("ProfileFragment", "ProfileFragment")
 
-        adsUtils.loadNativeAd(requireView(),requireContext())
+        if (!Utils.subscriptionState) {
+            adsUtils.loadNativeAd(requireView(), requireContext())
+        }
         sharePreference = ArDrawingSharePreference(requireContext())
-        val drawn_size=ProfileHelper.getImagesFromArDrawer(requireContext()).size
-        val spent_time= ProfileHelper.formatDuration(sharePreference.getSpentCountTime())
-        binding.spentTime.text = spent_time
-        binding.drawnSize.text=drawn_size.toString()
+        val drawn_Size = ProfileHelper.getImagesFromArDrawer(requireContext()).size
+        val spent_Time = ProfileHelper.formatDuration(sharePreference.getSpentCountTime())
+        binding.spentTime.text = spent_Time
+        binding.drawnSize.text = drawn_Size.toString()
 
 
 
         binding.viewSketchImagesBtn.setOnClickListener {
-            val action= ProfileFragmentDirections.actionProfileFragmentToAppImagesFragment()
+            val action = ProfileFragmentDirections.actionProfileFragmentToAppImagesFragment()
             findNavController().navigate(action)
         }
         binding.viewSketchVideoBtn.setOnClickListener {

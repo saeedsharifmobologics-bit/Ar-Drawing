@@ -55,7 +55,7 @@
             android:layout_marginTop="@dimen/_7sdp"
             android:textSize="@dimen/_20sdp"
             android:layout_marginStart="@dimen/_10sdp"
-            android:textColor="#3C3A3A"
+            android:textColor="@color/buttonBackground"
             android:text="0.0 Sec" />
 
     </FrameLayout>
@@ -66,7 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.76" />
+        app:layout_constraintGuide_percent="0.71" />
 
 
     <TextView
@@ -124,6 +124,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginTop="@dimen/_15sdp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

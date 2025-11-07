@@ -140,6 +140,8 @@ class MainActivity : AppCompatActivity() {
             override fun onDrawerClosed(drawerView: View) {}
             override fun onDrawerStateChanged(newState: Int) {}
         })
+
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
     }
 
     fun openDrawer(){

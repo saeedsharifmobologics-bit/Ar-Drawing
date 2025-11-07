@@ -480,12 +480,12 @@ class CameraPreviewFragment : Fragment() {
 
     fun savedVideoDialog() {
         val alertDialog = androidx.appcompat.app.AlertDialog.Builder(requireContext())
-        alertDialog.setTitle("Did you want to see the Video")
-        alertDialog.setPositiveButton("View Video") { _, _ ->
+        alertDialog.setTitle(requireContext().getString(R.string.camera_videoview_title))
+        alertDialog.setPositiveButton(requireContext().getString(R.string.view_video)) { _, _ ->
             findNavController().navigate(CameraPreviewFragmentDirections.actionCameraPreviewFragmentToAppVideoFragment())
 
         }
-        alertDialog.setNegativeButton("Cancel") { dialog, _ ->
+        alertDialog.setNegativeButton(requireContext().getString(R.string.no_dialog)) { dialog, _ ->
             dialog.dismiss()
         }
         Handler(Looper.getMainLooper()).postDelayed({ alertDialog.show() }, 200)

@@ -47,7 +47,7 @@
             android:id="@+id/tvNoFavourites"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No Favourites Found"
+            android:text="@string/no_favourites_found"
             android:textColor="@color/black"
             android:textSize="@dimen/_15sdp"
             android:fontFamily="@font/sfpro_regular"

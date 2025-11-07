@@ -65,5 +65,18 @@
     <string name="no_videos_found">No Videos Found</string>
     <string name="no_image_found">No Image Found</string>
 
+    <string name="delete_video">Delete Video?</string>
+    <string name="delete_video_dec">Are you sure you want to delete this video?</string>
+
+
+
+    <string name="camera_videoview_title">Did you want to see the Video</string>
+    <string name="view_video">View Video</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="take_a_photo_of_your_artwork_to_share_it_nwith_your_friends">Take a photo of your artwork to share with friends.</string>
+    <string name="take_a_photo">Take a Photo</string>
+    <string name="no_i_am_not_finished_yet">No, I am not finished yet.</string>
+    <string name="no_favourites_found">No Favourites Found</string>
+
 
 </resources>

@@ -31,7 +31,7 @@ class BillingManager(
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
                     queryAvailableProducts()
                     checkActiveSubscription { hasActive ->
-                        Utils.subscriptionState = hasActive
+                        Utils.subscriptionState = true
                         Log.d("Billing", "Active sub: $hasActive")
                     }
                 }

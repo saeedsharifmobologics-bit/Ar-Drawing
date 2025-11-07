@@ -8,17 +8,18 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.graphics.toColorInt
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.sketchbox.drawingapp.R
-import com.sketchbox.drawingapp.dataClass.ArDrawingData
-import com.sketchbox.drawingapp.fragments.ViewCategoryFragmentDirections
+import coil.size.ViewSizeResolver
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
-import androidx.core.graphics.toColorInt
-import coil.size.ViewSizeResolver
+import com.sketchbox.drawingapp.R
 import com.sketchbox.drawingapp.buinesslogiclayer.ArDrawingViewmodel
+import com.sketchbox.drawingapp.dataClass.ArDrawingData
+import com.sketchbox.drawingapp.fragments.FavouriteFragmentDirections
+import com.sketchbox.drawingapp.fragments.ViewCategoryFragmentDirections
 import com.sketchbox.drawingapp.utils.CommonUtils
 
 class ArDrawingDataAdapter(
@@ -99,26 +100,31 @@ class ArDrawingDataAdapter(
             holder.favoriteBtn.setBackgroundResource(R.drawable.notfavourite_ic) // normal heart
         }
 
-        if(screenName=="FavouriteFragment"){
-
-        }else{
-            holder.image.setOnClickListener {
-                val drawable = holder.image.drawable?.toBitmap()
-                drawable?.let {
-                    CommonUtils.ImageHolder.bitmap = it
-                    CommonUtils.ImageHolder.pickLocation=null
-
+        holder.image.setOnClickListener {
+            val drawable = holder.image.drawable?.toBitmap()
+            drawable?.let {
+                CommonUtils.ImageHolder.bitmap = it
+                CommonUtils.ImageHolder.pickLocation = null
+                if (screenName == "FavouriteFragment"){
+                    val action= FavouriteFragmentDirections.actionFavouriteFragmentToSelectionModeFragment()
+                    holder.itemView.findNavController().navigate(action)
+                }
+                else{
                     val action = ViewCategoryFragmentDirections.actionViewCategoryFragmentToSelectionModeFragment()
                     holder.itemView.findNavController().navigate(action)
                 }
+
+
+
             }
         }
 
 
+
         holder.favoriteBtn.setOnClickListener {
             if (isFavourite) {
-                viewModel.removeFavorite(imageUrl,{ boolean->
-                    Log.d("DeletedStatus",boolean.toString())
+                viewModel.removeFavorite(imageUrl, { boolean ->
+                    Log.d("DeletedStatus", boolean.toString())
                 })
             } else {
                 viewModel.addFavorite(imageUrl)

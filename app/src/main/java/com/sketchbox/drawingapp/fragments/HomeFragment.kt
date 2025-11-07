@@ -136,12 +136,11 @@ class HomeFragment : Fragment() {
 
         preloadInterstitialAd(requireActivity())
 
-        /*
-        StrictMode.setThreadPolicy(
+        /* StrictMode.setThreadPolicy(
                     StrictMode.ThreadPolicy.Builder()
                         .detectAll()
                         .penaltyLog()
-                        .penaltyFlashScreen() // UI freeze hone pe screen flash karegi
+                        .penaltyFlashScreen()
                         .build()
                 )
 
@@ -149,8 +148,9 @@ class HomeFragment : Fragment() {
                     StrictMode.VmPolicy.Builder()
                         .detectAll()
                         .penaltyLog()
-                        .build()
-                )*/
+                        .build())
+
+                */
 
 
 
@@ -207,37 +207,38 @@ class HomeFragment : Fragment() {
         }
 
         binding.quickStartBtn.setOnClickListener {
-            showInterstitialAd(requireActivity(), {
-                lifecycleScope.launch(Dispatchers.IO) {
-                    // Step 1: List load karo background me
-                    val urlList = allUrlList()
+            lifecycleScope.launch(Dispatchers.IO) {
+                // Step 1: List load karo background me
+                val urlList = allUrlList()
 
-                    // Check karo list empty to nahi
-                    if (urlList.isEmpty()) {
-                        withContext(Dispatchers.Main) {
-                            Toast.makeText(requireContext(), "No images found!", Toast.LENGTH_SHORT)
-                                .show()
-                        }
-                        return@launch
-                    }
-
-                    // Step 2: Random image select karo
-                    val randomIndex = Random.nextInt(urlList.size)
-                    val randomElement = urlList[randomIndex].favouriteUrl
-
-                    // Step 3: Bitmap load karo
-                    val bitmap = urlToBitmap(randomElement, requireContext())
-                    CommonUtils.ImageHolder.bitmap = bitmap
-
-                    // Step 4: Navigate back to Main thread pe
+                // Check karo list empty to nahi
+                if (urlList.isEmpty()) {
                     withContext(Dispatchers.Main) {
-                        CommonUtils.ImageHolder.pickLocation = null
-                        val action = HomeFragmentDirections.actionHomeFragmentToSelectionModeFragment()
-                        findNavController().navigate(action)
+                        Toast.makeText(requireContext(), "No images found!", Toast.LENGTH_SHORT)
+                            .show()
                     }
+                    return@launch
                 }
 
-            })
+                // Step 2: Random image select karo
+                val randomIndex = Random.nextInt(urlList.size)
+                val randomElement = urlList[randomIndex].favouriteUrl
+
+                // Step 3: Bitmap load karo
+                val bitmap = urlToBitmap(randomElement, requireContext())
+                CommonUtils.ImageHolder.bitmap = bitmap
+
+                // Step 4: Navigate back to Main thread pe
+                withContext(Dispatchers.Main) {
+                    CommonUtils.ImageHolder.pickLocation = null
+                    val action = HomeFragmentDirections.actionHomeFragmentToSelectionModeFragment()
+                    findNavController().navigate(action)
+                }
+            }
+            /* showInterstitialAd(requireActivity(), {
+
+
+            }) */
 
         }
 

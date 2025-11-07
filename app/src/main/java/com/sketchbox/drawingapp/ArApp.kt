@@ -87,8 +87,8 @@ class ArApp : Application() {
     }
 
     private fun initAdMobAndAppOpenAds() {
-        MobileAds.initialize(this)
-        appOpenManager = AppOpenManager(this)
+      /*  MobileAds.initialize(this)
+        appOpenManager = AppOpenManager(this)*/
     }
 
     private suspend fun initFirebaseAndRemoteConfig() {

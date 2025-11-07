@@ -8,6 +8,4 @@ object Utils {
     var productsList: List<ProductDetails> = emptyList()
     var subscriptionState: Boolean = false
 
-
-
 }

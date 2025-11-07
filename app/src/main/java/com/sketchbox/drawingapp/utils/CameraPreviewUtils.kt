@@ -168,7 +168,6 @@ object CameraPreviewUtils {
     ) {
         val dialogView = layoutInflater.inflate(R.layout.custom_save_dailog, null)
         val saveButton = dialogView.findViewById<Button>(R.id.takePhotoBtn)
-        val cancelButton = dialogView.findViewById<Button>(R.id.backToHomeBtn)
 
         val dialog = AlertDialog.Builder(context)
             .setView(dialogView)
@@ -179,10 +178,6 @@ object CameraPreviewUtils {
 
         saveButton.setOnClickListener {
             onSaveConfirmed()
-            dialog.dismiss()
-        }
-
-        cancelButton.setOnClickListener {
             dialog.dismiss()
         }
 

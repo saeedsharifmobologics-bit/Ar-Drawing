@@ -91,9 +91,9 @@ class VideoPlayFragment : Fragment() {
 
         binding.deleteBtn.setOnClickListener {
             AlertDialog.Builder(requireContext())
-                .setTitle("Delete Video?")
-                .setMessage("Are you sure you want to delete this video?")
-                .setPositiveButton("Delete") { _, _ ->
+                .setTitle(requireContext().getString(R.string.delete_video))
+                .setMessage(requireContext().getString(R.string.delete_video_dec))
+                .setPositiveButton(requireContext().getString(R.string.delete)) { _, _ ->
                         val uri = args.videoUri.toUri()
                         val deleted = deleteVideoByUri(requireContext(), uri)
 
@@ -105,7 +105,7 @@ class VideoPlayFragment : Fragment() {
 
 
                 }
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton(requireContext().getString(R.string.no_dialog), null)
                 .show()
         }
 

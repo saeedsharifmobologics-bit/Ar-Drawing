@@ -120,6 +120,9 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/fade_out"/>
+        <action
+            android:id="@+id/action_selectionModeFragment_to_favouriteFragment"
+            app:destination="@id/favouriteFragment" />
     </fragment>
     <fragment
         android:id="@+id/cameraPreviewFragment"
@@ -251,7 +254,11 @@
         android:id="@+id/favouriteFragment"
         android:name="com.sketchbox.drawingapp.fragments.FavouriteFragment"
         android:label="fragment_favourite"
-        tools:layout="@layout/fragment_favourite" />
+        tools:layout="@layout/fragment_favourite" >
+        <action
+            android:id="@+id/action_favouriteFragment_to_selectionModeFragment"
+            app:destination="@id/selectionModeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/privacyPolicyFragment"
         android:name="com.sketchbox.drawingapp.fragments.PrivacyPolicyFragment"

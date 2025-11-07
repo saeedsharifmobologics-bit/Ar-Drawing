@@ -260,6 +260,7 @@
             android:text="Go Premium"
             android:textColor="@color/black"
             android:textSize="@dimen/_20sdp"
+            android:visibility="gone"
             android:fontFamily="@font/sfpro_bold"
             app:layout_constraintBottom_toTopOf="@+id/go_premium_layout"
             app:layout_constraintEnd_toEndOf="parent"
@@ -272,6 +273,7 @@
             android:id="@+id/go_premium_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/guidline1"
             app:layout_constraintTop_toBottomOf="@+id/goPremium">
 
