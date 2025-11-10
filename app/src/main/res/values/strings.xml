@@ -70,7 +70,8 @@
 
 
 
-    <string name="camera_videoview_title">Did you want to see the Video</string>
+    <string name="camera_videoview_message">Did you want to see the Video</string>
+    <string name="camera_videoview_Title">Video Saved</string>
     <string name="view_video">View Video</string>
     <string name="congratulations">Congratulations!</string>
     <string name="take_a_photo_of_your_artwork_to_share_it_nwith_your_friends">Take a photo of your artwork to share with friends.</string>

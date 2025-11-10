@@ -1,14 +1,11 @@
 package com.sketchbox.drawingapp
 
-import android.content.Context
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
+import androidx.annotation.OptIn
 import androidx.appcompat.app.AppCompatActivity
+import androidx.camera.view.TransformExperimental
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
@@ -18,15 +15,16 @@ import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import com.sketchbox.drawingapp.databinding.ActivityMainBinding
+import com.sketchbox.drawingapp.fragments.CameraPreviewFragment
 import com.sketchbox.drawingapp.fragments.SettingFragment
-import com.sketchbox.drawingapp.utils.CommonUtils
+import com.sketchbox.drawingapp.utils.CameraPreviewUtils.bottomBarClicked
 import com.sketchbox.drawingapp.utils.CommonUtils.showLeaveCameraDialog
-import com.sketchbox.drawingapp.utils.ReviewManager
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    private lateinit var navHostFragment: NavHostFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +32,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Light status bar for better visibility on light backgrounds
-        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = true
+        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars =
+            true
         // Apply system window insets to main container
         val mainContainer = findViewById<View>(R.id.main_container)
         ViewCompat.setOnApplyWindowInsetsListener(mainContainer) { view, insets ->
@@ -44,7 +43,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Setup NavController
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         setupBottomNavigation()
         setupDrawerListener()
@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    @OptIn(TransformExperimental::class)
     private fun setupBottomNavigation() {
         val bottomBar = binding.bottomNavigationBar
         bottomBar.itemMenuRes = R.menu.menu
@@ -89,21 +90,33 @@ class MainActivity : AppCompatActivity() {
 
             //If coming from CameraPreviewFragment, show confirmation dialog
             if (navController.currentDestination?.id == R.id.cameraPreviewFragment) {
-                showLeaveCameraDialog(this) { success ->
-                    if (success) {
-                        val navOptions = NavOptions.Builder()
-                            .setLaunchSingleTop(true)
-                            .setPopUpTo(navController.graph.startDestinationId, false)
-                            .build()
-                        navController.navigate(destinationId, null, navOptions)
+                bottomBarClicked = true
+                val cameraFragment =
+                    navHostFragment.childFragmentManager.fragments.firstOrNull { it is CameraPreviewFragment } as? CameraPreviewFragment
+                if (cameraFragment?.recordingState == CameraPreviewFragment.RecordingState.RECORDING) {
+                    Toast.makeText(this, "Please Stop Recording First ", Toast.LENGTH_SHORT).show()
+                    bottomBar.itemActiveIndex = 0
 
-                        // Change index ONLY after confirmed navigation
-                        bottomBar.itemActiveIndex = index
-                    } else {
-                        bottomBar.itemActiveIndex = 0
+                } else {
+
+                    showLeaveCameraDialog(this) { success ->
+                        if (success) {
+
+                            val navOptions = NavOptions.Builder()
+                                .setLaunchSingleTop(true)
+                                .setPopUpTo(navController.graph.startDestinationId, false)
+                                .build()
+                            navController.navigate(destinationId, null, navOptions)
+
+                            // Change index ONLY after confirmed navigation
+                            bottomBar.itemActiveIndex = index
+                        } else {
+                            bottomBar.itemActiveIndex = 0
+                        }
+
                     }
-
                 }
+
             } else {
                 val navOptions = NavOptions.Builder()
                     .setLaunchSingleTop(true)
@@ -144,13 +157,13 @@ class MainActivity : AppCompatActivity() {
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
     }
 
-    fun openDrawer(){
+    fun openDrawer() {
         if (!binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
     }
 
-    fun closeDrawer(){
+    fun closeDrawer() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.closeDrawer(GravityCompat.START)
         }

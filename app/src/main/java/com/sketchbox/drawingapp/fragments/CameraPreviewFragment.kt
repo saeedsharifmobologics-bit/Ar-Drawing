@@ -4,13 +4,11 @@ package com.sketchbox.drawingapp.fragments
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import com.sketchbox.drawingapp.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +19,8 @@ import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresPermission
 import androidx.appcompat.widget.AppCompatButton
-import androidx.camera.core.*
+import androidx.camera.core.Camera
+import androidx.camera.core.ImageCapture
 import androidx.camera.video.Recorder
 import androidx.camera.video.Recording
 import androidx.camera.video.VideoCapture
@@ -32,13 +31,15 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.sketchbox.drawingapp.databinding.FragmentCameraPreviewBinding
+import com.sketchbox.drawingapp.R
 import com.sketchbox.drawingapp.adsManger.ScreenStatusLogs
 import com.sketchbox.drawingapp.buinesslogiclayer.ArDrawingViewmodel
+import com.sketchbox.drawingapp.databinding.FragmentCameraPreviewBinding
 import com.sketchbox.drawingapp.fragments.SelectionModeFragment.Companion.selectedMode
 import com.sketchbox.drawingapp.utils.ArDrawingSharePreference
 import com.sketchbox.drawingapp.utils.CameraPreviewUtils
 import com.sketchbox.drawingapp.utils.CameraPreviewUtils.applySketchOverlayInBackground
+import com.sketchbox.drawingapp.utils.CameraPreviewUtils.bottomBarClicked
 import com.sketchbox.drawingapp.utils.CameraPreviewUtils.showSaveDialog
 import com.sketchbox.drawingapp.utils.CameraPreviewUtils.srcMat
 import com.sketchbox.drawingapp.utils.CameraPreviewUtils.updateButtonState
@@ -64,13 +65,15 @@ class CameraPreviewFragment : Fragment() {
     }
 
     // 2. Variables and ViewModel
-    private var recordingState: RecordingState = RecordingState.IDLE
+    var recordingState: RecordingState = RecordingState.IDLE
     private lateinit var binding: FragmentCameraPreviewBinding
+    private var isFlashOn = false
     private lateinit var preview: PreviewView
+    private var camera: Camera? = null
+
     private var imageCapture: ImageCapture? = null
     private var videoCapture: VideoCapture<Recorder>? = null
-    private var recording: Recording? = null
-    lateinit var bitmap: Bitmap
+    var recording: Recording? = null
     private var timerHandler: Handler? = null
     private var timerRunnable: Runnable? = null
     private var elapsedTimeMillis: Long = 0L // total elapsed time
@@ -140,11 +143,13 @@ class CameraPreviewFragment : Fragment() {
             setupCamera()
 
         }
+        binding.flashLightBtn.setOnClickListener {
+            toggleTorch()
+        }
 
         setupButtons()
     }
 
-    // --- Setup functions broken into logical chunks ---
 
     private fun setupNavigation() {
 
@@ -241,11 +246,28 @@ class CameraPreviewFragment : Fragment() {
     private fun setupCamera() {
         preview = binding.cameraPreveiw
 
-        val (capturedImageCapture, capturedVideoCapture) = CameraPreviewUtils.startCamera(
-            this, preview, viewModel, viewLifecycleOwner
+        CameraPreviewUtils.startCamera(
+            this,
+            preview,
+            viewModel,
+            viewLifecycleOwner,
+            onCameraReady = { cameraInstance ->
+                camera = cameraInstance
+                imageCapture = ImageCapture.Builder().build()
+                videoCapture = VideoCapture.withOutput(Recorder.Builder().build())
+            }
         )
-        imageCapture = capturedImageCapture
-        videoCapture = capturedVideoCapture
+    }
+    private fun toggleTorch() {
+        camera?.let {
+            isFlashOn = !isFlashOn
+            it.cameraControl.enableTorch(isFlashOn)
+            binding.flashLightBtn.setImageResource(
+                if (isFlashOn) R.drawable.flash_light_on_ic else R.drawable.flash_light_of_ic
+            )
+        } ?: run {
+            Toast.makeText(requireContext(), "Camera not initialized yet", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setupButtons() {
@@ -322,8 +344,11 @@ class CameraPreviewFragment : Fragment() {
                         recordingState = RecordingState.IDLE
                         updateRecordingBtn()
                         stopRecordingTimer()
-                        savedVideoDialog()
+                        if (!bottomBarClicked) {
+                            savedVideoDialog()
+                        }
                         Toast.makeText(context, "Recording Saved", Toast.LENGTH_SHORT).show()
+                        bottomBarClicked = false
                     }
                 }
             }
@@ -480,7 +505,8 @@ class CameraPreviewFragment : Fragment() {
 
     fun savedVideoDialog() {
         val alertDialog = androidx.appcompat.app.AlertDialog.Builder(requireContext())
-        alertDialog.setTitle(requireContext().getString(R.string.camera_videoview_title))
+        alertDialog.setTitle(requireContext().getString(R.string.camera_videoview_Title))
+        alertDialog.setMessage(requireContext().getString(R.string.camera_videoview_message))
         alertDialog.setPositiveButton(requireContext().getString(R.string.view_video)) { _, _ ->
             findNavController().navigate(CameraPreviewFragmentDirections.actionCameraPreviewFragmentToAppVideoFragment())
 
@@ -515,8 +541,12 @@ class CameraPreviewFragment : Fragment() {
     }
 
 
+
     override fun onDestroyView() {
         super.onDestroyView()
+
+        recording?.stop()
+        stopRecordingTimer()
     }
 
 }

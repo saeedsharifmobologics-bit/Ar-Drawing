@@ -28,6 +28,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="TODO" />
+
+
         </androidx.camera.view.PreviewView>
 
         <com.sketchbox.drawingapp.utils.OverlayView
@@ -39,12 +41,25 @@
         <!--Info button in top-right corner -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/info_btn"
+            android:layout_width="@dimen/_38sdp"
+            android:layout_height="@dimen/_38sdp"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_55sdp"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/info_btn" />
+
+
+        <!--Info button in top-right corner -->
+        <ImageView
+            android:id="@+id/flash_light_btn"
             android:layout_width="@dimen/_36sdp"
             android:layout_height="@dimen/_36sdp"
             android:layout_gravity="top|end"
+            android:src="@drawable/flash_light_of_ic"
             android:layout_margin="@dimen/_10sdp"
             android:background="@android:color/transparent"
-            android:drawableTop="@drawable/info_btn" />
+            android:drawableTop="@drawable/flash_light_on_ic" />
 
         <TextView
             android:id="@+id/video_time_stamp"

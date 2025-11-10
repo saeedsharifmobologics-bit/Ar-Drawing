@@ -8,8 +8,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,18 +16,21 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.graphics.drawable.toBitmap
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.imageLoader
-
 import coil.request.ImageRequest
 import com.sketchbox.drawingapp.MainActivity
 import com.sketchbox.drawingapp.R
 import com.sketchbox.drawingapp.adapters.MultiViewTypeAdapter
 import com.sketchbox.drawingapp.adsManger.ScreenStatusLogs
 import com.sketchbox.drawingapp.adsManger.Utils
+import com.sketchbox.drawingapp.adsManger.adsUtils.loadNativeAd
+import com.sketchbox.drawingapp.adsManger.adsUtils.preloadInterstitialAd
 import com.sketchbox.drawingapp.databinding.FragmentHomeBinding
+import com.sketchbox.drawingapp.fragments.CameraLauncher.isCameraFeatureActive
 import com.sketchbox.drawingapp.utils.ArDrawingSharePreference
 import com.sketchbox.drawingapp.utils.CommonUtils
 import com.sketchbox.drawingapp.utils.CommonUtils.getRotateAnticlockwiseAnimation
@@ -37,10 +38,6 @@ import com.sketchbox.drawingapp.utils.CommonUtils.getRotateClockwiseAnimation
 import com.sketchbox.drawingapp.utils.ImageUrlList.allUrlList
 import com.sketchbox.drawingapp.utils.ImageUrlList.createMainCategoryList
 import com.sketchbox.drawingapp.utils.PermissionHandler
-import com.sketchbox.drawingapp.adsManger.adsUtils.loadNativeAd
-import com.sketchbox.drawingapp.adsManger.adsUtils.preloadInterstitialAd
-import com.sketchbox.drawingapp.adsManger.adsUtils.showInterstitialAd
-import com.sketchbox.drawingapp.fragments.CameraLauncher.isCameraFeatureActive
 import com.sketchbox.drawingapp.utils.ReviewManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -61,7 +58,6 @@ class HomeFragment : Fragment() {
     private lateinit var sharePreference: ArDrawingSharePreference
     private var pendingAction: (() -> Unit)? = null
     private var doubleBackToExitPressedOnce = false
-
 
 
     private val readStoragePermissionLauncher =
@@ -235,10 +231,11 @@ class HomeFragment : Fragment() {
                     findNavController().navigate(action)
                 }
             }
-            /* showInterstitialAd(requireActivity(), {
 
+            /*
+            showInterstitialAd( requireActivity(), { } )
 
-            }) */
+            */
 
         }
 
@@ -337,29 +334,30 @@ class HomeFragment : Fragment() {
 
     private fun setupBackPressHandler() {
         // Custom back press callback
-        requireActivity().onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                if (doubleBackToExitPressedOnce) {
-                    //Second back press → open review and exit
-                    ReviewManager.showInAppReview(requireContext())
-                    requireActivity().finishAffinity() // close app after review
-                } else {
-                    doubleBackToExitPressedOnce = true
-                    Toast.makeText(
-                        requireContext(),
-                        "Press back again to exit",
-                        Toast.LENGTH_SHORT
-                    ).show()
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (doubleBackToExitPressedOnce) {
+                        //Second back press → open review and exit
+                        ReviewManager.showInAppReview(requireContext())
+                        requireActivity().finishAffinity() // close app after review
+                    } else {
+                        doubleBackToExitPressedOnce = true
+                        Toast.makeText(
+                            requireContext(),
+                            "Press back again to exit",
+                            Toast.LENGTH_SHORT
+                        ).show()
 
-                    // Reset flag after 2 seconds
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        doubleBackToExitPressedOnce = false
-                    }, 2000)
+                        // Reset flag after 2 seconds
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            doubleBackToExitPressedOnce = false
+                        }, 2000)
+                    }
                 }
-            }
-        })
+            })
     }
-
 
 
 }

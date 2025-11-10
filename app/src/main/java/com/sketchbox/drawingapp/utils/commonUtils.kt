@@ -22,6 +22,7 @@ object CommonUtils {
     object ImageHolder {
         var bitmap: Bitmap? = null
         var pickLocation: String? = null
+
     }
     fun registerGalleryPicker(
         activityResultCaller: ActivityResultCaller,  // This can be Activity or Fragment

@@ -5,14 +5,13 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import coil.Coil
 import coil.ImageLoader
+import com.google.firebase.FirebaseApp
 import com.sketchbox.drawingapp.adsManger.AppOpenManager
 import com.sketchbox.drawingapp.adsManger.BillingManager
 import com.sketchbox.drawingapp.adsManger.RemoteConfigManager
 import com.sketchbox.drawingapp.adsManger.Utils
 import com.sketchbox.drawingapp.koinModule.appModule
 import com.sketchbox.drawingapp.utils.LanguageManager
-import com.google.android.gms.ads.MobileAds
-import com.google.firebase.FirebaseApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -29,7 +28,7 @@ class ArApp : Application() {
     lateinit var billingManager: BillingManager
         private set
 
-    // ✅ Use one structured application-level scope
+    // Use one structured application-level scope
     private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
     override fun onCreate() {
@@ -57,7 +56,7 @@ class ArApp : Application() {
             modules(appModule)
         }
 
-        // --- Initialize Billing ---
+        //--- Initialize Billing ---
         billingManager = BillingManager(
             context = this,
             productIds = listOf("sketchbox_weekly", "sketchbox_monthly", "sketchbox_yearly"),
@@ -87,13 +86,14 @@ class ArApp : Application() {
     }
 
     private fun initAdMobAndAppOpenAds() {
-      /*  MobileAds.initialize(this)
-        appOpenManager = AppOpenManager(this)*/
+        /*  MobileAds.initialize(this)
+          appOpenManager = AppOpenManager(this)*/
     }
 
     private suspend fun initFirebaseAndRemoteConfig() {
         // Firebase should be on Main
         withContext(Dispatchers.Main) {
+
             FirebaseApp.initializeApp(this@ArApp)
         }
         // Remote config on IO

@@ -1,11 +1,15 @@
 package com.sketchbox.drawingapp.onBoardingScreen
 
 import android.content.Intent
-import android.os.*
+import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.google.android.ump.*
+import com.google.android.ump.ConsentDebugSettings
+import com.google.android.ump.ConsentInformation
+import com.google.android.ump.ConsentRequestParameters
+import com.google.android.ump.UserMessagingPlatform
 import com.sketchbox.drawingapp.BuildConfig
 import com.sketchbox.drawingapp.MainActivity
 import com.sketchbox.drawingapp.R
@@ -17,8 +21,8 @@ import kotlinx.coroutines.launch
 
 class SplashActivity : AppCompatActivity() {
 
-    private lateinit var arDrawingSharePreference: ArDrawingSharePreference
 
+    private lateinit var arDrawingSharePreference: ArDrawingSharePreference
     private var isConsentNeeded = false
     private var isConsentFormDismissed = false
     private var isAdLoaded = false
@@ -37,9 +41,9 @@ class SplashActivity : AppCompatActivity() {
         val isUserSubscribed = Utils.subscriptionState // Replace with real logic
 
         //Load splash ad
-/*
-        SplashAppOpenAdManager.loadSplashAd(this)
-*/
+        /*
+                SplashAppOpenAdManager.loadSplashAd(this)
+        */
 
         // UMP Consent setup
         setupUMPConsent { consentNeeded ->
@@ -57,16 +61,19 @@ class SplashActivity : AppCompatActivity() {
                     is SplashAppOpenAdManager.AdEvent.AdLoaded -> {
                         isAdLoaded = true
                     }
+
                     is SplashAppOpenAdManager.AdEvent.AdDismissed -> {
                         isAdDismissed = true
                         tryNavigate()
                     }
+
                     is SplashAppOpenAdManager.AdEvent.AdFailedToShow,
                     is SplashAppOpenAdManager.AdEvent.AdTimeout,
                     is SplashAppOpenAdManager.AdEvent.AdFailedToLoad -> {
                         isAdFailed = true
                         tryNavigate()
                     }
+
                     is SplashAppOpenAdManager.AdEvent.NoInternet -> {
                         lifecycleScope.launch {
                             delay(3500)
@@ -74,6 +81,7 @@ class SplashActivity : AppCompatActivity() {
                             tryNavigate()
                         }
                     }
+
                     else -> Unit
                 }
             }

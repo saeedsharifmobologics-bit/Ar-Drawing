@@ -1,12 +1,11 @@
-
 package com.sketchbox.drawingapp.utils
+
 import android.Manifest
 import android.content.ContentValues
 import android.content.Context
 import android.graphics.Bitmap
 import android.provider.MediaStore
 import android.util.Log
-import com.sketchbox.drawingapp.R
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.ImageView
@@ -14,13 +13,25 @@ import android.widget.Toast
 import androidx.annotation.RequiresPermission
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
-import androidx.camera.core.*
-import androidx.camera.video.*
+import androidx.camera.core.Camera
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageAnalysis
+import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCaptureException
+import androidx.camera.core.Preview
+import androidx.camera.video.MediaStoreOutputOptions
+import androidx.camera.video.Quality
+import androidx.camera.video.QualitySelector
+import androidx.camera.video.Recorder
+import androidx.camera.video.Recording
+import androidx.camera.video.VideoCapture
+import androidx.camera.video.VideoRecordEvent
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.createBitmap
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
+import com.sketchbox.drawingapp.R
 import com.sketchbox.drawingapp.buinesslogiclayer.ArDrawingViewmodel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -33,7 +44,7 @@ import java.util.concurrent.Executors
 
 object CameraPreviewUtils {
     lateinit var srcMat: Mat
-
+    var bottomBarClicked = false
 
 
     fun startCamera(
@@ -41,32 +52,24 @@ object CameraPreviewUtils {
         previewView: PreviewView,
         viewModel: ArDrawingViewmodel,
         lifecycleOwner: LifecycleOwner,
-        onImageCaptured: (Bitmap) -> Unit = {}
-    ): Pair<ImageCapture, VideoCapture<Recorder>> {
-
+        onImageCaptured: (Bitmap) -> Unit = {},
+        onCameraReady: (Camera) -> Unit  // <-- callback for camera
+    ) {
         val imageCapture = ImageCapture.Builder().build()
-
         val recorder = Recorder.Builder()
             .setQualitySelector(QualitySelector.from(Quality.HD))
             .build()
-
         val videoCapture = VideoCapture.withOutput(recorder)
 
-        // Call getCameraProvider with callback
         viewModel.getCameraProvider(fragment.requireContext()) { cameraProvider ->
-
-            // Unbind any use-cases before rebinding
             cameraProvider.unbindAll()
 
-            // Build Preview use-case
             val preview = Preview.Builder().build().also {
-                // setSurfaceProvider must be called on main thread
                 fragment.requireActivity().runOnUiThread {
                     it.surfaceProvider = previewView.surfaceProvider
                 }
             }
 
-            // Build ImageAnalysis use-case
             val imageAnalyzer = ImageAnalysis.Builder()
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build().also {
@@ -74,8 +77,6 @@ object CameraPreviewUtils {
                         try {
                             val bitmap = imageProxy.toBitmap()
                             onImageCaptured(bitmap)
-                        } catch (e: Exception) {
-                            Log.e("CameraX", "Image analysis failed: ${e.message}", e)
                         } finally {
                             imageProxy.close()
                         }
@@ -84,10 +85,9 @@ object CameraPreviewUtils {
 
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
-            // Bind use-cases to lifecycle on main thread
             fragment.requireActivity().runOnUiThread {
                 try {
-                    cameraProvider.bindToLifecycle(
+                    val camera = cameraProvider.bindToLifecycle(
                         lifecycleOwner,
                         cameraSelector,
                         preview,
@@ -95,13 +95,12 @@ object CameraPreviewUtils {
                         videoCapture,
                         imageAnalyzer
                     )
+                    onCameraReady(camera)  // <-- call back when ready
                 } catch (e: Exception) {
                     Log.e("CameraX", "Binding failed: ${e.message}", e)
                 }
             }
         }
-
-        return Pair(imageCapture, videoCapture)
     }
 
 
@@ -199,7 +198,7 @@ object CameraPreviewUtils {
 
             try {
                 // Step 1: Copy the original image
-              srcMat.copyTo(colorMat)
+                srcMat.copyTo(colorMat)
 
                 // Step 2: Convert to grayscale
                 Imgproc.cvtColor(colorMat, gray, Imgproc.COLOR_BGR2GRAY)
@@ -284,9 +283,6 @@ object CameraPreviewUtils {
             cameraBtn.setTextColor(ContextCompat.getColor(context, R.color.black))
         }
     }
-
-
-
 
 
 }
